@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget pickDate(void Function() fn, Widget child) {
+Widget pickDate(void Function() fn, String tip, Widget child) {
   return Stack(children: [
     child,
     Positioned(
@@ -9,13 +9,14 @@ Widget pickDate(void Function() fn, Widget child) {
       child: IconButton(
         onPressed: fn,
         icon: const Icon(Icons.edit_calendar_rounded),
+        tooltip: tip,
       ),
     ),
   ]);
 }
 
 Widget changeDate(
-    void Function() fn, IconData icon, DateTime date, String limit) {
+    void Function() fn, String tip, IconData icon, DateTime date, String limit) {
   bool dt;
   if (limit == 'start') {
     dt = date == DateTime(2022, 09, 01);
@@ -26,6 +27,7 @@ Widget changeDate(
   return IconButton(
     onPressed: dt ? () {} : fn,
     icon: Icon(icon),
+    tooltip: tip,
   );
 }
 

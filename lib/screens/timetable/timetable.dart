@@ -62,14 +62,15 @@ class _TimeTableState extends State<TimeTable> {
   Widget build(BuildContext context) {
     return pickDate(
       selectDate,
+      'Select a date from Calendar',
       Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              changeDate(prevDate, Icons.arrow_left_sharp, _curDate, 'start'),
+              changeDate(prevDate, 'Previous Date', Icons.arrow_left_sharp, _curDate, 'start'),
               dateText(_curDate),
-              changeDate(nxtDate, Icons.arrow_right_sharp, _curDate, 'end'),
+              changeDate(nxtDate, 'Next Date', Icons.arrow_right_sharp, _curDate, 'end'),
             ],
           ),
           const SizedBox(

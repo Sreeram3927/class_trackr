@@ -36,11 +36,11 @@ class _BtNavBarState extends State<BtNavBar> {
           label: 'Time Table'
         ),
 
-        NavigationDestination(
-          icon: Icon(Icons.notifications_active_outlined), 
-          selectedIcon: Icon(Icons.notifications_active_rounded),
-          label: 'Reminders'
-        ),
+        // BottomNavigationBarItem(
+        //   icon: Icon(Icons.notifications_active_outlined), 
+        //   activeIcon: Icon(Icons.notifications_active_rounded),
+        //   label: 'Reminders'
+        // ),
 
         NavigationDestination(
           icon: Icon(Icons.settings_outlined), 
