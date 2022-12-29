@@ -9,12 +9,6 @@ class MainScreen extends StatelessWidget {
     TimeTable(),
     Center(
       child: Text(
-        'Reminders',
-        style: TextStyle(fontSize: 80),
-      ),
-    ),
-    Center(
-      child: Text(
         'Settings',
         style: TextStyle(fontSize: 80),
       ),
