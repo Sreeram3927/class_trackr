@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/screens/timetable/glass_morphism.dart';
-import 'package:infinity_project/screens/timetable/subject_card/subject_info.dart';
 
 class SubjectCard extends StatelessWidget {
 
@@ -26,7 +25,6 @@ class SubjectCard extends StatelessWidget {
 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             
             Text(

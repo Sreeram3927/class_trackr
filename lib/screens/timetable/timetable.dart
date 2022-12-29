@@ -73,30 +73,29 @@ class _TimeTableState extends State<TimeTable> {
               changeDate(nxtDate, 'Next Date', Icons.arrow_right_sharp, _curDate, 'end'),
             ],
           ),
-          const SizedBox(
-            height: 5.0,
-          ),
+          
+          const SizedBox(height: 5.0),
+
           Expanded(
             child: _holiday
-                ? const Holiday()
-                : ListView.separated(
-                    itemCount: _curDayOrder.length,
-                    itemBuilder: (context, index) {
-                      List<String> details =
-                          Subject.subData[_curDayOrder[index][3]];
-                      return SubjectCard(
-                        title: details[0],
-                        subjectCode: details[1],
-                        startTime: _curDayOrder[index][1],
-                        endTime: _curDayOrder[index][2],
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const SizedBox(
-                        height: 10.0,
-                      );
-                    },
-                  ),
+              ? const Holiday()
+              : ListView.separated(
+                  itemCount: _curDayOrder.length,
+                  itemBuilder: (context, index) {
+
+                    List<String> details = Subject.subData[_curDayOrder[index][3]];
+
+                    return SubjectCard(
+                      title: details[0],
+                      subjectCode: details[1],
+                      startTime: _curDayOrder[index][1],
+                      endTime: _curDayOrder[index][2],
+                    );
+                  },
+
+                  separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 10.0),
+                  
+                ),
           ),
         ],
       ),
