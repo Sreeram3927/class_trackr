@@ -3,26 +3,25 @@ class Subject {
 
   static Map subData = {
 
-    'EEE' : ['Electrical and Electronics Engineering', '21EES101T (Theory)', 'Dr. S.Usha (101439)', 'Offline', 'UB610', ],
+    'EEE' : ['Electrical and Electronics Engineering', '21EES101T (Theory)'],
 
-    'Mat' : ['Calculus and Linear Algrbra', '21MAB101T (Theory)', 'Dr. R.Mahendran (101673)', 'Offline', 'UB610', ],
+    'Mat' : ['Calculus and Linear Algrbra', '21MAB101T (Theory)'],
 
-    'Eng' : ['Communicative English', '21LEH101T (Theory)', 'Dr. V.Karunanithi (102097)', 'Offline', 'UB610', ],
+    'Eng' : ['Communicative English', '21LEH101T (Theory)'],
 
-    'EGD' : ['Engineering Graphics and Design', '21MES102L (Practical)', 'Mr. S.Ponsankar (101771)', 'Offline', 'BEL510', ],
+    'EGD' : ['Engineering Graphics and Design', '21MES102L (Practical)',],
 
-    'Phy' : ['Physics: Mechanics', '21PYB104J (Theory)', 'Dr. K.D.Nisha (102005)', 'Offline', 'UB610', ],
+    'Phy' : ['Physics: Mechanics', '21PYB104J (Theory)',],
 
-    'PyL' : ['Physics: Mechanics(Lab)', '21PYB104J (Practical)', 'Dr. K.D.Nisha (102005)', 'Offline', 'UB615', ],
+    'PyL' : ['Physics: Mechanics(Lab)', '21PYB104J (Practical)',],
 
-    'EVS' : ['Environmental Science', '21CYM101T', 'Dr. S.Ganesan (101283)', 'Online', 'GMeet', ],
+    'EVS' : ['Environmental Science', '21CYM101T',],
 
-    'PSP' : ['Professional Skills and Practices', '21PDM101T', 'Mr.Nizamudeen Anwar (102293)', 'Online', 'GMeet',],
+    'PSP' : ['Professional Skills and Practices', '21PDM101T',],
 
-    'COI' : ['Constitution of India', '21LEM101T', 'Dr. L.Sundaram (102460)', 'Online', 'GMeet', ],
+    'COI' : ['Constitution of India', '21LEM101T',],
 
-    '420' : ['Subject Not Found!!', 'Subject Code Not Found', 'Dr. Johnny Sins (69420)', 'Online', 'USA']
-
+    '420' : ['Subject Not Found!!', 'Subject Code Not Found',]
   };
 
 }

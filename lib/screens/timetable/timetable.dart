@@ -87,9 +87,6 @@ class _TimeTableState extends State<TimeTable> {
                       return SubjectCard(
                         title: details[0],
                         subjectCode: details[1],
-                        staff: details[2],
-                        mode: details[3],
-                        where: details[4],
                         startTime: _curDayOrder[index][1],
                         endTime: _curDayOrder[index][2],
                       );

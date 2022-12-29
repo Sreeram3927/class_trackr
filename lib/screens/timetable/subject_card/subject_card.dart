@@ -6,9 +6,6 @@ class SubjectCard extends StatelessWidget {
 
   final String title;
   final String subjectCode;
-  final String staff;
-  final String mode;
-  final String where;
   final String startTime;
   final String endTime;
 
@@ -16,9 +13,6 @@ class SubjectCard extends StatelessWidget {
     super.key,
     required this.title,
     required this.subjectCode,
-    required this.staff,
-    required this.mode,
-    required this.where,
     required this.startTime,
     required this.endTime
   });
@@ -31,23 +25,34 @@ class SubjectCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
 
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             
-            subTitle(title),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                subInfo(subjectCode, staff),
-                const SizedBox(),
-                roomInfo(mode, where),
-                const SizedBox(),
-              ],
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 21.0,
+                fontWeight: FontWeight.w600
+              ),
+              textAlign: TextAlign.center,
             ),
             
-            classTiming(startTime, endTime),
+            Text(
+              subjectCode,
+              style: const TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.w500
+              ),
+            ),
+
+            Text(
+              '$startTime - $endTime',
+              style: const TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.w700
+              ),
+            )
 
           ]
         ),
