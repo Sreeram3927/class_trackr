@@ -19,7 +19,7 @@ class Subject {
 
     'C&M' : ['Basic Civil and Mechanical Workshop', '21MES102L',],
 
-    'GA' : ['Constitution of India', '21PDM102L',],
+    'GA' : ['General Aptitude', '21PDM102L',],
 
     '420' : ['Subject Not Found!!', 'Subject Code Not Found',]
   };
