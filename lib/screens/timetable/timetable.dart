@@ -21,8 +21,8 @@ class _TimeTableState extends State<TimeTable> {
     DateTime? newDate = await showDatePicker(
       context: context,
       initialDate: _curDate,
-      firstDate: DateTime(2022, 09, 01),
-      lastDate: DateTime(2022, 12, 31),
+      firstDate: DateTime(2023, 01, 01),
+      lastDate: DateTime(2023, 05, 31),
     );
 
     if (newDate == null) return;
