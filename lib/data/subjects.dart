@@ -3,23 +3,23 @@ class Subject {
 
   static Map subData = {
 
-    'EEE' : ['Electrical and Electronics Engineering', '21EES101T (Theory)'],
+    'EMS' : ['Elements of Mechatronics Systems', '21MHC101P'],
 
-    'Mat' : ['Calculus and Linear Algrbra', '21MAB101T (Theory)'],
+    'PPS' : ['Programming for Problem Solving', '21CSS101J'],
 
-    'Eng' : ['Communicative English', '21LEH101T (Theory)'],
+    'POE' : ['Philosophy of Engineering', '21GNH101J'],
 
-    'EGD' : ['Engineering Graphics and Design', '21MES102L (Practical)',],
+    'ACCA' : ['Advanced Calculus and Complex Analysis', '21MAB102T',],
 
-    'Phy' : ['Physics: Mechanics', '21PYB104J (Theory)',],
+    'Bio' : ['Biology', '21BTB103T',],
 
-    'PyL' : ['Physics: Mechanics(Lab)', '21PYB104J (Practical)',],
+    'Chem' : ['Chemisty', '21CYB101J',],
 
-    'EVS' : ['Environmental Science', '21CYM101T',],
+    'FL' : ['forign language', '21xxx10xT',],
 
-    'PSP' : ['Professional Skills and Practices', '21PDM101T',],
+    'C&M' : ['Basic Civil and Mechanical Workshop', '21MES102L',],
 
-    'COI' : ['Constitution of India', '21LEM101T',],
+    'GA' : ['Constitution of India', '21PDM102L',],
 
     '420' : ['Subject Not Found!!', 'Subject Code Not Found',]
   };
