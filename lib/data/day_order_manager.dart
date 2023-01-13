@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 class DayOrderManager {
 
   static holiday(DateTime date) {    
-    String val = DateFormat('MM/dd').format(date);
+    String val = DateFormat('dd/MM').format(date);
     if (DayOrderDate.dayOrder_1.contains(val)) {return false;} 
     else if (DayOrderDate.dayOrder_2.contains(val)) {return false;} 
     else if (DayOrderDate.dayOrder_3.contains(val)) {return false;} 
@@ -15,7 +15,7 @@ class DayOrderManager {
   }
 
   static getDayOrder(DateTime date) {
-    String val = DateFormat('MM/dd').format(date);
+    String val = DateFormat('dd/MM').format(date);
     if (DayOrderDate.dayOrder_1.contains(val)) {return DayOrder.dO1;} 
     else if (DayOrderDate.dayOrder_2.contains(val)) {return DayOrder.dO2;} 
     else if (DayOrderDate.dayOrder_3.contains(val)) {return DayOrder.dO3;} 
