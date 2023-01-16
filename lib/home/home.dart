@@ -18,8 +18,8 @@ class _HomeState extends State<Home> {
     return Scaffold(
 
       body:Column(
-        children: const [
-          TitleBar(),
+        children: [
+          const TitleBar(),
           Expanded(child: MainScreen()),
         ],
       ),

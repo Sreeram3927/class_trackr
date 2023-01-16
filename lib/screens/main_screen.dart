@@ -6,13 +6,13 @@ import 'timetable/timetable.dart';
 class MainScreen extends StatelessWidget {
   static ValueNotifier<int> idx = ValueNotifier(0);
 
-  final screens = const [
-    TimeTable(),
+  final screens = [
+    const TimeTable(),
     Settings(),
-    About(),
+    const About(),
   ];
 
-  const MainScreen({super.key});
+  MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

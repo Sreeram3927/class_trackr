@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 
 class Settings extends StatelessWidget {
-  const Settings({super.key});
+  Settings({super.key});
 
-  //final int idx = 0;
+  final List _settings = [
+    'App Theme', 
+    'Source Code', 
+    'App Name', 
+    'App Version'
+  ];
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 2,
+        itemCount: _settings.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text('$index'),
+            title: Text(_settings[index]),
             subtitle: Text('testing - $index'),
-           onTap: () {},
+            onTap: () {},
           );
         });
   }
