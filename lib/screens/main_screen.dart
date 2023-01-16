@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/screens/about/about.dart';
+import 'package:infinity_project/screens/settings/settings.dart';
 import 'timetable/timetable.dart';
 
 class MainScreen extends StatelessWidget {
@@ -7,12 +8,7 @@ class MainScreen extends StatelessWidget {
 
   final screens = const [
     TimeTable(),
-    Center(
-      child: Text(
-        'Settings',
-        style: TextStyle(fontSize: 80),
-      ),
-    ),
+    Settings(),
     About(),
   ];
 
