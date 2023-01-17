@@ -15,8 +15,7 @@ Widget pickDate(void Function() fn, String tip, Widget child) {
   ]);
 }
 
-Widget changeDate(
-    void Function() fn, String tip, IconData icon, DateTime date, String limit) {
+Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date, String limit) {
   bool dt;
   if (limit == 'start') {
     dt = date == DateTime(2023, 01, 01);

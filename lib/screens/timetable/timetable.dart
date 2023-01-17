@@ -17,6 +17,11 @@ class _TimeTableState extends State<TimeTable> {
   List _curDayOrder = [];
   bool _holiday = true;
 
+  void _getData() {
+    _holiday = DayOrderManager.holiday(_curDate);
+    _curDayOrder = DayOrderManager.getDayOrder(_curDate);
+  }
+
   void selectDate() async {
     DateTime? newDate = await showDatePicker(
       context: context,
@@ -29,24 +34,21 @@ class _TimeTableState extends State<TimeTable> {
 
     setState(() {
       _curDate = newDate;
-      _holiday = DayOrderManager.holiday(_curDate);
-      _curDayOrder = DayOrderManager.getDayOrder(_curDate);
+      _getData();
     });
   }
 
   void prevDate() {
     setState(() {
       _curDate = DateTime(_curDate.year, _curDate.month, _curDate.day - 1);
-      _holiday = DayOrderManager.holiday(_curDate);
-      _curDayOrder = DayOrderManager.getDayOrder(_curDate);
+      _getData();
     });
   }
 
   void nxtDate() {
     setState(() {
       _curDate = DateTime(_curDate.year, _curDate.month, _curDate.day + 1);
-      _holiday = DayOrderManager.holiday(_curDate);
-      _curDayOrder = DayOrderManager.getDayOrder(_curDate);
+     _getData();
     });
   }
 
@@ -54,8 +56,7 @@ class _TimeTableState extends State<TimeTable> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _holiday = DayOrderManager.holiday(_curDate);
-    _curDayOrder = DayOrderManager.getDayOrder(_curDate);
+    _getData();
   }
 
   @override
@@ -68,34 +69,33 @@ class _TimeTableState extends State<TimeTable> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              changeDate(prevDate, 'Previous Date', Icons.arrow_left_sharp, _curDate, 'start'),
+              changeDate(prevDate, 'Previous Date', Icons.arrow_left_sharp,
+                  _curDate, 'start'),
               dateText(_curDate),
-              changeDate(nxtDate, 'Next Date', Icons.arrow_right_sharp, _curDate, 'end'),
+              changeDate(nxtDate, 'Next Date', Icons.arrow_right_sharp,
+                  _curDate, 'end'),
             ],
           ),
-          
           const SizedBox(height: 5.0),
-
           Expanded(
             child: _holiday
-              ? const Holiday()
-              : ListView.separated(
-                  itemCount: _curDayOrder.length,
-                  itemBuilder: (context, index) {
+                ? const Holiday()
+                : ListView.separated(
+                    itemCount: _curDayOrder.length,
+                    itemBuilder: (context, index) {
+                      List<String> details =
+                          Subject.subData[_curDayOrder[index][3]];
 
-                    List<String> details = Subject.subData[_curDayOrder[index][3]];
-
-                    return SubjectCard(
-                      title: details[0],
-                      subjectCode: details[1],
-                      startTime: _curDayOrder[index][1],
-                      endTime: _curDayOrder[index][2],
-                    );
-                  },
-
-                  separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 10.0),
-                  
-                ),
+                      return SubjectCard(
+                        title: details[0],
+                        subjectCode: details[1],
+                        startTime: _curDayOrder[index][1],
+                        endTime: _curDayOrder[index][2],
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const SizedBox(height: 10.0),
+                  ),
           ),
         ],
       ),
