@@ -4,29 +4,16 @@ import 'package:infinity_project/screens/settings/settings_button/settings_butto
 class Settings extends StatelessWidget {
   Settings({super.key});
 
-  final List _settings = [
-    'App Theme',
-    'Source Code',
-    'App Name',
-    'App Version'
+  final List<Widget> _settings = [
+    aboutApp('App Name', 'IP_SD'),
+    aboutApp('App Version', '0.3.1')
   ];
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: _settings.length,
-        itemBuilder: (context, index) {
-
-          String title = _settings[index];
-          String subTitle = SettingsButton.buttons[title][0];
-          
-          return ListTile(
-            title: Text(title),
-            subtitle: Text(subTitle),
-            onTap: (() {
-              
-            }),
-          );
-        });
+      itemCount: _settings.length,
+      itemBuilder: (context, index) => _settings[index],
+    );
   }
 }
