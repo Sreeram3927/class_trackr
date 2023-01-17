@@ -16,14 +16,11 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 15.0),
-      child: ValueListenableBuilder(
-        valueListenable: idx,
-        builder: (context, value, child) {
-          return screens[value];
-        },
-      ),
+    return ValueListenableBuilder(
+      valueListenable: idx,
+      builder: (context, value, child) {
+        return screens[value];
+      },
     );
   }
 }

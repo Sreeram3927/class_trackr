@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
 Widget pickDate(void Function() fn, String tip, Widget child) {
-  return Stack(children: [
-    child,
-    Positioned(
-      bottom: 15.0,
-      right: 15.0,
-      child: IconButton(
-        onPressed: fn,
-        icon: const Icon(Icons.edit_calendar_rounded),
-        tooltip: tip,
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 15.0),
+    child: Stack(children: [
+      child,
+      Positioned(
+        bottom: 15.0,
+        right: 15.0,
+        child: IconButton(
+          onPressed: fn,
+          icon: const Icon(Icons.edit_calendar_rounded),
+          tooltip: tip,
+        ),
       ),
-    ),
-  ]);
+    ]),
+  );
 }
 
 Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date, String limit) {
