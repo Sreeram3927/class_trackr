@@ -48,7 +48,7 @@ class _TimeTableState extends State<TimeTable> {
   void nxtDate() {
     setState(() {
       _curDate = DateTime(_curDate.year, _curDate.month, _curDate.day + 1);
-     _getData();
+      _getData();
     });
   }
 
@@ -61,6 +61,7 @@ class _TimeTableState extends State<TimeTable> {
 
   @override
   Widget build(BuildContext context) {
+    print('test');
     return pickDate(
       selectDate,
       'Select a date from Calendar',

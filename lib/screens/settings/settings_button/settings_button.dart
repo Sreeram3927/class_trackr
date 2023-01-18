@@ -41,3 +41,11 @@ Widget feedbackForm() {
     onTap: () {},
   );
 }
+
+Widget changeCourse() {
+  return ListTile(
+    title: const Text('Change Course/Batch'),
+    subtitle: const Text(''),
+    onTap: () => selectCourse(),
+  );
+}
