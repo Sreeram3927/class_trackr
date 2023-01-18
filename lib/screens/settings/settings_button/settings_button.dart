@@ -15,3 +15,11 @@ Widget aboutApp(
     },
   );
 }
+
+Widget sourceCode() {
+  return ListTile(
+    title: const Text('Source Code'),
+    trailing: const Icon(Icons.code_rounded),
+    onTap: () {},
+  );
+}

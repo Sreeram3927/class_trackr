@@ -8,6 +8,7 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final List<Widget> settings = [
+      sourceCode(),
       aboutApp(context, 'App Name', 'IP_SD', 'IP_SD'),
       aboutApp(context, 'App Version', '0.3.1', 'For updates check Discord')
     ];    
