@@ -15,7 +15,7 @@ Widget alertCard(BuildContext context, String data) {
   );
 }
 
-Widget selectCourse() {
+Widget selectData(List val, String currentVal) {
   return const AlertDialog(
     actions: [
       Radio(value: [], groupValue: null, onChanged: null)

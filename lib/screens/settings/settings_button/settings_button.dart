@@ -42,10 +42,10 @@ Widget feedbackForm() {
   );
 }
 
-Widget changeCourse() {
+Widget changeData(String title, String subtitle, List val, String currentVal) {
   return ListTile(
-    title: const Text('Change Course/Batch'),
-    subtitle: const Text(''),
-    onTap: () => selectCourse(),
+    title: Text(title),
+    subtitle: Text(subtitle),
+  //  onTap: () => selectData(val, currentVal),
   );
 }

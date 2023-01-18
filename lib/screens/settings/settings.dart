@@ -8,7 +8,8 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final List<Widget> settings = [
-      changeCourse(),
+      changeData('Change Course/Batch', '', [], ''),
+      changeData('Change Foreign Language', '', [], ''),
       feedbackForm(),
       darkTheme(context),
       sourceCode(),
