@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 
-class SettingsFunctions {
-  static Widget settingsTheme = Card(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        const Text('Dark Theme coming soon....'),
-        GestureDetector(
-          child: const Text(
-            'OK',
-            style: TextStyle(color: Colors.blue),
-          ),
-          //onTap: () => Navigator.pop(context),
+Widget alertCard(BuildContext context, String data) {
+  return AlertDialog(
+    title: Text(data),
+    actions: [
+      Center(
+        child: TextButton(
+          child: const Text('OK'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         )
-      ],
-    ),
+      )
+    ],
   );
 }
