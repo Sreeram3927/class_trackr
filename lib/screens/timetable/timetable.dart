@@ -61,7 +61,6 @@ class _TimeTableState extends State<TimeTable> {
 
   @override
   Widget build(BuildContext context) {
-    print('test');
     return pickDate(
       selectDate,
       'Select a date from Calendar',
