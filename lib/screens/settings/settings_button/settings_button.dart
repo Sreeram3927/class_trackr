@@ -23,13 +23,21 @@ Widget sourceCode() {
 
 Widget darkTheme(BuildContext context) {
   return ListTile(
-    title: Text('Dark Theme'),
-    trailing: Icon(Icons.sync_disabled_rounded),
+    title: const Text('Dark Theme'),
+    trailing: const Icon(Icons.sync_disabled_rounded),
     onTap: () {
       showDialog(
-        context: context,
-        builder: (context) => alertCard(context, 'Dark Theme coming soon...')
-      );
+          context: context,
+          builder: (context) =>
+              alertCard(context, 'Dark Theme coming soon...'));
     },
+  );
+}
+
+Widget feedbackForm() {
+  return ListTile(
+    title: const Text('Feedback Form'),
+    trailing: const Icon(Icons.my_library_books_outlined),
+    onTap: () {},
   );
 }
