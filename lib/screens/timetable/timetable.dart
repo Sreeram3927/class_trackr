@@ -61,41 +61,43 @@ class _TimeTableState extends State<TimeTable> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> topBar = [
+      changeDate(prevDate, 'Previous Date', Icons.arrow_left_sharp, _curDate, 'start'),
+      dateText(_curDate),
+      changeDate(nxtDate, 'Next Date', Icons.arrow_right_sharp,_curDate, 'end'),
+    ];
+
     return pickDate(
       selectDate,
-      'Select a date from Calendar',
       Column(
         children: [
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              changeDate(prevDate, 'Previous Date', Icons.arrow_left_sharp,
-                  _curDate, 'start'),
-              dateText(_curDate),
-              changeDate(nxtDate, 'Next Date', Icons.arrow_right_sharp,
-                  _curDate, 'end'),
-            ],
+            children: topBar,
           ),
+
           const SizedBox(height: 5.0),
+          
           Expanded(
             child: _holiday
-                ? const Holiday()
-                : ListView.separated(
-                    itemCount: _curDayOrder.length,
-                    itemBuilder: (context, index) {
-                      List<String> details =
-                          Subject.subData[_curDayOrder[index][3]];
+              ? const Holiday()
+              : ListView.separated(
+                itemCount: _curDayOrder.length,
+                itemBuilder: (context, index) {
 
-                      return SubjectCard(
-                        title: details[0],
-                        subjectCode: details[1],
-                        startTime: _curDayOrder[index][1],
-                        endTime: _curDayOrder[index][2],
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) =>
-                        const SizedBox(height: 10.0),
-                  ),
+                  List<String> details = Subject.subData[_curDayOrder[index][3]];
+                  return SubjectCard(
+                    title: details[0],
+                    subjectCode: details[1],
+                    startTime: _curDayOrder[index][1],
+                    endTime: _curDayOrder[index][2],
+                  );
+
+                },
+                separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 10.0),
+              )
+            ,
           ),
         ],
       ),
