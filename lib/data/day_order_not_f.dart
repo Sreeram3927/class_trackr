@@ -1,4 +1,10 @@
 class DayOrder {
+
+  static bool isCore = false;
+  static String foreignLang = 'German';
+
+  static Map ttData = isCore? core : robo;
+
   static Map core = {
     'dO1': [
       ['Hour 1', '8:00 am', '8:50 am', 'EMS'],
@@ -8,6 +14,7 @@ class DayOrder {
       ['Hour 7', '1:25 pm', '2:15 pm', 'GA'],
       ['Hour 8', '2:20 pm', '3:10 pm', 'GA'],
     ],
+
     'dO2': [
       ['Hour 3', '9:45 am', '10:35 am', 'POE'],
       ['Hour 4', '10:40 am', '11:30 am', 'POE'],
@@ -15,6 +22,7 @@ class DayOrder {
       ['Hour 7', '1:25 pm', '2:15 pm', 'ACCA'],
       ['Hour 10', '4:05 pm', '4:55 pm', 'EMS'],
     ],
+
     'dO3': [
       ['Hour 1', '8:00 am', '8:50 am', '420'],
       ['Hour 2', '8:50 am', '9:40 am', '420'],
@@ -24,6 +32,7 @@ class DayOrder {
       ['Hour 7', '1:25 pm', '2:15 pm', 'Chem'],
       ['Hour 8', '2:20 pm', '3:10 pm', 'Chem'],
     ],
+
     'dO4': [
       ['Hour 3', '9:45 am', '10:35 am', 'PPS'],
       ['Hour 4', '10:40 am', '11:30 am', 'PPS'],
@@ -33,6 +42,7 @@ class DayOrder {
       ['Hour 9', '3:15 pm', '4:05 pm', 'FL'],
       ['Hour 10', '4:05 pm', '4:55 pm', '420'],
     ],
+
     'dO5': [
       ['Hour 1', '8:00 am', '8:50 am', 'FL'],
       ['Hour 2', '8:50 am', '9:40 am', 'FL'],
