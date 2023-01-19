@@ -1,5 +1,8 @@
 class DayOrder {
 
+  static List course = ['core', 'robo'];
+  static List lang = ['German', 'French', 'Spanish', 'Chinese', 'Korean'];
+
   static bool isCore = false;
   static String foreignLang = 'German';
 

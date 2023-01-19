@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infinity_project/data/day_order_not_f.dart';
 import 'package:infinity_project/screens/settings/settings_button/settings_button.dart';
 
 class Settings extends StatelessWidget {
@@ -8,8 +9,8 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final List<Widget> settings = [
-      changeData('Change Course/Batch', '', [], ''),
-      changeData('Change Foreign Language', '', [], ''),
+      changeData(context, 'Change Course/Batch', '', DayOrder.course),
+      changeData(context, 'Change Foreign Language','', DayOrder.lang),
       feedbackForm(),
       darkTheme(context),
       sourceCode(),

@@ -15,10 +15,14 @@ Widget alertCard(BuildContext context, String data) {
   );
 }
 
-Widget selectData(List val, String currentVal) {
-  return const AlertDialog(
-    actions: [
-      Radio(value: [], groupValue: null, onChanged: null)
-    ],
+Widget selectData(String title, List data) {
+  return AlertDialog(
+    title: Center(child: Text(title)),
+    content: Wrap(
+      direction: Axis.vertical,
+      children: List.generate(data.length, (index) {
+        return Text(data[index]);
+      }),
+    ),
   );
 }
