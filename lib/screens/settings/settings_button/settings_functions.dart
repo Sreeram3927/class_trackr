@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infinity_project/data/day_order_not_f.dart';
 
 Widget alertCard(BuildContext context, String data) {
   return AlertDialog(
@@ -15,13 +16,25 @@ Widget alertCard(BuildContext context, String data) {
   );
 }
 
-Widget selectData(String title, List data) {
+Widget selectData(String title, bool course) {
+  List data = course ? DayOrder.course : DayOrder.lang;
+
   return AlertDialog(
     title: Center(child: Text(title)),
     content: Wrap(
       direction: Axis.vertical,
       children: List.generate(data.length, (index) {
-        return Text(data[index]);
+        return GestureDetector(
+          child: Text(data[index][0]),
+          onTap: () {
+            if (course) {
+              DayOrder.isCore = data[index][1];
+              DayOrder.curCourse = data[index][0];
+            } else {
+              DayOrder.curLang = data[index][0];
+            }
+          },
+        );
       }),
     ),
   );
