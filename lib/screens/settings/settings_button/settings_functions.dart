@@ -16,7 +16,7 @@ Widget alertCard(BuildContext context, String data) {
   );
 }
 
-Widget selectData(String title, bool course) {
+Widget selectData(BuildContext context, String title, bool course) {
   List data = course ? DayOrder.course : DayOrder.lang;
 
   return AlertDialog(
@@ -33,6 +33,8 @@ Widget selectData(String title, bool course) {
             } else {
               DayOrder.curLang = data[index][0];
             }
+
+            Navigator.pop(context);
           },
         );
       }),

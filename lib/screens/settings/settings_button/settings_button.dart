@@ -49,7 +49,7 @@ Widget changeData(BuildContext context, String title, String subtitle,bool cours
     onTap: () {
       showDialog(
         context: context,
-        builder: (context) => selectData(title, course)
+        builder: (context) => selectData(context, title, course)
       );
     }
   );

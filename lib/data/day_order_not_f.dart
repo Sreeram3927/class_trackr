@@ -9,7 +9,8 @@ class DayOrder {
     ['French', 'FNH'], 
     ['Spanish', 'SPH'], 
     ['Chinese', 'CNE'],
-    ['Korean', 'KRN']
+    ['Korean', 'KRN'],
+    ['Japanese', 'JPN']
   ];
 
   static bool isCore = true;
