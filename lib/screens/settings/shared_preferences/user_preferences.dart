@@ -6,5 +6,8 @@ class UserPreferences {
 
   static Future init() async => _preferences = await SharedPreferences.getInstance();
 
+  static Future<void> setData(String key, String data) async => await _preferences.setString(key, data);
+
+  static getData(String key) => _preferences.getString(key);
 
 }
