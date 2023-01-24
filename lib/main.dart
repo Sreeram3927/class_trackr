@@ -4,7 +4,7 @@ import 'package:infinity_project/theme_data/theme_data.dart';
 import 'home/home.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized;
+  WidgetsFlutterBinding.ensureInitialized();
   await UserPreferences.init();
   runApp(const InfinityProject());
 }

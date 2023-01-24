@@ -8,19 +8,27 @@ class DayOrder {
   ];
 
   static List lang = [
-    ['German', 'GEM'], 
-    ['French', 'FNH'], 
-    ['Spanish', 'SPH'], 
-    ['Chinese', 'CNE'],
-    ['Korean', 'KRN'],
-    ['Japanese', 'JPN'],
+    'German', 
+    'French', 
+    'Spanish', 
+    'Chinese',
+    'Korean',
+    'Japanese',
+  ];
+  static List code = [
+    'GEM', 
+    'FNH', 
+    'SPH', 
+    'CNE',
+    'KRN',
+    'JPN',
   ];
 
   static String curCourse = UserPreferences.getData('course') ?? 'MH-Core';
   static bool isCore = curCourse == 'MH-core';
 
   static String curLang = UserPreferences.getData('lang') ?? 'German';
-  static String foreignLang = UserPreferences.getData('langCode') ?? 'GEM';
+  static String langCode = UserPreferences.getData('langCode') ?? 'GEM';
 
   static Map ttData = isCore? core : robo;
 
@@ -58,13 +66,13 @@ class DayOrder {
       ['Hour 6', '12:30 pm', '1:20 pm', 'Chem'],
       ['Hour 7', '1:25 pm', '2:15 pm', 'Chem'],
       ['Hour 8', '2:20 pm', '3:10 pm', 'ACCA'],
-      ['Hour 9', '3:15 pm', '4:05 pm', foreignLang],
+      ['Hour 9', '3:15 pm', '4:05 pm', langCode],
       ['Hour 10', '4:05 pm', '4:55 pm', '420'],
     ],
 
     'dO5': [
-      ['Hour 1', '8:00 am', '8:50 am', foreignLang],
-      ['Hour 2', '8:50 am', '9:40 am', foreignLang],
+      ['Hour 1', '8:00 am', '8:50 am', langCode],
+      ['Hour 2', '8:50 am', '9:40 am', langCode],
       ['Hour 3', '9:45 am', '10:35 am', '420'],
       ['Hour 4', '10:40 am', '11:30 am', 'PPS'],
       ['Hour 5', '11:35 am', '12:25 pm', 'Chem'],
@@ -109,7 +117,7 @@ class DayOrder {
       ['Hour 1', '8:00 am', '8:50 am', 'Chem'],
       ['Hour 2', '8:50 am', '9:40 am', 'Chem'],
       ['Hour 3', '9:45 am', '10:35 am', 'ACCA'],
-      ['Hour 4', '10:40 am', '11:30 am', foreignLang],
+      ['Hour 4', '10:40 am', '11:30 am', langCode],
       ['Hour 5', '11:35 am', '12:25 pm', '420'],
       ['Hour 9', '3:15 pm', '4:05 pm', 'Chem'],
       ['Hour 10', '4:05 pm', '4:55 pm', 'Chem'],
@@ -118,8 +126,8 @@ class DayOrder {
     'dO5' : [
       ['Hour 3', '9:45 am', '10:35 am', 'PPS'],
       ['Hour 4', '10:40 am', '11:30 am', 'PPS'],
-      ['Hour 6', '12:30 pm', '1:20 pm', foreignLang],
-      ['Hour 7', '1:25 pm', '2:15 pm', foreignLang],
+      ['Hour 6', '12:30 pm', '1:20 pm', langCode],
+      ['Hour 7', '1:25 pm', '2:15 pm', langCode],
       ['Hour 8', '2:20 pm', '3:10 pm', '420'],
       ['Hour 9', '3:15 pm', '4:05 pm', 'PPS'],
       ['Hour 10', '4:05 pm', '4:55 pm', 'Chem'],

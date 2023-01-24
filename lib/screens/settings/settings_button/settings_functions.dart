@@ -18,7 +18,7 @@ Widget alertCard(BuildContext context, String data) {
 }
 
 Widget selectData(BuildContext context, String title, bool course) {
-  List data = course ? DayOrder.course : DayOrder.lang;
+  List<dynamic> data = course ? DayOrder.course : DayOrder.lang;
 
   return AlertDialog(
     title: Center(child: Text(title)),
@@ -26,15 +26,16 @@ Widget selectData(BuildContext context, String title, bool course) {
       direction: Axis.vertical,
       children: List.generate(data.length, (index) {
         return GestureDetector(
-          child: Text(course ? data[index]: data[index][0]),
+          child: Text(data[index]),
           onTap: () {
             if (course) {
               UserPreferences.setData('course', data[index]);
             } else {
               UserPreferences.setData('lang', data[index]);
-              UserPreferences.setData('langCode', data[index][1]);
+              UserPreferences.setData('langCode', DayOrder.code[index]);
             }
 
+            UserPreferences.refreshData();
             Navigator.pop(context);
           },
         );
