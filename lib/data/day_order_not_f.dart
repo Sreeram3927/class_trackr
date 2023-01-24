@@ -1,24 +1,26 @@
+import 'package:infinity_project/screens/settings/shared_preferences/user_preferences.dart';
+
 class DayOrder {
 
-  static List course = [
-    ['MH-Core', true,], 
-    ['MH-Robo', false,],
-  ];
-  static List lang = [
-    ['German', 'GEM'], 
-    ['French', 'FNH'], 
-    ['Spanish', 'SPH'], 
-    ['Chinese', 'CNE'],
-    ['Korean', 'KRN'],
-    ['Japanese', 'JPN']
-  ];
+  // static List course = [
+  //   ['MH-Core', true,], 
+  //   ['MH-Robo', false,],
+  // ];
+  static Map lang = {
+    'German': 'GEM', 
+    'French': 'FNH', 
+    'Spanish': 'SPH', 
+    'Chinese': 'CNE',
+    'Korean': 'KRN',
+    'Japanese': 'JPN'
+  };
 
-  static bool isCore = true;
-  static String curCourse = 'MH-Core';
-  static String curLang = 'German';
-  static String foreignLang = 'GEM';
+  // static bool isCore = true;
+  static String curCourse = UserPreferences.getData('course');
+  static String curLang = UserPreferences.getData('lang');
+  static String foreignLang = lang[curLang];
 
-  static Map ttData = isCore? core : robo;
+  // static Map ttData = isCore? core : robo;
 
   static Map core = {
     'dO1': [
