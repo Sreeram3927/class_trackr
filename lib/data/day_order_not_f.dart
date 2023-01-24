@@ -2,25 +2,27 @@ import 'package:infinity_project/screens/settings/shared_preferences/user_prefer
 
 class DayOrder {
 
-  // static List course = [
-  //   ['MH-Core', true,], 
-  //   ['MH-Robo', false,],
-  // ];
-  static Map lang = {
-    'German': 'GEM', 
-    'French': 'FNH', 
-    'Spanish': 'SPH', 
-    'Chinese': 'CNE',
-    'Korean': 'KRN',
-    'Japanese': 'JPN'
-  };
+  static List course = [
+    'MH-Core',
+    'MH-Robo',
+  ];
 
-  // static bool isCore = true;
-  static String curCourse = UserPreferences.getData('course');
-  static String curLang = UserPreferences.getData('lang');
-  static String foreignLang = lang[curLang];
+  static List lang = [
+    ['German', 'GEM'], 
+    ['French', 'FNH'], 
+    ['Spanish', 'SPH'], 
+    ['Chinese', 'CNE'],
+    ['Korean', 'KRN'],
+    ['Japanese', 'JPN'],
+  ];
 
-  // static Map ttData = isCore? core : robo;
+  static String curCourse = UserPreferences.getData('course') ?? 'MH-Core';
+  static bool isCore = curCourse == 'MH-core';
+
+  static String curLang = UserPreferences.getData('lang') ?? 'German';
+  static String foreignLang = UserPreferences.getData('langCode') ?? 'GEM';
+
+  static Map ttData = isCore? core : robo;
 
   static Map core = {
     'dO1': [
