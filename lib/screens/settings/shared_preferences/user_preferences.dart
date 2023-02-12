@@ -13,11 +13,10 @@ class UserPreferences {
 
   static void refreshData() {
     DayOrder.curCourse = UserPreferences.getData('course') ?? 'MH-Core';
-    DayOrder.isCore = DayOrder.curCourse == 'MH-core';
+    //DayOrder.isCore = DayOrder.curCourse == 'MH-core';
 
     DayOrder.curLang = UserPreferences.getData('lang') ?? 'German';
     DayOrder.langCode = UserPreferences.getData('langCode') ?? 'GEM';
-
   }
 
 }
