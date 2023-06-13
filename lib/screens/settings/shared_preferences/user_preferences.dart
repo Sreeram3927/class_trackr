@@ -1,4 +1,4 @@
-import 'package:infinity_project/data/day_order_not_f.dart';
+import 'package:infinity_project/data/timetable_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPreferences {

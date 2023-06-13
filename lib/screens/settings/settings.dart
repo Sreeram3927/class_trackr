@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infinity_project/data/day_order_not_f.dart';
+import 'package:infinity_project/data/timetable_data.dart';
 import 'package:infinity_project/screens/settings/settings_button/settings_button.dart';
 
 class Settings extends StatelessWidget {
