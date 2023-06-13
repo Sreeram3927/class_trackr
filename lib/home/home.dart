@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:infinity_project/home/title_bar/title_bar.dart';
 import 'package:infinity_project/screens/about/about.dart';
 import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
