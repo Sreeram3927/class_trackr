@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:infinity_project/data/subjects.dart';
+import 'package:infinity_project/screens/timetable/subject_card/subject_card.dart';
 
 Widget pickDate(void Function() fn, Widget child) {
   return Padding(
@@ -48,6 +50,27 @@ Widget holiday() {
     child: Text(
       'holiday',
       style: TextStyle(fontSize: 50.0),
+    ),
+  );
+}
+
+Widget displayData(List data) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+    child: ListView.separated(
+      itemCount: data.length,
+  
+      itemBuilder: (context, index) {
+        List<String> details = Subject.subData[data[index][3]];
+        return SubjectCard(
+          title: details[0],
+          subjectCode: details[1],
+          startTime: data[index][1],
+          endTime: data[index][2],
+        );
+      },
+  
+      separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 15.0),
     ),
   );
 }

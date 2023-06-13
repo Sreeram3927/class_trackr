@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/data_manager.dart';
-import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/screens/settings/shared_preferences/user_preferences.dart';
 import 'package:infinity_project/screens/timetable/other_widgets.dart';
-import 'package:infinity_project/screens/timetable/subject_card/subject_card.dart';
 
 class TimeTable extends StatefulWidget {
   const TimeTable({super.key});
@@ -71,23 +69,6 @@ class _TimeTableState extends State<TimeTable> {
 
     return _isHoliday
       ? holiday()
-      : Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
-        child: ListView.separated(
-          itemCount: _currentData.length,
-      
-          itemBuilder: (context, index) {
-            List<String> details = Subject.subData[_currentData[index][3]];
-            return SubjectCard(
-              title: details[0],
-              subjectCode: details[1],
-              startTime: _currentData[index][1],
-              endTime: _currentData[index][2],
-            );
-          },
-      
-          separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 15.0),
-        ),
-      );
+      : displayData(_currentData);
   }
 }
