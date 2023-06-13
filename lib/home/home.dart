@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:infinity_project/screens/about/about.dart';
 import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
-import 'bottom_navigation_bar/bt_nav_bar.dart';
 
 
 class Home extends StatelessWidget {

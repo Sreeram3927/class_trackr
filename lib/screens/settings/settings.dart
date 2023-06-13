@@ -3,15 +3,14 @@ import 'package:infinity_project/data/timetable_data.dart';
 import 'package:infinity_project/screens/settings/settings_button/settings_button.dart';
 
 class Settings extends StatelessWidget {
-  static ValueNotifier course = ValueNotifier(DayOrder.curCourse);
-  static ValueNotifier lang = ValueNotifier(DayOrder.curLang);
+  static ValueNotifier course = ValueNotifier(TimeTableData.currentCourse);
   const Settings({super.key});
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> settings = [
-      changeData(context, 'Change Course/Batch', DayOrder.curCourse, true),
-      changeData(context, 'Change Foreign Language', DayOrder.curLang, false),
+      changeData(context, 'Change Course/Batch', TimeTableData.currentCourse),
+      //changeData(context, 'Change Foreign Language', TimeTableData.curLang),
       feedbackForm(),
       darkTheme(context),
       sourceCode(),

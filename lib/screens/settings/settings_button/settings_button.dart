@@ -42,14 +42,14 @@ Widget feedbackForm() {
   );
 }
 
-Widget changeData(BuildContext context, String title, String subtitle,bool course) {
+Widget changeData(BuildContext context, String title, String subtitle) {
   return ListTile(
     title: Text(title),
     subtitle: Text(subtitle),
     onTap: () {
       showDialog(
         context: context,
-        builder: (context) => selectData(context, title, course)
+        builder: (context) => selectData(context, title)
       );
     }
   );
