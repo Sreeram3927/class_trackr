@@ -12,9 +12,7 @@ class UserPreferences {
   static getData(String key) => _preferences.getString(key);
 
   static void refreshData() {
-    DayOrder.curCourse = UserPreferences.getData('course') ?? 'MH-Core';
-    DayOrder.curLang = UserPreferences.getData('lang') ?? 'German';
-    DayOrder.langCode = UserPreferences.getData('langCode') ?? 'GEM';
+    TimeTableData.currentCourse = UserPreferences.getData('course') ?? 'MH-Core';
   }
 
 }

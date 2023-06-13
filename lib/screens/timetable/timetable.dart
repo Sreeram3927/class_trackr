@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infinity_project/data/day_order_manager.dart';
+import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/other_widgets/holiday.dart';
 import 'package:infinity_project/screens/settings/shared_preferences/user_preferences.dart';
@@ -14,39 +14,40 @@ class TimeTable extends StatefulWidget {
 }
 
 class _TimeTableState extends State<TimeTable> {
-  DateTime _curDate = DateTime.now();
-  List _curDayOrder = [];
-  bool _holiday = true;
+  DateTime _currentDate = DateTime.now();
+  int _currentDayOrder = 9;
+  List _currentData = [];
+  bool _isHoliday = true;
 
   void _getData() {
-    _holiday = DayOrderManager.holiday(_curDate);
-    _curDayOrder = DayOrderManager.getDayOrder(_curDate);
+    _isHoliday = DataManager.isHoliday(_currentDate);
+    _currentDayOrder = DataManager.getDayOrder(_currentDate);
   }
 
   void selectDate() async {
     DateTime? newDate = await showDatePicker(
       context: context,
-      initialDate: _curDate,
+      initialDate: _currentDate,
       firstDate: DateTime(2023, 01, 01),
       lastDate: DateTime(2023, 05, 31),
     );
     if (newDate == null) return;
     setState(() {
-      _curDate = newDate;
+      _currentDate = newDate;
       _getData();
     });
   }
 
   void prevDate() {
     setState(() {
-      _curDate = DateTime(_curDate.year, _curDate.month, _curDate.day - 1);
+      _currentDate = DateTime(_currentDate.year, _currentDate.month, _currentDate.day - 1);
       _getData();
     });
   }
 
   void nxtDate() {
     setState(() {
-      _curDate = DateTime(_curDate.year, _curDate.month, _curDate.day + 1);
+      _currentDate = DateTime(_currentDate.year, _currentDate.month, _currentDate.day + 1);
       _getData();
     });
   }
@@ -62,10 +63,10 @@ class _TimeTableState extends State<TimeTable> {
   Widget build(BuildContext context) {
     List<Widget> topBar = [
       changeDate(
-          prevDate, 'Previous Date', Icons.arrow_left_sharp, _curDate, 'start'),
-      dateText(_curDate),
+          prevDate, 'Previous Date', Icons.arrow_left_sharp, _currentDate, 'start'),
+      dateText(_currentDate),
       changeDate(
-          nxtDate, 'Next Date', Icons.arrow_right_sharp, _curDate, 'end'),
+          nxtDate, 'Next Date', Icons.arrow_right_sharp, _currentDate, 'end'),
     ];
 
     return pickDate(
@@ -78,18 +79,18 @@ class _TimeTableState extends State<TimeTable> {
           ),
           const SizedBox(height: 5.0),
           Expanded(
-            child: _holiday
+            child: _isHoliday
                 ? const Holiday()
                 : ListView.separated(
-                    itemCount: _curDayOrder.length,
+                    itemCount: _currentDayOrder.length,
                     itemBuilder: (context, index) {
                       List<String> details =
-                          Subject.subData[_curDayOrder[index][3]];
+                          Subject.subData[_currentDayOrder[index][3]];
                       return SubjectCard(
                         title: details[0],
                         subjectCode: details[1],
-                        startTime: _curDayOrder[index][1],
-                        endTime: _curDayOrder[index][2],
+                        startTime: _currentDayOrder[index][1],
+                        endTime: _currentDayOrder[index][2],
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) =>
