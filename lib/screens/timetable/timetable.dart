@@ -22,6 +22,7 @@ class _TimeTableState extends State<TimeTable> {
   void _getData() {
     _isHoliday = DataManager.isHoliday(_currentDate);
     _currentDayOrder = DataManager.getDayOrder(_currentDate);
+    _currentData = DataManager.getCurrentData(_currentDayOrder);
   }
 
   void selectDate() async {
@@ -82,15 +83,15 @@ class _TimeTableState extends State<TimeTable> {
             child: _isHoliday
                 ? const Holiday()
                 : ListView.separated(
-                    itemCount: _currentDayOrder.length,
+                    itemCount: _currentData.length,
                     itemBuilder: (context, index) {
                       List<String> details =
-                          Subject.subData[_currentDayOrder[index][3]];
+                          Subject.subData[_currentData[index][3]];
                       return SubjectCard(
                         title: details[0],
                         subjectCode: details[1],
-                        startTime: _currentDayOrder[index][1],
-                        endTime: _currentDayOrder[index][2],
+                        startTime: _currentData[index][1],
+                        endTime: _currentData[index][2],
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) =>

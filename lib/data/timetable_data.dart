@@ -2,7 +2,7 @@ import 'package:infinity_project/screens/settings/shared_preferences/user_prefer
 
 class TimeTableData {
 
-  static List course = [
+  static List courses = [
     'MH-Core',
     'MH-Robo',
   ];

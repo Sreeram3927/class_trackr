@@ -1,4 +1,5 @@
 import 'package:infinity_project/data/date_of_day_order.dart';
+import 'package:infinity_project/data/timetable_data.dart';
 import 'package:intl/intl.dart';
 
 class DataManager {
@@ -23,8 +24,8 @@ class DataManager {
     else {return 9;}
   }
 
-  // static List getCurrentData(String course) {
-  //   if (course == 'MH-Core')
-  // }
+  static List getCurrentData(int dayOrder) {
+    return TimeTableData.timetable[TimeTableData.currentCourse][dayOrder];
+  }
 
 }
