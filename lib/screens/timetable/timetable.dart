@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/data/subjects.dart';
-import 'package:infinity_project/other_widgets/holiday.dart';
 import 'package:infinity_project/screens/settings/shared_preferences/user_preferences.dart';
 import 'package:infinity_project/screens/timetable/other_widgets.dart';
 import 'package:infinity_project/screens/timetable/subject_card/subject_card.dart';
@@ -70,36 +69,25 @@ class _TimeTableState extends State<TimeTable> {
           nxtDate, 'Next Date', Icons.arrow_right_sharp, _currentDate, 'end'),
     ];
 
-    return pickDate(
-      selectDate,
-      Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: topBar,
-          ),
-          const SizedBox(height: 5.0),
-          Expanded(
-            child: _isHoliday
-                ? const Holiday()
-                : ListView.separated(
-                    itemCount: _currentData.length,
-                    itemBuilder: (context, index) {
-                      List<String> details =
-                          Subject.subData[_currentData[index][3]];
-                      return SubjectCard(
-                        title: details[0],
-                        subjectCode: details[1],
-                        startTime: _currentData[index][1],
-                        endTime: _currentData[index][2],
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) =>
-                        const SizedBox(height: 10.0),
-                  ),
-          ),
-        ],
-      ),
-    );
+    return _isHoliday
+      ? holiday()
+      : Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        child: ListView.separated(
+          itemCount: _currentData.length,
+      
+          itemBuilder: (context, index) {
+            List<String> details = Subject.subData[_currentData[index][3]];
+            return SubjectCard(
+              title: details[0],
+              subjectCode: details[1],
+              startTime: _currentData[index][1],
+              endTime: _currentData[index][2],
+            );
+          },
+      
+          separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 15.0),
+        ),
+      );
   }
 }

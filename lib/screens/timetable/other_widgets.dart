@@ -42,3 +42,12 @@ Widget dateText(DateTime date) {
     ),
   );
 }
+
+Widget holiday() {
+  return const Center(
+    child: Text(
+      'holiday',
+      style: TextStyle(fontSize: 50.0),
+    ),
+  );
+}
