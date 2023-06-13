@@ -16,24 +16,26 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-
-      body: TimeTable()
-      // Column(
-      //   children: [
-      //     Expanded(
-      //       child: ValueListenableBuilder(
-      //         valueListenable: idx,
-      //         builder: (context, value, child) {
-      //           return screens[value];
-      //         },
-      //       )
-      //     ),
-      //   ],
-      // ),
-
-      //bottomNavigationBar: const BtNavBar(),
-
+    return const SafeArea(
+      child: Scaffold(
+    
+        body: TimeTable()
+        // Column(
+        //   children: [
+        //     Expanded(
+        //       child: ValueListenableBuilder(
+        //         valueListenable: idx,
+        //         builder: (context, value, child) {
+        //           return screens[value];
+        //         },
+        //       )
+        //     ),
+        //   ],
+        // ),
+    
+        //bottomNavigationBar: const BtNavBar(),
+    
+      ),
     );
   }
 }

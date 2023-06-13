@@ -59,7 +59,7 @@ class _TimeTableState extends State<TimeTable> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> topBar = [
+    List<Widget> dateInfo = [
       changeDate(
           prevDate, 'Previous Date', Icons.arrow_left_sharp, _currentDate, 'start'),
       dateText(_currentDate),
@@ -67,8 +67,16 @@ class _TimeTableState extends State<TimeTable> {
           nxtDate, 'Next Date', Icons.arrow_right_sharp, _currentDate, 'end'),
     ];
 
-    return _isHoliday
-      ? holiday()
-      : displayData(_currentData);
+    return Column(
+      children: [
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: dateInfo),
+
+        Expanded(
+          child: _isHoliday
+            ? holiday()
+            : displayData(_currentData),
+        ),
+      ],
+    );
   }
 }

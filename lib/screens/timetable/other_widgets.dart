@@ -55,22 +55,22 @@ Widget holiday() {
 }
 
 Widget displayData(List data) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-    child: ListView.separated(
-      itemCount: data.length,
+  return ListView.separated(
+    itemCount: data.length,
   
-      itemBuilder: (context, index) {
-        List<String> details = Subject.subData[data[index][3]];
-        return SubjectCard(
+    itemBuilder: (context, index) {
+      List<String> details = Subject.subData[data[index][3]];
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        child: SubjectCard(
           title: details[0],
           subjectCode: details[1],
           startTime: data[index][1],
           endTime: data[index][2],
-        );
-      },
+        ),
+      );
+    },
   
-      separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 15.0),
-    ),
+    separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 15.0),
   );
 }
