@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget pickDate(void Function() fn, String tip, Widget child) {
+Widget pickDate(void Function() fn, Widget child) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 15.0),
     child: Stack(children: [
@@ -11,7 +11,7 @@ Widget pickDate(void Function() fn, String tip, Widget child) {
         child: IconButton(
           onPressed: fn,
           icon: const Icon(Icons.edit_calendar_rounded),
-          tooltip: tip,
+          tooltip: 'Select date from Calendar',
         ),
       ),
     ]),

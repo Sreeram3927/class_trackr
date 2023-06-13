@@ -15,16 +15,16 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
 
       body:Column(
         children: [
-          const TitleBar(),
+          TitleBar(),
           Expanded(child: MainScreen()),
         ],
       ),
 
-      bottomNavigationBar: const BtNavBar(),
+      bottomNavigationBar: BtNavBar(),
 
     );
   }

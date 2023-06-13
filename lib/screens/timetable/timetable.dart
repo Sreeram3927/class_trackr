@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:infinity_project/data/day_order_manager.dart';
 import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/other_widgets/holiday.dart';
+import 'package:infinity_project/screens/settings/shared_preferences/user_preferences.dart';
 import 'package:infinity_project/screens/timetable/other_widgets.dart';
 import 'package:infinity_project/screens/timetable/subject_card/subject_card.dart';
 
@@ -29,9 +30,7 @@ class _TimeTableState extends State<TimeTable> {
       firstDate: DateTime(2023, 01, 01),
       lastDate: DateTime(2023, 05, 31),
     );
-
     if (newDate == null) return;
-
     setState(() {
       _curDate = newDate;
       _getData();
@@ -54,28 +53,28 @@ class _TimeTableState extends State<TimeTable> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    UserPreferences.refreshData();
     _getData();
   }
 
   @override
   Widget build(BuildContext context) {
-    print('test');
+    List<Widget> topBar = [
+      changeDate(
+          prevDate, 'Previous Date', Icons.arrow_left_sharp, _curDate, 'start'),
+      dateText(_curDate),
+      changeDate(
+          nxtDate, 'Next Date', Icons.arrow_right_sharp, _curDate, 'end'),
+    ];
+
     return pickDate(
       selectDate,
-      'Select a date from Calendar',
       Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              changeDate(prevDate, 'Previous Date', Icons.arrow_left_sharp,
-                  _curDate, 'start'),
-              dateText(_curDate),
-              changeDate(nxtDate, 'Next Date', Icons.arrow_right_sharp,
-                  _curDate, 'end'),
-            ],
+            children: topBar,
           ),
           const SizedBox(height: 5.0),
           Expanded(
@@ -86,7 +85,6 @@ class _TimeTableState extends State<TimeTable> {
                     itemBuilder: (context, index) {
                       List<String> details =
                           Subject.subData[_curDayOrder[index][3]];
-
                       return SubjectCard(
                         title: details[0],
                         subjectCode: details[1],
