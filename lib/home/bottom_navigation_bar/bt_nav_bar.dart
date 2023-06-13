@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../screens/main_screen.dart';
+import 'package:infinity_project/home/home.dart';
 
 
 class BtNavBar extends StatefulWidget {
@@ -22,7 +22,7 @@ class _BtNavBarState extends State<BtNavBar> {
       onDestinationSelected: (index) {
         setState(() {
           _index = index;
-          MainScreen.idx.value = index;
+          Home.idx.value = index;
         });
       },
 
