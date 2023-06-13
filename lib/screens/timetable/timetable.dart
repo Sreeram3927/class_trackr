@@ -70,33 +70,35 @@ class _TimeTableState extends State<TimeTable> {
 
     return pickDate(
       selectDate,
-      Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: topBar,
-          ),
-          const SizedBox(height: 5.0),
-          Expanded(
-            child: _holiday
-                ? const Holiday()
-                : ListView.separated(
-                    itemCount: _curDayOrder.length,
-                    itemBuilder: (context, index) {
-                      List<String> details =
-                          Subject.subData[_curDayOrder[index][3]];
-                      return SubjectCard(
-                        title: details[0],
-                        subjectCode: details[1],
-                        startTime: _curDayOrder[index][1],
-                        endTime: _curDayOrder[index][2],
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) =>
-                        const SizedBox(height: 10.0),
-                  ),
-          ),
-        ],
+      Expanded(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: topBar,
+            ),
+            const SizedBox(height: 5.0),
+            Expanded(
+              child: _holiday
+                  ? const Holiday()
+                  : ListView.separated(
+                      itemCount: _curDayOrder.length,
+                      itemBuilder: (context, index) {
+                        List<String> details =
+                            Subject.subData[_curDayOrder[index][3]];
+                        return SubjectCard(
+                          title: details[0],
+                          subjectCode: details[1],
+                          startTime: _curDayOrder[index][1],
+                          endTime: _curDayOrder[index][2],
+                        );
+                      },
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const SizedBox(height: 10.0),
+                    ),
+            ),
+          ],
+        ),
       ),
     );
   }

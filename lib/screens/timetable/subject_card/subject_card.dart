@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infinity_project/screens/timetable/glass_morphism.dart';
+import 'package:infinity_project/screens/timetable/subject_card/glass_morphism.dart';
 
 class SubjectCard extends StatelessWidget {
 
