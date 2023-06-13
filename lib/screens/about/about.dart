@@ -13,7 +13,7 @@ class About extends StatelessWidget {
             border: Border.all(width: 3.5, color: Colors.black54),
             borderRadius: BorderRadius.circular(10.0),
           ),
-          child: Column()),
+          child: const Column()),
     );
   }
 }

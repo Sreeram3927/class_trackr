@@ -25,13 +25,10 @@ class DayOrder {
   ];
 
   static String curCourse = UserPreferences.getData('course') ?? 'MH-Core';
-  //static bool isCore = curCourse == 'MH-core';
-
   static String curLang = UserPreferences.getData('lang') ?? 'German';
   static String langCode = UserPreferences.getData('langCode') ?? 'GEM';
 
   static Map ttData = timetable[curCourse];
-
   static  Map timetable = {
 
     'MH-Core' : {

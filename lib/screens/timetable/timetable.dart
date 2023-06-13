@@ -30,9 +30,7 @@ class _TimeTableState extends State<TimeTable> {
       firstDate: DateTime(2023, 01, 01),
       lastDate: DateTime(2023, 05, 31),
     );
-
     if (newDate == null) return;
-
     setState(() {
       _curDate = newDate;
       _getData();
@@ -55,7 +53,6 @@ class _TimeTableState extends State<TimeTable> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     UserPreferences.refreshData();
     _getData();
