@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/screens/timetable/subject_card/subject_card.dart';
 
@@ -20,28 +21,24 @@ Widget pickDate(void Function() fn, Widget child) {
   );
 }
 
-Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date, String limit) {
-  bool dt;
-  if (limit == 'start') {
-    dt = date == DateTime(2023, 01, 01);
-  } else {
-    dt = date == DateTime(2023, 05, 31);
-  }
-
+Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date) {
   return IconButton(
-    onPressed: dt ? () {} : fn,
+    onPressed: DataManager.dateOutOfBounds(date) ? () {} : fn,
     icon: Icon(icon),
     tooltip: tip,
   );
 }
 
-Widget dateText(DateTime date) {
-  return Text(
-    '${date.day}/${date.month}/${date.year}',
-    style: const TextStyle(
-      fontSize: 20.0,
-      fontWeight: FontWeight.w500,
-    ),
+Widget dateText(void Function() fn, DateTime date) {
+  return TextButton(
+    onPressed: fn,
+    child: Text(
+      '${date.day}/${date.month}/${date.year}',
+      style: const TextStyle(
+        fontSize: 20.0,
+        fontWeight: FontWeight.w500,
+      ),
+    )
   );
 }
 

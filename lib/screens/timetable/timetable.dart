@@ -26,8 +26,8 @@ class _TimeTableState extends State<TimeTable> {
     DateTime? newDate = await showDatePicker(
       context: context,
       initialDate: _currentDate,
-      firstDate: DateTime(2023, 01, 01),
-      lastDate: DateTime(2023, 05, 31),
+      firstDate: DataManager.minDate,
+      lastDate: DataManager.maxDate,
     );
     if (newDate == null) return;
     setState(() {
@@ -36,16 +36,16 @@ class _TimeTableState extends State<TimeTable> {
     });
   }
 
-  void prevDate() {
+  void previousDate() {
     setState(() {
-      _currentDate = DateTime(_currentDate.year, _currentDate.month, _currentDate.day - 1);
+      _currentDate = _currentDate.subtract(const Duration(days: 1));
       _getData();
     });
   }
 
-  void nxtDate() {
+  void nextDate() {
     setState(() {
-      _currentDate = DateTime(_currentDate.year, _currentDate.month, _currentDate.day + 1);
+      _currentDate = _currentDate.add(const Duration(days: 1));
       _getData();
     });
   }
@@ -60,11 +60,9 @@ class _TimeTableState extends State<TimeTable> {
   @override
   Widget build(BuildContext context) {
     List<Widget> dateInfo = [
-      changeDate(
-          prevDate, 'Previous Date', Icons.arrow_left_sharp, _currentDate, 'start'),
-      dateText(_currentDate),
-      changeDate(
-          nxtDate, 'Next Date', Icons.arrow_right_sharp, _currentDate, 'end'),
+      changeDate(previousDate, 'Previous Date', Icons.arrow_left_sharp, _currentDate),
+      dateText(selectDate, _currentDate),
+      changeDate(nextDate, 'Next Date', Icons.arrow_right_sharp, _currentDate),
     ];
 
     return Column(

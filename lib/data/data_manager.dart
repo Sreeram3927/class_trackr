@@ -28,4 +28,10 @@ class DataManager {
     return TimeTableData.timetable[TimeTableData.currentCourse][dayOrder];
   }
 
+  static DateTime minDate = DateTime(2023, 06, 01);
+  static DateTime maxDate = DateTime(2023, 12, 31);
+
+  static bool dateOutOfBounds(DateTime date) {
+    return date.isBefore(minDate) || date.isAfter(maxDate);
+  }
 }
