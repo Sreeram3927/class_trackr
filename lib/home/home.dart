@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infinity_project/home/app_drawer.dart';
 import 'package:infinity_project/screens/about/about.dart';
 import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
@@ -26,11 +27,6 @@ class Home extends StatelessWidget {
           foregroundColor: Colors.black87,
           toolbarHeight: 55.0,
 
-          leading: IconButton(
-            onPressed: () {}, 
-            icon: const Icon(Icons.menu_rounded),
-          ),
-
           title: const Text(
             "TimeTable",
             style: TextStyle(
@@ -48,7 +44,19 @@ class Home extends StatelessWidget {
           ],
         ),
 
-        body: const TimeTable()
+        body: const TimeTable(),
+
+        drawer: Drawer(
+          child: SingleChildScrollView(
+            child: Container(
+              child: Column(
+                children: [
+                  drawerHeader()
+                ],
+              ),
+            ),
+          ),
+        )
       ),
     );
   }
