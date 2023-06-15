@@ -3,24 +3,6 @@ import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/screens/timetable/subject_card/subject_card.dart';
 
-Widget pickDate(void Function() fn, Widget child) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 15.0),
-    child: Stack(children: [
-      child,
-      Positioned(
-        bottom: 15.0,
-        right: 15.0,
-        child: IconButton(
-          onPressed: fn,
-          icon: const Icon(Icons.edit_calendar_rounded),
-          tooltip: 'Select date from Calendar',
-        ),
-      ),
-    ]),
-  );
-}
-
 Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date) {
   return IconButton(
     onPressed: DataManager.dateOutOfBounds(date) ? () {} : fn,
