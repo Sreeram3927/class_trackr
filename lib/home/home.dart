@@ -18,10 +18,13 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
 
     Widget screen = const TimeTable();
+    String title = "TimeTable";
     if (currentPage == DrawerSections.timeTable) {
       screen = const TimeTable();
+      title = "TimeTable";
     } else if (currentPage == DrawerSections.settings) {
       screen = const Settings();
+      title = "Settings";
     }
 
     return SafeArea(
@@ -34,9 +37,9 @@ class _HomeState extends State<Home> {
           foregroundColor: Colors.black87,
           toolbarHeight: 55.0,
 
-          title: const Text(
-            "TimeTable",
-            style: TextStyle(
+          title: Text(
+            title,
+            style: const TextStyle(
               fontSize: 25.0,
               fontWeight: FontWeight.w800
             )
@@ -101,7 +104,7 @@ class _HomeState extends State<Home> {
       padding: const EdgeInsets.only(top: 15),
       child: Column(
         children: [
-          menuItem(1, "TimeTable", Icons.dashboard_outlined,
+          menuItem(1, "TimeTable", Icons.calendar_today_rounded,
               currentPage == DrawerSections.timeTable ? true : false),
           menuItem(2, "Settings", Icons.settings_outlined,
               currentPage == DrawerSections.settings ? true : false),
