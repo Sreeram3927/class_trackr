@@ -3,6 +3,37 @@ import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/screens/timetable/subject_card/subject_card.dart';
 
+Widget timeTableTopBar() {
+  return Container(
+    height: 55.0,
+    //color: Colors.green,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+
+        IconButton(
+          onPressed: () {}, 
+          icon: const Icon(Icons.menu_rounded),
+        ),
+
+        const Text(
+          "TimeTable",
+          style: TextStyle(
+            fontSize: 25.0,
+            fontWeight: FontWeight.w800
+          )
+        ),
+
+        IconButton(
+          onPressed: () {}, 
+          icon: const Icon(Icons.help_rounded),
+        ),
+      ],
+    )
+  );
+}
+
+
 Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date) {
   return TextButton(
     onPressed: DataManager.dateOutOfBounds(date) ? () {} : fn,
@@ -49,13 +80,13 @@ Widget dateInfo(List<Widget> data) {
 }
 
 Widget displayData(List data) {
-  return ListView.separated(
+  return ListView.builder(
     itemCount: data.length,
   
     itemBuilder: (context, index) {
       List<String> details = Subject.subData[data[index][3]];
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
         child: SubjectCard(
           title: details[0],
           subjectCode: details[1],
@@ -64,7 +95,5 @@ Widget displayData(List data) {
         ),
       );
     },
-  
-    separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 15.0),
   );
 }
