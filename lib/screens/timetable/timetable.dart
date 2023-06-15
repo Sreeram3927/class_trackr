@@ -67,7 +67,7 @@ class _TimeTableState extends State<TimeTable> {
 
     return Column(
       children: [
-        timeTableTopBar(),
+        //timeTableTopBar(),
         dateInfo(dateInfoData),
         Expanded(
           child: _isHoliday

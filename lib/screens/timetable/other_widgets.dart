@@ -3,37 +3,6 @@ import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/screens/timetable/subject_card/subject_card.dart';
 
-Widget timeTableTopBar() {
-  return Container(
-    height: 55.0,
-    //color: Colors.green,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-
-        IconButton(
-          onPressed: () {}, 
-          icon: const Icon(Icons.menu_rounded),
-        ),
-
-        const Text(
-          "TimeTable",
-          style: TextStyle(
-            fontSize: 25.0,
-            fontWeight: FontWeight.w800
-          )
-        ),
-
-        IconButton(
-          onPressed: () {}, 
-          icon: const Icon(Icons.help_rounded),
-        ),
-      ],
-    )
-  );
-}
-
-
 Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date) {
   return TextButton(
     onPressed: DataManager.dateOutOfBounds(date) ? () {} : fn,

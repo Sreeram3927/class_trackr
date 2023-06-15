@@ -16,25 +16,39 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Scaffold(
     
-        body: TimeTable()
-        // Column(
-        //   children: [
-        //     Expanded(
-        //       child: ValueListenableBuilder(
-        //         valueListenable: idx,
-        //         builder: (context, value, child) {
-        //           return screens[value];
-        //         },
-        //       )
-        //     ),
-        //   ],
-        // ),
-    
-        //bottomNavigationBar: const BtNavBar(),
-    
+        appBar: AppBar(
+
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.black87,
+          toolbarHeight: 55.0,
+
+          leading: IconButton(
+            onPressed: () {}, 
+            icon: const Icon(Icons.menu_rounded),
+          ),
+
+          title: const Text(
+            "TimeTable",
+            style: TextStyle(
+              fontSize: 25.0,
+              fontWeight: FontWeight.w800
+            )
+          ),
+          centerTitle: true,
+
+          actions: [
+            IconButton(
+              onPressed: () {}, 
+              icon: const Icon(Icons.help_rounded),
+            ),
+          ],
+        ),
+
+        body: const TimeTable()
       ),
     );
   }
