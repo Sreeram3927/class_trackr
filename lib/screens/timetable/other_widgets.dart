@@ -4,21 +4,27 @@ import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/screens/timetable/subject_card/subject_card.dart';
 
 Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date) {
-  return IconButton(
+  return TextButton(
     onPressed: DataManager.dateOutOfBounds(date) ? () {} : fn,
-    icon: Icon(icon),
-    tooltip: tip,
+    child: Icon(
+      icon,
+      color: Colors.black87,
+      size: 30.0
+    ),
+    //tooltip: tip,
+    
   );
 }
 
-Widget dateText(void Function() fn, DateTime date) {
+Widget currentDateText(void Function() fn, DateTime date) {
   return TextButton(
     onPressed: fn,
     child: Text(
       '${date.day}/${date.month}/${date.year}',
       style: const TextStyle(
-        fontSize: 20.0,
+        fontSize: 22.0,
         fontWeight: FontWeight.w500,
+        color: Colors.black87,
       ),
     )
   );
@@ -31,6 +37,15 @@ Widget holiday() {
       style: TextStyle(fontSize: 50.0),
     ),
   );
+}
+
+Widget dateInfo(List<Widget> data) {
+  
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
+    children: data
+  );
+
 }
 
 Widget displayData(List data) {
