@@ -18,8 +18,10 @@ class _TimeTableState extends State<TimeTable> {
 
   void _getData() {
     _isHoliday = DataManager.isHoliday(_currentDate);
-    _currentDayOrder = DataManager.getDayOrder(_currentDate);
-    _currentData = DataManager.getCurrentData(_currentDayOrder);
+    if (!_isHoliday) {
+      _currentDayOrder = DataManager.getDayOrder(_currentDate);
+      _currentData = DataManager.getCurrentData(_currentDayOrder);
+    }
   }
 
   void selectDate() async {
