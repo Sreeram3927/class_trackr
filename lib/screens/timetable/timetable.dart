@@ -62,14 +62,13 @@ class _TimeTableState extends State<TimeTable> {
   @override
   Widget build(BuildContext context) {
     List<Widget> dateInfoData = [
-      changeDate(previousDate, 'Previous Date', Icons.arrow_left_sharp, _currentDate),
+      changeDate(previousDate, 'previous', Icons.arrow_left_sharp, _currentDate),
       currentDateText(selectDate, _currentDate),
-      changeDate(nextDate, 'Next Date', Icons.arrow_right_sharp, _currentDate),
+      changeDate(nextDate, 'next', Icons.arrow_right_sharp, _currentDate),
     ];
 
     return Column(
       children: [
-        //timeTableTopBar(),
         dateInfo(dateInfoData),
         Expanded(
           child: _isHoliday

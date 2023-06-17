@@ -36,7 +36,13 @@ class DataManager {
   static DateTime minDate = DateTime(2023, 06, 01);
   static DateTime maxDate = DateTime(2023, 12, 31);
 
-  static bool dateOutOfBounds(DateTime date) {
-    return date.isBefore(minDate) || date.isAfter(maxDate);
+  static bool dateOutOfBounds(DateTime date, String tip) {
+    if (tip == 'previous') {
+      return date.subtract(const Duration(days: 1)).isBefore(minDate);
+    } else if (tip == 'next') {
+      return date.add(const Duration(days: 1)).isAfter(maxDate);
+    } else {
+      return false;
+    }
   }
 }

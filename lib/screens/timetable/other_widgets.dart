@@ -5,7 +5,7 @@ import 'package:infinity_project/screens/timetable/subject_card/subject_card.dar
 
 Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date) {
   return TextButton(
-    onPressed: DataManager.dateOutOfBounds(date) ? () {} : fn,
+    onPressed: DataManager.dateOutOfBounds(date, tip) ? () {print('reached');} : fn,
     child: Icon(
       icon,
       color: Colors.black87,
