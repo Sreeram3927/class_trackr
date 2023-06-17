@@ -17,23 +17,34 @@ Widget alertCard(BuildContext context, String data) {
   );
 }
 
-Widget selectData(BuildContext context, String title) {
+Widget selectCourse(String title, void Function() refresh) {
+
   List<dynamic> data = TimeTableData.courses;
+  int currentVal = data.indexOf(TimeTableData.currentCourse);
 
   return AlertDialog(
     title: Center(child: Text(title)),
     content: Wrap(
       direction: Axis.vertical,
       children: List.generate(data.length, (index) {
-        return GestureDetector(
-          child: Text(data[index]),
-          onTap: () {
-            
-            UserPreferences.setData('course', data[index]);
-
-            UserPreferences.refreshData();
-            Navigator.pop(context);
-          },
+        return Row(
+          children: [
+            Radio(
+              value: index,
+              groupValue: currentVal,
+              onChanged: (value) {  
+                UserPreferences.setData('course', data[value!.toInt()]);
+                refresh();
+              },
+            ),
+            GestureDetector(
+              child: Text(data[index]),
+              onTap: () {
+                UserPreferences.setData('course', data[index]);
+                refresh();
+              },
+            )
+          ],
         );
       }),
     ),
