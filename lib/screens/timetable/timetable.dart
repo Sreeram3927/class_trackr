@@ -69,7 +69,10 @@ class _TimeTableState extends State<TimeTable> {
 
     return Column(
       children: [
-        dateInfo(dateInfoData),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
+          children: dateInfoData
+        ),
         Expanded(
           child: _isHoliday
             ? holiday()
