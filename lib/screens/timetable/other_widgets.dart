@@ -53,14 +53,13 @@ Widget displayData(List data) {
     itemCount: data.length,
   
     itemBuilder: (context, index) {
-      List<String> details = Subject.subData[data[index][3]];
+      List<String> details = Subject.subData[data[index][1]];
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
         child: SubjectCard(
           title: details[0],
           subjectCode: details[1],
-          startTime: data[index][1],
-          endTime: data[index][2],
+          time: data[index][0],
         ),
       );
     },

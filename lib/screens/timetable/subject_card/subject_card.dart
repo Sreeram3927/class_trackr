@@ -5,15 +5,13 @@ class SubjectCard extends StatelessWidget {
 
   final String title;
   final String subjectCode;
-  final String startTime;
-  final String endTime;
+  final String time;
 
   const SubjectCard({
     super.key,
     required this.title,
     required this.subjectCode,
-    required this.startTime,
-    required this.endTime
+    required this.time,
   });
 
   @override
@@ -45,7 +43,7 @@ class SubjectCard extends StatelessWidget {
             ),
 
             Text(
-              '$startTime - $endTime',
+              time,
               style: const TextStyle(
                 fontSize: 25.0,
                 fontWeight: FontWeight.w700

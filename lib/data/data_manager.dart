@@ -25,7 +25,12 @@ class DataManager {
   }
 
   static List getCurrentData(int dayOrder) {
-    return TimeTableData.timetable[TimeTableData.currentCourse][dayOrder];
+    List data = TimeTableData.timetable[TimeTableData.currentCourse][dayOrder];
+    List timetable = [];
+    for (int i = 0; i < data.length; i++) {
+      timetable.add([TimeTableData.hour[data[i][0]], data[i][1]]);
+    }
+    return timetable;
   }
 
   static DateTime minDate = DateTime(2023, 06, 01);
