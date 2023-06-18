@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infinity_project/screens/settings/settings_button/settings_functions.dart';
+import 'package:infinity_project/screens/settings/settings_functions.dart';
 
 Widget aboutApp(
     BuildContext context, String title, String subtitle, String data) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/timetable_data.dart';
-import 'package:infinity_project/screens/settings/shared_preferences/user_preferences.dart';
+import 'package:infinity_project/data/user_preferences.dart';
 
 Widget alertCard(BuildContext context, String data) {
   return AlertDialog(

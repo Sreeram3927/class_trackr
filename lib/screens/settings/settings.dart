@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/timetable_data.dart';
-import 'package:infinity_project/screens/settings/settings_button/settings_functions.dart';
-import 'package:infinity_project/screens/settings/shared_preferences/user_preferences.dart';
+import 'package:infinity_project/screens/settings/settings_functions.dart';
+import 'package:infinity_project/data/user_preferences.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
