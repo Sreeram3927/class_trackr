@@ -3,6 +3,11 @@ import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
 
 
+enum DrawerSections {
+  timeTable,
+  settings,
+}
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -12,17 +17,18 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  var currentPage = DrawerSections.timeTable;
+  var _currentPage = DrawerSections.timeTable;
 
   @override
   Widget build(BuildContext context) {
 
     Widget screen = const TimeTable();
     String title = "TimeTable";
-    if (currentPage == DrawerSections.timeTable) {
+
+    if (_currentPage == DrawerSections.timeTable) {
       screen = const TimeTable();
       title = "TimeTable";
-    } else if (currentPage == DrawerSections.settings) {
+    } else if (_currentPage == DrawerSections.settings) {
       screen = const Settings();
       title = "Settings";
     }
@@ -104,13 +110,18 @@ class _HomeState extends State<Home> {
       padding: const EdgeInsets.only(top: 15),
       child: Column(
         children: [
-          menuItem(1, "TimeTable", Icons.calendar_today_rounded,
-              currentPage == DrawerSections.timeTable ? true : false),
-          menuItem(2, "Settings", Icons.settings_outlined,
-              currentPage == DrawerSections.settings ? true : false),
+          menuItem(1, "TimeTable", Icons.calendar_today_rounded, _currentPage == DrawerSections.timeTable ? true : false),
+          
+          menuItem(2, "Settings", Icons.settings_outlined, _currentPage == DrawerSections.settings ? true : false),
+          
           const Divider(),
-          menuItem(5, "Settings", Icons.settings_outlined,
-              currentPage == DrawerSections.settings ? true : false),
+         
+          menuItem(5, "Settings", Icons.settings_outlined, _currentPage == DrawerSections.settings ? true : false),
+
+          menuItem(3, "Discord", Icons.discord_rounded, false),
+
+          menuItem(4, "Check for Updates", Icons.update_rounded, false),
+          
           const Divider(),
         ],
       ),
@@ -125,11 +136,11 @@ class _HomeState extends State<Home> {
           Navigator.pop(context);
           setState(() {
             if (id == 1) {
-              currentPage = DrawerSections.timeTable;
+              _currentPage = DrawerSections.timeTable;
             } else if (id == 2) {
-              currentPage = DrawerSections.settings;
+              _currentPage = DrawerSections.settings;
             } else if (id == 5) {
-              currentPage = DrawerSections.settings;
+              _currentPage = DrawerSections.settings;
             }
           });
         },
@@ -161,9 +172,4 @@ class _HomeState extends State<Home> {
     );
   }
 
-}
-
-enum DrawerSections {
-  timeTable,
-  settings,
 }
