@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 enum DrawerSections {
@@ -18,6 +19,17 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   var _currentPage = DrawerSections.timeTable;
+
+  Future<void> _discord() async {
+    Uri discordUrl = Uri.parse("https://www.google.com/");
+    if (!await launchUrl(
+      discordUrl,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $discordUrl');
+    }
+  
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -134,15 +146,19 @@ class _HomeState extends State<Home> {
       child: InkWell(
         onTap: () {
           Navigator.pop(context);
-          setState(() {
-            if (id == 1) {
-              _currentPage = DrawerSections.timeTable;
-            } else if (id == 2) {
-              _currentPage = DrawerSections.settings;
-            } else if (id == 5) {
-              _currentPage = DrawerSections.settings;
-            }
-          });
+          if (id > 2) {
+            _discord();
+          } else {
+            setState(() {
+              if (id == 1) {
+                _currentPage = DrawerSections.timeTable;
+              } else if (id == 2) {
+                _currentPage = DrawerSections.settings;
+              } else if (id == 5) {
+                _currentPage = DrawerSections.settings;
+              }
+            });
+          }
         },
         child: Padding(
           padding: const EdgeInsets.all(15.0),
