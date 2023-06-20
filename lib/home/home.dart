@@ -47,11 +47,12 @@ class _HomeState extends State<Home> {
 
     return SafeArea(
       child: Scaffold(
+
+        backgroundColor: const Color.fromRGBO(230, 230, 250, 1),
     
         appBar: AppBar(
-
           elevation: 0.0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: const Color.fromRGBO(217, 189, 233, 0.5),
           foregroundColor: Colors.black87,
           toolbarHeight: 55.0,
 
