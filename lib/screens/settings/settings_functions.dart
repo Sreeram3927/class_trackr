@@ -23,7 +23,15 @@ Widget selectCourse(String title, void Function() refresh) {
   int currentVal = data.indexOf(TimeTableData.currentCourse);
 
   return AlertDialog(
-    title: Center(child: Text(title)),
+    backgroundColor: const Color(0xFFCCDAD1),
+    title: Text(
+      title,
+      textAlign: TextAlign.center,
+      style: const TextStyle(
+        fontSize: 21.0,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
     content: Wrap(
       direction: Axis.vertical,
       children: List.generate(data.length, (index) {

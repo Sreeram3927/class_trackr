@@ -38,8 +38,20 @@ class _SettingsState extends State<Settings> {
 
   Widget settingsTile(String title, String subtitle, void Function() refresh) {
     return ListTile(
-      title: Text(title),
-      subtitle: Text(subtitle),
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 17.0,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: const TextStyle(
+          fontSize: 14.5,
+          fontWeight: FontWeight.w400
+        ),
+      ),
       onTap: () {
         showDialog(
           context: context,

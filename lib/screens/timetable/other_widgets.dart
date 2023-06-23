@@ -8,7 +8,7 @@ Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date) 
   void dateError() {
     Fluttertoast.cancel();
     Fluttertoast.showToast(
-      msg: "Date out of bound",
+      msg: "Date out of range",
       fontSize: 20
     );
   }
