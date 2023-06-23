@@ -48,12 +48,12 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
 
-        backgroundColor: const Color.fromRGBO(230, 230, 250, 1),
+        backgroundColor: const Color(0xFFE0E2DB),
     
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: Colors.transparent,
-          foregroundColor: Colors.black,
+          backgroundColor: const Color(0xFF191716),
+          foregroundColor: const Color(0xFFE0E2DB),
           toolbarHeight: 55.0,
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(1.0),
@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
         body: screen,
 
         drawer: Drawer(
-          backgroundColor: const Color.fromRGBO(230, 230, 250, 1),
+          backgroundColor: const Color(0xFFE0E2DB),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -103,7 +103,7 @@ class _HomeState extends State<Home> {
   
   Widget drawerHeader() {
     return Container(
-      color: Colors.green[700],
+      color: const Color(0xFF191716),
       width: double.infinity,
       height: 200,
       padding: const EdgeInsets.only(top: 20.0),
@@ -152,7 +152,7 @@ class _HomeState extends State<Home> {
 
   Widget menuItem(int id, String title, IconData icon, bool selected) {
     return Material(
-      color: selected ? Colors.grey[300] : Colors.transparent,
+      color: selected ? const Color(0xFF66717E).withOpacity(0.3) : Colors.transparent,
       child: InkWell(
         onTap: () {
           Navigator.pop(context);
