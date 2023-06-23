@@ -86,6 +86,7 @@ class _HomeState extends State<Home> {
         body: screen,
 
         drawer: Drawer(
+          backgroundColor: const Color.fromRGBO(230, 230, 250, 1),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -138,14 +139,12 @@ class _HomeState extends State<Home> {
           menuItem(2, "Settings", Icons.settings_outlined, _currentPage == DrawerSections.settings ? true : false),
           
           const Divider(),
-         
-          menuItem(5, "Settings", Icons.settings_outlined, _currentPage == DrawerSections.settings ? true : false),
 
           menuItem(3, "Discord", Icons.discord_rounded, false),
 
           menuItem(4, "Check for Updates", Icons.update_rounded, false),
           
-          const Divider(),
+          const Divider(thickness: 2.0,),
         ],
       ),
     );
@@ -164,8 +163,6 @@ class _HomeState extends State<Home> {
               if (id == 1) {
                 _currentPage = DrawerSections.timeTable;
               } else if (id == 2) {
-                _currentPage = DrawerSections.settings;
-              } else if (id == 5) {
                 _currentPage = DrawerSections.settings;
               }
             });
@@ -198,5 +195,4 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
 }
