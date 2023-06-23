@@ -13,6 +13,11 @@ Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date) 
     );
   }
   return TextButton(
+    style: ButtonStyle(
+      overlayColor: MaterialStateProperty.resolveWith<Color?>(
+        (Set<MaterialState> states) => const Color(0xFF788585)
+      ),
+    ),
     onPressed: DataManager.dateOutOfBounds(date, tip) ? dateError : fn,
     child: Icon(
       icon,
@@ -24,10 +29,16 @@ Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date) 
 
 Widget currentDateText(void Function() fn, DateTime date) {
   return TextButton(
+    style: ButtonStyle(
+      overlayColor: MaterialStateProperty.resolveWith<Color?>(
+        (Set<MaterialState> states) => const Color(0xFF788585)
+      ),
+    ),
     onPressed: fn,
     child: Text(
       '${date.day}/${date.month}/${date.year}',
       style: const TextStyle(
+        letterSpacing: 1.7,
         fontSize: 22.0,
         fontWeight: FontWeight.w500,
         color: Colors.black87,

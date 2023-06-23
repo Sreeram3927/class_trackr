@@ -70,19 +70,9 @@ class _TimeTableState extends State<TimeTable> {
     return Column(
       children: [
 
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.0),
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-              borderRadius: BorderRadius.circular(15.0),
-              //color: Colors.black.withOpacity(0.2)
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
-              children: dateInfoData
-            ),
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
+          children: dateInfoData
         ),
 
         Expanded(

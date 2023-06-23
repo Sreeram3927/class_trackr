@@ -15,13 +15,16 @@ class SubjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Color textColor = const Color(0xFF0B0500);
+
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFF66717E).withOpacity(0.3),
+        color: const Color(0xFF788585).withOpacity(0.45),
         borderRadius: const BorderRadius.all(Radius.circular(20)),
         border: Border.all(
           width: 2,
-          color: const Color(0xFF232E21).withOpacity(0.5)
+          color: const Color(0xFF788585).withOpacity(0.7)
         ),
       ),
       height: 150.0,
@@ -33,27 +36,29 @@ class SubjectCard extends StatelessWidget {
           
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 21.0,
               fontWeight: FontWeight.w600,
-              color: const Color(0xFF3D348B)
+              color: textColor
             ),
             textAlign: TextAlign.center,
           ),
           
           Text(
             subjectCode,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14.0,
-              fontWeight: FontWeight.w500
+              fontWeight: FontWeight.w500,
+              color: textColor
             ),
           ),
 
           Text(
             time,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 25.0,
-              fontWeight: FontWeight.w700
+              fontWeight: FontWeight.w700,
+              color: textColor
             ),
           )
 

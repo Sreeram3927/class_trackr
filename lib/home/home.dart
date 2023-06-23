@@ -48,23 +48,23 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
 
-        backgroundColor: const Color(0xFFE0E2DB),
+        backgroundColor: const Color(0xFFCCDAD1),
     
         appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: const Color(0xFF191716),
-          foregroundColor: const Color(0xFFE0E2DB),
+          elevation: 5.0,
+          backgroundColor: const Color(0xFF38302E),
+          foregroundColor: const Color(0xFFCCDAD1),
           toolbarHeight: 55.0,
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(1.0),
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Colors.grey.shade700, width: 1.5),
-                ),
-              ),
-            ),
-          ),
+          // bottom: PreferredSize(
+          //   preferredSize: const Size.fromHeight(1.0),
+          //   child: Container(
+          //     decoration: BoxDecoration(
+          //       border: Border(
+          //         bottom: BorderSide(color: Colors.grey.shade700, width: 1.5),
+          //       ),
+          //     ),
+          //   ),
+          // ),
 
           title: Text(
             title,
@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
         body: screen,
 
         drawer: Drawer(
-          backgroundColor: const Color(0xFFE0E2DB),
+          backgroundColor: const Color(0xFFCCDAD1),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -103,7 +103,7 @@ class _HomeState extends State<Home> {
   
   Widget drawerHeader() {
     return Container(
-      color: const Color(0xFF191716),
+      color: const Color(0xFF38302E),
       width: double.infinity,
       height: 200,
       padding: const EdgeInsets.only(top: 20.0),
@@ -152,7 +152,7 @@ class _HomeState extends State<Home> {
 
   Widget menuItem(int id, String title, IconData icon, bool selected) {
     return Material(
-      color: selected ? const Color(0xFF66717E).withOpacity(0.3) : Colors.transparent,
+      color: selected ? const Color(0xFF788585).withOpacity(0.35) : Colors.transparent,
       child: InkWell(
         onTap: () {
           Navigator.pop(context);
