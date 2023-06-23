@@ -55,16 +55,6 @@ class _HomeState extends State<Home> {
           backgroundColor: const Color(0xFF38302E),
           foregroundColor: const Color(0xFFCCDAD1),
           toolbarHeight: 55.0,
-          // bottom: PreferredSize(
-          //   preferredSize: const Size.fromHeight(1.0),
-          //   child: Container(
-          //     decoration: BoxDecoration(
-          //       border: Border(
-          //         bottom: BorderSide(color: Colors.grey.shade700, width: 1.5),
-          //       ),
-          //     ),
-          //   ),
-          // ),
 
           title: Text(
             title,

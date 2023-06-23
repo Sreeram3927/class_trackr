@@ -30,6 +30,19 @@ class _TimeTableState extends State<TimeTable> {
       initialDate: _currentDate,
       firstDate: DataManager.minDate,
       lastDate: DataManager.maxDate,
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ThemeData.light().colorScheme.copyWith(
+              primary: const Color(0xFF6F6866),
+            ),
+            datePickerTheme: const DatePickerThemeData(
+              headerBackgroundColor: Color(0xFF38302E)
+            ),
+          ), 
+          child: child!,
+        );
+      }
     );
     if (newDate == null) return;
     setState(() {
