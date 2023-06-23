@@ -1,7 +1,7 @@
 class DayOrderDate {
 
   static List<String> dayOrder_1 = [
-    '18/06',
+    '23/06',
     '13/01',
     '24/01',
     '01/02',
@@ -24,7 +24,7 @@ class DayOrderDate {
   ];
 
   static List<String> dayOrder_2 = [
-    '19/06',
+    '24/06',
     '18/01',
     '25/01',
     '02/02',
@@ -47,7 +47,7 @@ class DayOrderDate {
   ];
 
   static List<String> dayOrder_3 = [
-    '20/06',
+    '25/06',
     '19/01',
     '27/01',
     '03/02',
@@ -69,7 +69,7 @@ class DayOrderDate {
   ];
 
   static List<String> dayOrder_4 = [
-    '21/06',
+    '26/06',
     '20/01',
     '30/01',
     '06/02',
@@ -92,7 +92,7 @@ class DayOrderDate {
 
 
   static List<String> dayOrder_5 = [
-    '22/06',
+    '27/06',
     '23/01',
     '31/01',
     '07/02',

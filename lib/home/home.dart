@@ -52,9 +52,19 @@ class _HomeState extends State<Home> {
     
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: const Color.fromRGBO(217, 189, 233, 0.5),
-          foregroundColor: Colors.black87,
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.black,
           toolbarHeight: 55.0,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(1.0),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Colors.grey.shade700, width: 1.5),
+                ),
+              ),
+            ),
+          ),
 
           title: Text(
             title,
