@@ -48,10 +48,26 @@ Widget currentDateText(void Function() fn, DateTime date) {
 }
 
 Widget holiday() {
-  return const Center(
-    child: Text(
-      'holiday',
-      style: TextStyle(fontSize: 50.0),
+  return const Padding(
+    padding: EdgeInsets.symmetric(horizontal: 20.0),
+    child: Column(
+      children: [
+        Text(
+          'Holiday',
+          style: TextStyle(fontSize: 50.0),
+        ),
+        Text(
+          """
+          Today is marked as a holiday.
+
+          If you believe this information is incorrect or if you have any questions, please feel free to contact the developer.
+          
+          Your feedback is valuable in ensuring the accuracy of our timetable app.
+          """,
+          style: TextStyle(fontSize: 20.0),
+          textAlign: TextAlign.justify,
+        )
+      ]
     ),
   );
 }
