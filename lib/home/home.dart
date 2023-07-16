@@ -69,6 +69,7 @@ class _HomeState extends State<Home> {
             IconButton(
               onPressed: () {}, 
               icon: const Icon(Icons.help_rounded),
+              tooltip: "Help",
             ),
           ],
         ),

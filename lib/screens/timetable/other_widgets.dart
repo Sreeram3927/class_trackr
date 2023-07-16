@@ -12,18 +12,21 @@ Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date) 
       fontSize: 20
     );
   }
-  return TextButton(
-    style: ButtonStyle(
-      overlayColor: MaterialStateProperty.resolveWith<Color?>(
-        (Set<MaterialState> states) => const Color(0xFF788585)
+  return Tooltip(
+    message: tip,
+    child: TextButton(
+      style: ButtonStyle(
+        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) => const Color(0xFF788585)
+        ),
       ),
+      onPressed: DataManager.dateOutOfBounds(date, tip) ? dateError : fn,
+      child: Icon(
+        icon,
+        color: Colors.black87,
+        size: 30.0
+      ),    
     ),
-    onPressed: DataManager.dateOutOfBounds(date, tip) ? dateError : fn,
-    child: Icon(
-      icon,
-      color: Colors.black87,
-      size: 30.0
-    ),    
   );
 }
 
