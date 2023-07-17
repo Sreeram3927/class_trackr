@@ -33,7 +33,7 @@ class DataManager {
     return data;
   }
 
-  static DateTime minDate = DateTime(2023, 06, 01);
+  static DateTime minDate = DateTime(2023, 07, 01);
   static DateTime maxDate = DateTime(2023, 12, 31);
 
   static bool dateOutOfBounds(DateTime date, String tip) {
