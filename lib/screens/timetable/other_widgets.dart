@@ -87,7 +87,7 @@ Widget displayData(List data) {
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
         child: SubjectCard(
           title: details[0],
-          subjectCode: details[1],
+          subjectCode: data[index][1],
           time: data[index][0],
         ),
       );
