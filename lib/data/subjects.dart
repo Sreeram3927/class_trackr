@@ -3,21 +3,42 @@ class Subject {
 
   static Map subData = {
 
-    'EMS' : ['Elements of Mechatronics Systems', '21MHC101P'],
+    '21MAB201T' : ['Transforms and Boundary Value Problems'],
 
-    'PPS' : ['Programming for Problem Solving', '21CSS101J'],
+    '21MHC203J' : ['Fluid power system and Automation'],
 
-    'POE' : ['Philosophy of Engineering', '21GNH101J'],
+    '21MHC202J' : ['Analog and Digital Electronics'],
 
-    'ACCA' : ['Advanced Calculus and Complex Analysis', '21MAB102T',],
+    '21MHS201T' : ['Thermodynamics and Heat Transfer'],
 
-    'Bio' : ['Biology', '21BTB103T',],
+    '21PDH201T' : ['Social Engineering'],
 
-    'Chem' : ['Chemisty', '21CYB101J',],
+    '21MHC201T' : ['Electrical Actuators and Drives'],
 
-    'C&M' : ['Basic Civil and Mechanical Workshop', '21MES102L',],
+    '21LEM202T' : ['UHV-II: Universal Human Values – Understanding Harmony and Ethical Human Conduct'],
 
-    'GA' : ['General Aptitude', '21PDM102L',],
+    '21LEM201T' : ['Professional Ethics'],
+
+    '21PDM201L' : ['Verbal Reasoning'],
+
+
+    //First Year Courses
+
+    '21MHC101P' : ['Elements of Mechatronics Systems'],
+
+    '21CSS101J' : ['Programming for Problem Solving'],
+
+    '21GNH101J' : ['Philosophy of Engineering'],
+
+    '21MAB102T' : ['Advanced Calculus and Complex Analysis'],
+
+    '21BTB103T' : ['Biology'],
+
+    '21CYB101J' : ['Chemisty'],
+
+    '21MES102L' : ['Basic Civil and Mechanical Workshop'],
+
+    '21PDM102L' : ['General Aptitude'],
 
     'GEM' : ['German', '21xxx10xT',],
 

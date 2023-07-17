@@ -4,9 +4,14 @@ import 'firebase_options.dart';
 import 'package:infinity_project/data/user_preferences.dart';
 import 'home/home.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  if (Firebase.apps.isNotEmpty) {
+    print('Firebase connected');
+  } else {
+    print('Firebase not connected');
+  }
   await UserPreferences.init();
   runApp(const InfinityProject());
 }
