@@ -81,10 +81,11 @@ Widget displayData(List data) {
     itemCount: data.length,
   
     itemBuilder: (context, index) {
+      bool lab = data[index][3].contains('P');
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
         child: SubjectCard(
-          title: data[index][2],
+          title: data[index][2] + (lab ? ' (Lab)' : ''),
           subjectCode: data[index][1],
           time: data[index][0],
         ),
