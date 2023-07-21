@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:infinity_project/data/data_manager.dart';
-import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/screens/timetable/subject_card/subject_card.dart';
 
 Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date) {
@@ -82,11 +81,10 @@ Widget displayData(List data) {
     itemCount: data.length,
   
     itemBuilder: (context, index) {
-      List<String> details = Subject.subData[data[index][1]];
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
         child: SubjectCard(
-          title: details[0],
+          title: data[index][2],
           subjectCode: data[index][1],
           time: data[index][0],
         ),

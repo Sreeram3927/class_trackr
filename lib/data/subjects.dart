@@ -40,7 +40,7 @@ class Subject {
 
     '21LEM201T' : {
       'name' : 'Professional Ethics',
-      'slots' : ['P38'], 
+      'slots' : ['P38',], 
     },
 
     '21PDM201L' : {
@@ -79,7 +79,7 @@ class Subject {
 
     // 'JPN' : ['Japanese', '21xxx10xT',],
 
-    '420' : ['Subject Not Found!!', 'Subject Code Not Found',]
+    //'420' : ['Subject Not Found!!', 'Subject Code Not Found',]
   };
 
 }
