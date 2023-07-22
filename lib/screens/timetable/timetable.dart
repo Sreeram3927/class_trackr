@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/data_manager.dart';
-import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/data/user_preferences.dart';
 import 'package:infinity_project/screens/timetable/other_widgets.dart';
 
@@ -71,7 +70,6 @@ class _TimeTableState extends State<TimeTable> {
     super.initState();
     UserPreferences.refreshData();
     _getData();
-    print(Subject.subData['21MHC203J']['slots']);
   }
 
   @override

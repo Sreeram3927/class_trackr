@@ -32,16 +32,12 @@ class DataManager {
     for (int i = 0; i < timetable.length; i++) {
       Subject.subData.forEach((courseCode, courseInfo) {
         final List slots = Subject.getSlots(courseCode);
-        print(slots);
         if (slots.contains(timetable[i][1])) {
           data.add([TimeTableData.hour[timetable[i][0]], courseCode, courseInfo['name'], timetable[i][1]]);
         }
       });
     }
-
-    // for (int i = 0; i < timetable.length; i++) {
-    //   data.add([TimeTableData.hour[timetable[i][0]], timetable[i][1]]);
-    // }
+    
     return data;
   }
 

@@ -12,12 +12,16 @@ class Subject {
       'Batch 1' : {
         '21MHC203J' : ['P13', 'P14'],
         '21MHC202J' : ['P9', 'P10'],
-        '21MHC204L' : ['P43', 'P44'],
+        '21MHC204L' : ['P33', 'P34'],
+        '21LEM201T' : ['P38',],
+        '21PDM201L' : ['P6', 'P7']
       }, 
       'Batch 2' : {
-        '21MHC203J' : ['P39', 'P40'],
+        '21MHC203J' : ['P29', 'P30'],
         '21MHC202J' : ['P11', 'P12'],
-        '21MHC204L' : ['P52', 'P53'],
+        '21MHC204L' : ['P47', 'P48'],
+        '21LEM201T' : ['P38',],
+        '21PDM201L' : ['P6', 'P7']
       },
     },
     'MH-Robo' : {
@@ -25,20 +29,27 @@ class Subject {
         '21MHC203J' : ['P22', 'P23'],
         '21MHC202J' : ['P1', 'P2'],
         '21MHC204L' : ['P17', 'P18'],
+        '21LEM201T' : ['P25',],
+        '21PDM201L' : ['P3', 'P4']
       }, 
       'Batch 2' : {
         '21MHC203J' : ['P43', 'P44'],
         '21MHC202J' : ['P19', 'P20'],
         '21MHC204L' : ['P37', 'P38'],
+        '21LEM201T' : ['P25',],
+        '21PDM201L' : ['P3', 'P4']
       },
     },
   };
 
   static List getSlots(String courseCode) {
+
     List slots = subData[courseCode]['slots'];
+
     if (labBatchData[TimeTableData.currentCourse]![Subject.currentBatch]![courseCode] != null) {
       slots += (labBatchData[TimeTableData.currentCourse]![Subject.currentBatch]![courseCode]);
     }
+
     return slots;
   }
 
@@ -76,7 +87,7 @@ class Subject {
 
     '21MHC204L' : {
       'name' : 'Electrical Actuators and Drives',
-      'slots' : [],
+      'slots' : ['dummy',],
     },
 
     '21LEM202T' : {
@@ -86,12 +97,12 @@ class Subject {
 
     '21LEM201T' : {
       'name' : 'Professional Ethics',
-      'slots' : TimeTableData.currentCourse == 'MH-Core' ? ['P38',] : ['P25',], 
+      'slots' : ['dummy',], 
     },
 
     '21PDM201L' : {
       'name' : 'Verbal Reasoning',
-      'slots' : TimeTableData.currentCourse == 'MH-Core' ? ['P6', 'P7'] : ['P3', 'P4'],
+      'slots' : ['dummy',],
     },
 
 
