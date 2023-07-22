@@ -34,6 +34,14 @@ class Subject {
     },
   };
 
+  static List getSlots(String courseCode) {
+    List slots = subData[courseCode]['slots'];
+    if (labBatchData[TimeTableData.currentCourse]![Subject.currentBatch]![courseCode] != null) {
+      slots += (labBatchData[TimeTableData.currentCourse]![Subject.currentBatch]![courseCode]);
+    }
+    return slots;
+  }
+
   static Map subData = {
 
     '21MAB201T' : {
