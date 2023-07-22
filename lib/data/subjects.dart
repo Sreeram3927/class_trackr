@@ -1,3 +1,4 @@
+import 'package:infinity_project/data/timetable_data.dart';
 import 'package:infinity_project/data/user_preferences.dart';
 
 class Subject {
@@ -6,29 +7,29 @@ class Subject {
 
   static String currentBatch =  UserPreferences.getData('batch') ?? 'Batch 1';
 
-  Map<String, Map<String, Map<String, List>>> labBatchData = {
+  static Map<String, Map<String, Map<String, dynamic>>> labBatchData = {
     'MH-Core' : {
       'Batch 1' : {
         '21MHC203J' : ['P13', 'P14'],
         '21MHC202J' : ['P9', 'P10'],
-        '21MHC201T' : ['P43', 'P44'],
+        '21MHC204L' : ['P43', 'P44'],
       }, 
       'Batch 2' : {
         '21MHC203J' : ['P39', 'P40'],
         '21MHC202J' : ['P11', 'P12'],
-        '21MHC201T' : ['P52', 'P53'],
+        '21MHC204L' : ['P52', 'P53'],
       },
     },
     'MH-Robo' : {
       'Batch 1' : {
         '21MHC203J' : ['P22', 'P23'],
         '21MHC202J' : ['P1', 'P2'],
-        '21MHC201T' : ['P17', 'P18'],
+        '21MHC204L' : ['P17', 'P18'],
       }, 
       'Batch 2' : {
         '21MHC203J' : ['P43', 'P44'],
         '21MHC202J' : ['P19', 'P20'],
-        '21MHC201T' : ['P37', 'P38'],
+        '21MHC204L' : ['P37', 'P38'],
       },
     },
   };
@@ -47,7 +48,7 @@ class Subject {
 
     '21MHC202J' : {
       'name' : 'Analog and Digital Electronics',
-      'slots' : ['C',], 
+      'slots' : ['C',],
     },
 
     '21MHS201T' : {
@@ -65,6 +66,11 @@ class Subject {
       'slots' : ['F',], 
     },
 
+    '21MHC204L' : {
+      'name' : 'Electrical Actuators and Drives',
+      'slots' : [],
+    },
+
     '21LEM202T' : {
       'name' : 'UHV-II: Universal Human Values – Understanding Harmony and Ethical Human Conduct',
       'slots' : ['G',], 
@@ -72,12 +78,12 @@ class Subject {
 
     '21LEM201T' : {
       'name' : 'Professional Ethics',
-      'slots' : ['P38',], 
+      'slots' : TimeTableData.currentCourse == 'MH-Core' ? ['P38',] : ['P25',], 
     },
 
     '21PDM201L' : {
       'name' : 'Verbal Reasoning',
-      'slots' : ['P7', 'P8'], 
+      'slots' : TimeTableData.currentCourse == 'MH-Core' ? ['P6', 'P7'] : ['P3', 'P4'],
     },
 
 
