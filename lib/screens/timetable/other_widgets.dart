@@ -79,7 +79,6 @@ Your feedback is valuable in ensuring the accuracy of our timetable app.
 Widget displayData(List data) {
   return ListView.builder(
     itemCount: data.length,
-  
     itemBuilder: (context, index) {
       bool lab = data[index][3].contains('P');
       return Padding(

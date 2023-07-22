@@ -1,6 +1,33 @@
 
 class Subject {
 
+  Map<String, Map<String, Map<String, List>>> labBatchData = {
+    'MH-Core' : {
+      'Batch 1' : {
+        '21MHC203J' : ['P13', 'P14'],
+        '21MHC202J' : ['P9', 'P10'],
+        '21MHC201T' : ['P43', 'P44'],
+      }, 
+      'Batch 2' : {
+        '21MHC203J' : ['P39', 'P40'],
+        '21MHC202J' : ['P11', 'P12'],
+        '21MHC201T' : ['P52', 'P53'],
+      },
+    },
+    'MH-Robo' : {
+      'Batch 1' : {
+        '21MHC203J' : ['P22', 'P23'],
+        '21MHC202J' : ['P1', 'P2'],
+        '21MHC201T' : ['P17', 'P18'],
+      }, 
+      'Batch 2' : {
+        '21MHC203J' : ['P43', 'P44'],
+        '21MHC202J' : ['P19', 'P20'],
+        '21MHC201T' : ['P37', 'P38'],
+      },
+    },
+  };
+
   static Map subData = {
 
     '21MAB201T' : {
