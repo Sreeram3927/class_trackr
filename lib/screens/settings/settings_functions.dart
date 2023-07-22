@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:infinity_project/data/timetable_data.dart';
 import 'package:infinity_project/data/user_preferences.dart';
 
 Widget alertCard(BuildContext context, String data) {
@@ -17,15 +16,21 @@ Widget alertCard(BuildContext context, String data) {
   );
 }
 
-Widget selectCourse(String title, void Function() refresh) {
+Widget selectCourse({
+  required String name,
+  required String valueKey,
+  required List data,
+  required int currentValue,
+  required void Function() refresh
+}) {
 
-  List<dynamic> data = TimeTableData.courses;
-  int currentVal = data.indexOf(TimeTableData.currentCourse);
+  // List<dynamic> data = TimeTableData.courses;
+  // int currentValue = data.indexOf(TimeTableData.currentCourse);
 
   return AlertDialog(
     backgroundColor: const Color(0xFFCCDAD1),
     title: Text(
-      title,
+      name,
       textAlign: TextAlign.center,
       style: const TextStyle(
         fontSize: 21.0,
@@ -39,16 +44,16 @@ Widget selectCourse(String title, void Function() refresh) {
           children: [
             Radio(
               value: index,
-              groupValue: currentVal,
+              groupValue: currentValue,
               onChanged: (value) {  
-                UserPreferences.setData('course', data[value!.toInt()]);
+                UserPreferences.setData(valueKey, data[value!.toInt()]);
                 refresh();
               },
             ),
             GestureDetector(
               child: Text(data[index]),
               onTap: () {
-                UserPreferences.setData('course', data[index]);
+                UserPreferences.setData(valueKey, data[index]);
                 refresh();
               },
             )
