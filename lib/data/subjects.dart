@@ -1,5 +1,10 @@
+import 'package:infinity_project/data/user_preferences.dart';
 
 class Subject {
+
+  static List<String> batches = ['Batch 1', 'Batch 2'];
+
+  static String currentBatch =  UserPreferences.getData('batch') ?? 'Batch 1';
 
   Map<String, Map<String, Map<String, List>>> labBatchData = {
     'MH-Core' : {

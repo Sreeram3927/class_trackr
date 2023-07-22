@@ -1,3 +1,4 @@
+import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/data/timetable_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,6 +14,7 @@ class UserPreferences {
 
   static void refreshData() {
     TimeTableData.currentCourse = UserPreferences.getData('course') ?? 'MH-Core';
+    Subject.currentBatch = UserPreferences.getData('batch') ?? 'Batch 1';
   }
 
 }
