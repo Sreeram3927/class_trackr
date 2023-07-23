@@ -40,7 +40,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
             },
             children: [
 
-              WelcomeScreen(
+              TermsAndConditionsPage(),
+
+              WelcomePage(
                 nextScreen: nextScreen,
               ),
 

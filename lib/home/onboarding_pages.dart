@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:infinity_project/data/user_preferences.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomePage extends StatelessWidget {
   final void Function() nextScreen;
-  const WelcomeScreen({
+  const WelcomePage({
     super.key,
     required this.nextScreen,
   });
@@ -192,6 +192,118 @@ class _DataSelectionPageState extends State<DataSelectionPage> {
                 ),
               ],
             ),
+      ),
+    );
+  }
+}
+
+class TermsAndConditionsPage extends StatefulWidget {
+  const TermsAndConditionsPage({super.key});
+
+  @override
+  State<TermsAndConditionsPage> createState() => _TermsAndConditionsPageState();
+}
+
+class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
+bool _isAccepted = false;
+
+  void _startApp() {
+    // Navigate to your main app screen here
+    // For example, you can use Navigator.pushReplacement() to replace the current screen with the main app screen.
+  }
+
+  void _acceptTerms() {
+    Fluttertoast.showToast(
+      msg: 'Please accept the Terms of service and Privacy policy to continue',
+      fontSize: 20
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      child: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                'Terms of service\nand Privacy policy',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20),
+              const  Text(
+                'Before you start using our app, we want to ensure that you are aware of the following Terms and Conditions and provide your consent for data collection. By using our app, you agree to the terms outlined below:',
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                //'User Profile Creation: To provide you with a personalized experience, we will collect certain information to create and manage your user profile. This may include your name, email address, and other optional details you choose to provide.\n\n'
+                //'Data Security: Your data\'s security is of utmost importance to us. We will take all reasonable measures to safeguard your information and prevent unauthorized access, disclosure, or modification.\n\n'
+                'Firebase Analytics: We use Firebase Analytics to gain insights into user behavior and app usage. This helps us improve our app\'s performance and user experience. The data collected includes but is not limited to app screens visited, buttons clicked, and interactions within the app.\n\n'
+                'Event Logs: Our app logs various events to track app performance and to identify and troubleshoot issues. These logs may include technical data such as device information, app version, and error reports.\n\n'
+                //'Data Sharing: We may share anonymized and aggregated data with third-party partners for statistical analysis and research purposes. However, your personal information will never be shared without your explicit consent.\n\n'
+                'Third-Party Services: Our app may use third-party services or APIs to enhance its functionality. Your usage of these services may be subject to their own terms and privacy policies.\n\n'
+                'Push Notifications: With your consent, we may send you push notifications to keep you updated about important app-related information, events, or new features.\n\n'
+                'Usage Tracking and Cookies: We may use cookies or similar technologies to track your usage patterns within the app. This data helps us improve user experience and app functionality.\n\n'
+                'Updates and Changes: Our app and its features may be updated from time to time. By continuing to use the app after such updates, you accept any revised terms and conditions.\n\n'
+                //'Age Restriction: Our app is intended for users of all ages. However, if you are under the age of 13, you must seek parental consent before using the app.\n\n'
+                //'Data Deletion: If you wish to delete your user profile and associated data from our app, please contact our support team.\n\n'
+                'Contact and Support: If you encounter any issues or have questions about data collection or privacy, please reach out to our support team.\n\n'
+                'By accepting these Terms of service and providing your consent for data collection, you acknowledge that you have read and understood our privacy policy, which outlines in detail how we collect, use, and protect your data.\n\n'
+                'Thank you for choosing [Your App Name]! We hope you enjoy the app and have a fantastic user experience.\n\n'
+                'Last updated: 23/07/2023\n\n'
+                '[Your Company/Developer Name]',
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  Transform.scale(
+                    scale: 1.25,
+                    child: Checkbox(
+                      value: _isAccepted,
+                      activeColor:  const Color(0xFF38302E).withOpacity(0.75),
+                      onChanged: (value) {
+                        setState(() {
+                          _isAccepted = value ?? false;
+                        });
+                      },
+                    ),
+                  ),
+                  const Text(
+                    'I accept the Terms of service\nand Privacy policy.',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF38302E)),
+                  fixedSize: MaterialStateProperty.all<Size>(const Size(125, 50)),
+                ),
+                onPressed: _isAccepted ? _startApp : _acceptTerms,
+                child: const Text('Get Started'),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
