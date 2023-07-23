@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/data/timetable_data.dart';
+import 'package:infinity_project/data/user_preferences.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -43,6 +44,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             children: [
               Expanded(
                 child: PageView(
+                  physics: const NeverScrollableScrollPhysics(),
                   controller: _pageController,
                   onPageChanged: (int page) {
                     setState(() {
@@ -53,31 +55,20 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     DataSelectionPage(
                       dataList: TimeTableData.courses,
                       dataKey: 'course',
-                      selectedData: TimeTableData.currentCourse,
+                      previousScreen: previousScreen,
+                      nextScreen: nextScreen,
                     ),
                     DataSelectionPage(
                       dataList: Subject.batches,
                       dataKey: 'batch',
-                      selectedData: Subject.currentBatch,
+                      previousScreen: previousScreen,
+                      nextScreen: nextScreen,
                     ),
                     const Center(
                       child: Text('Page 3'),
                     ),
                   ],
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                    onPressed: nextScreen,
-                    child: const Text('Previous'),
-                  ),
-                  TextButton(
-                    onPressed: previousScreen,
-                    child: const Text('Next'),
-                  ),
-                ],
               ),
             ],
           ),
@@ -91,13 +82,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
 class DataSelectionPage extends StatefulWidget {
   final List dataList;
   final String dataKey;
-  final String? selectedData;
+  final void Function() previousScreen;
+  final void Function() nextScreen;
 
   const DataSelectionPage({
     super.key,
     required this.dataList,
     required this.dataKey,
-    required this.selectedData,
+    required this.previousScreen,
+    required this.nextScreen,
   });
 
   @override
@@ -105,7 +98,7 @@ class DataSelectionPage extends StatefulWidget {
 }
 
 class _DataSelectionPageState extends State<DataSelectionPage> {
-  String? _newData;
+  String? _selectedData;
 
   @override
   Widget build(BuildContext context) {
@@ -127,13 +120,13 @@ class _DataSelectionPageState extends State<DataSelectionPage> {
               textAlign: TextAlign.center,
             ),
     
-            const SizedBox(height: 16),
+            const SizedBox(height: 35),
     
             DropdownButtonFormField<String>(
-              value: _newData ?? widget.selectedData,
+              value: _selectedData,
               onChanged: (newValue) {
                 setState(() {
-                  _newData = newValue;
+                  _selectedData = newValue;
                 });
               },
               items: widget.dataList.map((course) {
@@ -143,34 +136,40 @@ class _DataSelectionPageState extends State<DataSelectionPage> {
                 );
               }).toList(),
               decoration: InputDecoration(
-                labelText: 'Select ${widget.dataKey}',
+                labelText: widget.dataKey,
                 border: const OutlineInputBorder(),
+                labelStyle: const TextStyle(color: Color(0xFF38302E), fontSize: 20.0),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFF38302E))
+                ),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFF38302E))
+                )
               ),
             ),
     
-            const SizedBox(height: 16),
-    
-            ElevatedButton(
-              onPressed: () {
-                // Handle the course selection and navigate to the next screen
-                if (_newData != null) {
-                  // Do something with the selected course
-                  print('Selected course: $_newData');
-                  // Navigate to the next screen or perform any other action
-                  // Example:
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => NextScreen()),
-                  // );
-                } else {
-                  // Show a message to ask the user to select a course
-                  print('Please select a ${widget.dataKey} before proceeding.');
-                }
-              },
-              child: const Text('Next'),
+            const SizedBox(height: 75),
+
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF38302E)),
+                    fixedSize: MaterialStateProperty.all<Size>(const Size(125, 50)),
+                  ),
+                  onPressed: () {
+                    if (_selectedData != null) {
+                      print('Selected course: $_selectedData');
+                      UserPreferences.setData(widget.dataKey, _selectedData!);
+                      widget.nextScreen();
+                    } else {
+                      print('Please select a ${widget.dataKey} before proceeding.');
+                    }
+                  },
+                  child: const Text('Next'),
+                ),
+              ],
             ),
-          ],
-        )
+        //   ],
+        // )
       ),
     );
   }
