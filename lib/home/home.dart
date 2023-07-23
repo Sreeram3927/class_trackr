@@ -205,7 +205,7 @@ class _HomeState extends State<Home> {
   Widget contactDeveloper() {
 
     List contactOptions = [
-      [Icons.email_rounded, 'devxpert3927@gmail.com', 'https://www.google.com/'],
+      [Icons.email_rounded, 'devxpert3927@gmail.com', 'mailto:devxpert3927@gmail.com'],
       [FontAwesomeIcons.instagram, 'Instagram', 'https://www.instagram.com/sreeram3927/'],
       [FontAwesomeIcons.twitter, 'Twitter', 'https://www.twitter.com/sreeram3927/'],
       [FontAwesomeIcons.linkedin, 'LinkedIn', 'https://www.linkedin.com/in/sreeram3927/'],
@@ -238,7 +238,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 onTap: () async {
-                  Uri url = Uri.parse(contactOptions[index][3]);
+                  Uri url = Uri.parse(contactOptions[index][2]);
                   if (!await launchUrl(
                     url,
                     mode: LaunchMode.externalApplication,
@@ -253,5 +253,4 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
 }
