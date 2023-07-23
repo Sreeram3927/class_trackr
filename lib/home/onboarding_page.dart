@@ -32,7 +32,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     });
                   },
                   children: [
-                    CourseSelectionPage(),
+                    DataSelectionPage(
+                      dataList: TimeTableData.courses,
+                      dataKey: 'course',
+                    ),
                     const Center(
                       child: Text('Page 2'),
                     ),
@@ -76,17 +79,21 @@ class _OnboardingPageState extends State<OnboardingPage> {
 }
 
 
-class CourseSelectionPage extends StatefulWidget {
-  const CourseSelectionPage({super.key});
+class DataSelectionPage extends StatefulWidget {
+  final List dataList;
+  final String dataKey;
+  const DataSelectionPage({
+    super.key,
+    required this.dataList,
+    required this.dataKey,
+  });
 
   @override
-  State<CourseSelectionPage> createState() => _CourseSelectionPageState();
+  State<DataSelectionPage> createState() => _DataSelectionPageState();
 }
 
-class _CourseSelectionPageState extends State<CourseSelectionPage> {
-  String? _selectedCourse;
-
-  List courses = TimeTableData.courses;
+class _DataSelectionPageState extends State<DataSelectionPage> {
+  String? _selectedData;
 
   @override
   Widget build(BuildContext context) {
@@ -95,22 +102,34 @@ class _CourseSelectionPageState extends State<CourseSelectionPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+
+          Text(
+            'Select ${widget.dataKey}',
+            style: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+
+          const SizedBox(height: 16),
+
           DropdownButtonFormField<String>(
-            value: _selectedCourse,
+            value: _selectedData,
             onChanged: (newValue) {
               setState(() {
-                _selectedCourse = newValue;
+                _selectedData = newValue;
               });
             },
-            items: courses.map((course) {
+            items: widget.dataList.map((course) {
               return DropdownMenuItem<String>(
                 value: course,
                 child: Text(course),
               );
             }).toList(),
-            decoration: const InputDecoration(
-              labelText: 'Select Course',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: 'Select ${widget.dataKey}',
+              border: const OutlineInputBorder(),
             ),
           ),
 
@@ -119,9 +138,9 @@ class _CourseSelectionPageState extends State<CourseSelectionPage> {
           ElevatedButton(
             onPressed: () {
               // Handle the course selection and navigate to the next screen
-              if (_selectedCourse != null) {
+              if (_selectedData != null) {
                 // Do something with the selected course
-                print('Selected course: $_selectedCourse');
+                print('Selected course: $_selectedData');
                 // Navigate to the next screen or perform any other action
                 // Example:
                 // Navigator.push(
@@ -130,7 +149,7 @@ class _CourseSelectionPageState extends State<CourseSelectionPage> {
                 // );
               } else {
                 // Show a message to ask the user to select a course
-                print('Please select a course before proceeding.');
+                print('Please select a ${widget.dataKey} before proceeding.');
               }
             },
             child: const Text('Next'),
