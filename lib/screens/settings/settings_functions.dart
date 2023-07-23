@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/user_preferences.dart';
 
-Widget alertCard(BuildContext context, String data) {
-  return AlertDialog(
-    title: Text(data),
-    actions: [
-      Center(
-          child: TextButton(
-        child: const Text('OK'),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ))
-    ],
-  );
-}
+// Widget alertCard(BuildContext context, String data) {
+//   return AlertDialog(
+//     title: Text(data),
+//     actions: [
+//       Center(
+//           child: TextButton(
+//         child: const Text('OK'),
+//         onPressed: () {
+//           Navigator.pop(context);
+//         },
+//       ))
+//     ],
+//   );
+// }
 
 Widget selectCourse({
   required String name,

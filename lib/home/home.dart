@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinity_project/home/onboarding_pages.dart';
 import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
@@ -134,7 +135,9 @@ class _HomeState extends State<Home> {
 
           menuItem(3, "Discord", Icons.discord_rounded, false),
 
-          menuItem(4, "Terms of sercive and Privacy policy", Icons.privacy_tip_outlined, false),
+          menuItem(4, "Privacy Policy", Icons.privacy_tip_outlined, false),
+
+          menuItem(5, "Contact Developer", Icons.headset_mic_rounded, false),
           
           const Divider(thickness: 2.0,),
         ],
@@ -154,6 +157,12 @@ class _HomeState extends State<Home> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const TermsAndConditionsPage())
+            );
+          } else if (id == 5) {
+            // aboutApp(context, title, 'subtitle', 'data');
+            showDialog(
+              context: context,
+              builder: (context) => contactDeveloper()
             );
           } else {
             setState(() {
@@ -190,6 +199,59 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
+    );  
+  }
+
+  Widget contactDeveloper() {
+
+    List contactOptions = [
+      [Icons.email_rounded, 'devxpert3927@gmail.com', 'https://www.google.com/'],
+      [FontAwesomeIcons.instagram, 'Instagram', 'https://www.instagram.com/sreeram3927/'],
+      [FontAwesomeIcons.twitter, 'Twitter', 'https://www.twitter.com/sreeram3927/'],
+      [FontAwesomeIcons.linkedin, 'LinkedIn', 'https://www.linkedin.com/in/sreeram3927/'],
+      [FontAwesomeIcons.github, 'GitHub', 'https://github.com/sreeram3927']
+    ];
+
+    return AlertDialog(
+      backgroundColor:  const Color(0xFFCCDAD1),
+      title: const Text(
+        'Contact Developer',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 21.0,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      content: Wrap(
+        direction: Axis.vertical,
+        children: List.generate(contactOptions.length, (index) {
+          return Row(
+            children: [
+              Icon(contactOptions[index][0]),
+              const SizedBox(width: 10.0, height: 50.0,),
+              GestureDetector(
+                child: Text(
+                  contactOptions[index][1],
+                  style: const TextStyle(
+                    color: Color(0xFF38302E),
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+                onTap: () async {
+                  Uri url = Uri.parse(contactOptions[index][3]);
+                  if (!await launchUrl(
+                    url,
+                    mode: LaunchMode.externalApplication,
+                  )) {
+                    throw Exception('Could not launch $url');
+                  }
+                },
+              )
+            ]
+          );
+        }),
+      ),
     );
   }
+
 }
