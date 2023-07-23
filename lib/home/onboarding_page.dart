@@ -31,37 +31,31 @@ class _OnboardingPageState extends State<OnboardingPage> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: PageView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: pageController,
-                  onPageChanged: (int page) {
-                    setState(() {
-                      currentPage = page;
-                    });
-                  },
-                  children: [
-                    DataSelectionPage(
-                      dataList: TimeTableData.courses,
-                      dataKey: 'course',
-                      nextScreen: nextScreen,
-                    ),
-                    DataSelectionPage(
-                      dataList: Subject.batches,
-                      dataKey: 'batch',
-                      nextScreen: nextScreen,
-                    ),
-                    const Center(
-                      child: Text('Page 3'),
-                    ),
-                  ],
+          child: Expanded(
+            child: PageView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: pageController,
+              onPageChanged: (int page) {
+                setState(() {
+                  currentPage = page;
+                });
+              },
+              children: [
+                DataSelectionPage(
+                  dataList: TimeTableData.courses,
+                  dataKey: 'course',
+                  nextScreen: nextScreen,
                 ),
-              ),
-            ],
+                DataSelectionPage(
+                  dataList: Subject.batches,
+                  dataKey: 'batch',
+                  nextScreen: nextScreen,
+                ),
+                const Center(
+                  child: Text('Page 3'),
+                ),
+              ],
+            ),
           ),
         ),
       )
@@ -124,6 +118,7 @@ class _DataSelectionPageState extends State<DataSelectionPage> {
                   child: Text(course),
                 );
               }).toList(),
+              dropdownColor: const Color(0xFFCCDAD1),
               decoration: InputDecoration(
                 labelText: widget.dataKey[0].toUpperCase() + widget.dataKey.substring(1),
                 border: const OutlineInputBorder(),
@@ -136,8 +131,20 @@ class _DataSelectionPageState extends State<DataSelectionPage> {
                 )
               ),
             ),
+
+            const SizedBox(height: 7),
+
+            const Text(
+              'You can change this later in settings',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color:  Color(0xFF38302E),
+              ),
+            ),
     
-            const SizedBox(height: 75),
+            const SizedBox(height: 70),
 
                 ElevatedButton(
                   style: ButtonStyle(
