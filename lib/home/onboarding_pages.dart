@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:infinity_project/data/user_preferences.dart';
+import 'package:infinity_project/home/home.dart';
 
 class WelcomePage extends StatelessWidget {
   final void Function() nextScreen;
@@ -54,10 +55,10 @@ class WelcomePage extends StatelessWidget {
               'While our beta version may not have cloud sync functionality, rest assured that we\'re continuously working to bring you new and exciting updates in the future. Your patience and understanding are greatly appreciated during this phase.',              
             ),
             const SizedBox(height: 20),
-            myText(
-              'Data and Privacy: Protecting your data and privacy is our utmost priority. Be confident that your information remains secure within the app.',              
-            ),
-            const SizedBox(height: 20),
+            // myText(
+            //   'Data and Privacy: Protecting your data and privacy is our utmost priority. Be confident that your information remains secure within the app.',              
+            // ),
+            // const SizedBox(height: 20),
             myText(
               'Thank You for Joining Us: Thank you for being an essential part of our beta testing community. Together, we can create a Timetable App that revolutionizes the way you manage your daily schedules.',              
             ),
@@ -89,12 +90,14 @@ class WelcomePage extends StatelessWidget {
 class DataSelectionPage extends StatefulWidget {
   final List dataList;
   final String dataKey;
+  final String title;
   final void Function() nextScreen;
 
   const DataSelectionPage({
     super.key,
     required this.dataList,
     required this.dataKey,
+    required this.title,
     required this.nextScreen,
   });
 
@@ -142,7 +145,7 @@ class _DataSelectionPageState extends State<DataSelectionPage> {
               }).toList(),
               dropdownColor: const Color(0xFFCCDAD1),
               decoration: InputDecoration(
-                labelText: widget.dataKey[0].toUpperCase() + widget.dataKey.substring(1),
+                labelText: widget.title,
                 border: const OutlineInputBorder(),
                 labelStyle: const TextStyle(color: Color(0xFF38302E), fontSize: 20.0),
                 enabledBorder: const OutlineInputBorder(
@@ -210,6 +213,10 @@ bool _isAccepted = false;
   void _startApp() {
     // Navigate to your main app screen here
     // For example, you can use Navigator.pushReplacement() to replace the current screen with the main app screen.
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const Home()),
+    );
   }
 
   void _acceptTerms() {
@@ -249,6 +256,7 @@ bool _isAccepted = false;
               const Text(
                 //'User Profile Creation: To provide you with a personalized experience, we will collect certain information to create and manage your user profile. This may include your name, email address, and other optional details you choose to provide.\n\n'
                 //'Data Security: Your data\'s security is of utmost importance to us. We will take all reasonable measures to safeguard your information and prevent unauthorized access, disclosure, or modification.\n\n'
+                'Accuracy: This app may produce inaccurate results from time to time. While we strive to maintain accuracy, certain factors beyond our control may affect the outcomes. The app\'s functionality and results are provided on an \'as-is\' basis, without any warranties or guarantees of accuracy, completeness, or reliability. Users are encouraged to exercise their own judgment and discretion while interpreting and using the information provided by the app. We shall not be held liable for any consequences resulting from the use of the app or its inaccurate results.\n\n'
                 'Firebase Analytics: We use Firebase Analytics to gain insights into user behavior and app usage. This helps us improve our app\'s performance and user experience. The data collected includes but is not limited to app screens visited, buttons clicked, and interactions within the app.\n\n'
                 'Event Logs: Our app logs various events to track app performance and to identify and troubleshoot issues. These logs may include technical data such as device information, app version, and error reports.\n\n'
                 //'Data Sharing: We may share anonymized and aggregated data with third-party partners for statistical analysis and research purposes. However, your personal information will never be shared without your explicit consent.\n\n'
@@ -261,8 +269,8 @@ bool _isAccepted = false;
                 'Contact and Support: If you encounter any issues or have questions about data collection or privacy, please reach out to our support team.\n\n'
                 'By accepting these Terms of service and providing your consent for data collection, you acknowledge that you have read and understood our privacy policy, which outlines in detail how we collect, use, and protect your data.\n\n'
                 'Thank you for choosing [Your App Name]! We hope you enjoy the app and have a fantastic user experience.\n\n'
-                'Last updated: 23/07/2023\n\n'
-                '[Your Company/Developer Name]',
+                'Last updated: 23/07/2023\n\n',
+                //'[Your Company/Developer Name]',
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontSize: 16,
@@ -279,6 +287,7 @@ bool _isAccepted = false;
                       onChanged: (value) {
                         setState(() {
                           _isAccepted = value ?? false;
+                          UserPreferences.setShowHome(value ?? false);
                         });
                       },
                     ),

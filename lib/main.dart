@@ -21,9 +21,9 @@ class InfinityProject extends StatelessWidget {
   const InfinityProject({super.key});
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'IP - SD',
-      home: OnboardingPage(),
+      home: UserPreferences.showHome ? const Home() : const OnboardingPage(),
       debugShowCheckedModeBanner: true,
       themeMode: ThemeMode.light,
     );

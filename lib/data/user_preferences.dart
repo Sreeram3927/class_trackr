@@ -17,4 +17,11 @@ class UserPreferences {
     Subject.currentBatch = UserPreferences.getData('batch') ?? 'Batch 1';
   }
 
+  // static bool showHome = _preferences.getBool('showHome') ?? false;
+  static bool showHome = false;
+  static void setShowHome(bool value) {
+    showHome = value;
+    _preferences.setBool('showHome', value);
+  }
+
 }
