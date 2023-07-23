@@ -1,68 +1,90 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:infinity_project/data/subjects.dart';
-import 'package:infinity_project/data/timetable_data.dart';
 import 'package:infinity_project/data/user_preferences.dart';
 
-class OnboardingPage extends StatefulWidget {
-  const OnboardingPage({super.key});
-
-  @override
-  State<OnboardingPage> createState() => _OnboardingPageState();
-}
-
-class _OnboardingPageState extends State<OnboardingPage> {
-
-  final PageController pageController = PageController(initialPage: 0);
-  int currentPage = 0;
-
-  void nextScreen() {
-    pageController.animateToPage(
-      currentPage + 1,
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.easeInOut,
-    );
-  }
+class WelcomeScreen extends StatelessWidget {
+  final void Function() nextScreen;
+  const WelcomeScreen({
+    super.key,
+    required this.nextScreen,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFCCDAD1),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Expanded(
-            child: PageView(
-              physics: const NeverScrollableScrollPhysics(),
-              controller: pageController,
-              onPageChanged: (int page) {
-                setState(() {
-                  currentPage = page;
-                });
-              },
-              children: [
-                DataSelectionPage(
-                  dataList: TimeTableData.courses,
-                  dataKey: 'course',
-                  nextScreen: nextScreen,
-                ),
-                DataSelectionPage(
-                  dataList: Subject.batches,
-                  dataKey: 'batch',
-                  nextScreen: nextScreen,
-                ),
-                const Center(
-                  child: Text('Page 3'),
-                ),
-              ],
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      child: Center(
+        child: ListView(
+          children: [
+            const Text(
+              'Welcome to Beta Timetable App',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
+            const SizedBox(height: 20),
+            myText(
+              'Discover the power of efficient scheduling and time management with our cutting-edge Timetable App, currently in the beta stage. We\'re delighted to have you on board as a beta user, and your experience with our app means the world to us.'
+            ),
+            const SizedBox(height: 20),
+            myText(
+              'Please be aware that as a beta version, the app may still have some undiscovered quirks and bugs. But don\'t worry! Your feedback is instrumental in helping us identify and fix any issues, making the app even better before its official release.',
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              'Here\'s how you can help us improve:',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
+            const SizedBox(height: 10),
+            myText(
+              '1. Report Bugs: If you come across any unexpected behavior or encounter bugs while using the app, please let us know immediately. Simply head to the Settings page and choose "Contact Developer" to send us your feedback.',              
+            ),
+            const SizedBox(height: 10),
+            myText(
+              '2. Share Your Suggestions: Have ideas for new features or improvements? We\'d love to hear them! Your valuable suggestions can shape the future of the app and make it more tailored to your needs.',              
+            ),
+            const SizedBox(height: 10),
+            myText(
+              '3. User Experience Matters: We care about your experience with the app. Let us know if you find any aspects confusing or challenging to navigate, so we can enhance the user interface for everyone.',              
+            ),
+            const SizedBox(height: 20),
+            myText(
+              'While our beta version may not have cloud sync functionality, rest assured that we\'re continuously working to bring you new and exciting updates in the future. Your patience and understanding are greatly appreciated during this phase.',              
+            ),
+            const SizedBox(height: 20),
+            myText(
+              'Data and Privacy: Protecting your data and privacy is our utmost priority. Be confident that your information remains secure within the app.',              
+            ),
+            const SizedBox(height: 20),
+            myText(
+              'Thank You for Joining Us: Thank you for being an essential part of our beta testing community. Together, we can create a Timetable App that revolutionizes the way you manage your daily schedules.',              
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF38302E)),
+                fixedSize: MaterialStateProperty.all<Size>(const Size(125, 50)),
+              ),
+              onPressed: nextScreen,
+              child: const Text('Next'),
+            )
+          ],
         ),
-      )
+      ),
+    );
+  }
+  Widget myText(String data) {
+    return Text(
+      data,
+      style: const TextStyle(
+        fontSize: 16,
+      ),
+      textAlign: TextAlign.justify,
     );
   }
 }
-
 
 class DataSelectionPage extends StatefulWidget {
   final List dataList;

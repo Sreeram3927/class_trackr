@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:infinity_project/home/onboarding_page.dart';
+import 'package:infinity_project/home/onboarding_screen.dart';
 import 'firebase/firebase_options.dart';
 import 'package:infinity_project/data/user_preferences.dart';
 import 'home/home.dart';
