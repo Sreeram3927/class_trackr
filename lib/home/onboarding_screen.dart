@@ -28,40 +28,37 @@ class _OnboardingPageState extends State<OnboardingPage> {
     return Scaffold(
       backgroundColor: const Color(0xFFCCDAD1),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: PageView(
-            physics: const NeverScrollableScrollPhysics(),
-            controller: pageController,
-            onPageChanged: (int page) {
-              setState(() {
-                currentPage = page;
-              });
-            },
-            children: [
+        child: PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: pageController,
+          onPageChanged: (int page) {
+            setState(() {
+              currentPage = page;
+            });
+          },
+          children: [
 
-              WelcomePage(
-                nextScreen: nextScreen,
-              ),
+            WelcomePage(
+              nextScreen: nextScreen,
+            ),
 
-              DataSelectionPage(
-                dataList: TimeTableData.courses,
-                dataKey: 'course',
-                title: 'Select your course',
-                nextScreen: nextScreen,
-              ),
+            DataSelectionPage(
+              dataList: TimeTableData.courses,
+              dataKey: 'course',
+              title: 'Select your course',
+              nextScreen: nextScreen,
+            ),
 
-              DataSelectionPage(
-                dataList: Subject.batches,
-                dataKey: 'batch',
-                title: 'Select your lab batch',
-                nextScreen: nextScreen,
-              ),
+            DataSelectionPage(
+              dataList: Subject.batches,
+              dataKey: 'batch',
+              title: 'Select your lab batch',
+              nextScreen: nextScreen,
+            ),
 
-              const TermsAndConditionsPage(),
+            const TermsAndConditionsPage(),
 
-            ],
-          ),
+          ],
         ),
       )
     );

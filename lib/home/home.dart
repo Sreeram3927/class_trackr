@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infinity_project/home/onboarding_pages.dart';
 import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -133,7 +134,7 @@ class _HomeState extends State<Home> {
 
           menuItem(3, "Discord", Icons.discord_rounded, false),
 
-          menuItem(4, "Check for Updates", Icons.update_rounded, false),
+          menuItem(4, "Terms of sercive and Privacy policy", Icons.privacy_tip_outlined, false),
           
           const Divider(thickness: 2.0,),
         ],
@@ -147,8 +148,13 @@ class _HomeState extends State<Home> {
       child: InkWell(
         onTap: () {
           Navigator.pop(context);
-          if (id > 2) {
+          if (id == 3) {
             _discord();
+          } else if (id == 4) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const TermsAndConditionsPage())
+            );
           } else {
             setState(() {
               if (id == 1) {
