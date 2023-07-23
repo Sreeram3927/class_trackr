@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/data/timetable_data.dart';
 import 'package:infinity_project/data/user_preferences.dart';
@@ -12,20 +13,12 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage> {
 
-  final PageController _pageController = PageController(initialPage: 0);
-  int _currentPage = 0;
+  final PageController pageController = PageController(initialPage: 0);
+  int currentPage = 0;
 
   void nextScreen() {
-    _pageController.animateToPage(
-      _currentPage - 1,
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.easeInOut,
-    );
-  }
-
-  void previousScreen() {
-    _pageController.animateToPage(
-      _currentPage + 1,
+    pageController.animateToPage(
+      currentPage + 1,
       duration: const Duration(milliseconds: 400),
       curve: Curves.easeInOut,
     );
@@ -45,23 +38,21 @@ class _OnboardingPageState extends State<OnboardingPage> {
               Expanded(
                 child: PageView(
                   physics: const NeverScrollableScrollPhysics(),
-                  controller: _pageController,
+                  controller: pageController,
                   onPageChanged: (int page) {
                     setState(() {
-                      _currentPage = page;
+                      currentPage = page;
                     });
                   },
                   children: [
                     DataSelectionPage(
                       dataList: TimeTableData.courses,
                       dataKey: 'course',
-                      previousScreen: previousScreen,
                       nextScreen: nextScreen,
                     ),
                     DataSelectionPage(
                       dataList: Subject.batches,
                       dataKey: 'batch',
-                      previousScreen: previousScreen,
                       nextScreen: nextScreen,
                     ),
                     const Center(
@@ -82,14 +73,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
 class DataSelectionPage extends StatefulWidget {
   final List dataList;
   final String dataKey;
-  final void Function() previousScreen;
   final void Function() nextScreen;
 
   const DataSelectionPage({
     super.key,
     required this.dataList,
     required this.dataKey,
-    required this.previousScreen,
     required this.nextScreen,
   });
 
@@ -136,7 +125,7 @@ class _DataSelectionPageState extends State<DataSelectionPage> {
                 );
               }).toList(),
               decoration: InputDecoration(
-                labelText: widget.dataKey,
+                labelText: widget.dataKey[0].toUpperCase() + widget.dataKey.substring(1),
                 border: const OutlineInputBorder(),
                 labelStyle: const TextStyle(color: Color(0xFF38302E), fontSize: 20.0),
                 enabledBorder: const OutlineInputBorder(
@@ -157,19 +146,23 @@ class _DataSelectionPageState extends State<DataSelectionPage> {
                   ),
                   onPressed: () {
                     if (_selectedData != null) {
-                      print('Selected course: $_selectedData');
+                      Fluttertoast.showToast(
+                        msg: 'Selected ${widget.dataKey}: $_selectedData',
+                        fontSize: 20
+                      );
                       UserPreferences.setData(widget.dataKey, _selectedData!);
                       widget.nextScreen();
                     } else {
-                      print('Please select a ${widget.dataKey} before proceeding.');
+                      Fluttertoast.showToast(
+                        msg: 'Please select a ${widget.dataKey}',
+                        fontSize: 20
+                      );
                     }
                   },
                   child: const Text('Next'),
                 ),
               ],
             ),
-        //   ],
-        // )
       ),
     );
   }
