@@ -1,4 +1,5 @@
 import 'package:infinity_project/data/user_preferences.dart';
+import 'package:infinity_project/firebase/firebase_data.dart';
 
 class TimeTableData {
 
@@ -8,6 +9,15 @@ class TimeTableData {
   ];
 
   static String currentCourse = UserPreferences.getData('course') ?? 'MH-Core';
+
+  static updateCurrentCourse(String course) {
+    currentCourse = course;
+    UserPreferences.setData('course', course);
+    // FirebaseData.analytics.setUserProperty(
+    //   name: 'selected_course',
+    //   value: course,
+    // );
+  }
 
   static Map<int, String> hour = {
     1 : '8:00 am - 8:50 am',

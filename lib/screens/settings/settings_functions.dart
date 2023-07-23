@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:infinity_project/data/user_preferences.dart';
+import 'package:infinity_project/data/subjects.dart';
+import 'package:infinity_project/data/timetable_data.dart';
 
 // Widget alertCard(BuildContext context, String data) {
 //   return AlertDialog(
@@ -46,14 +47,24 @@ Widget selectCourse({
               value: index,
               groupValue: currentValue,
               onChanged: (value) {  
-                UserPreferences.setData(valueKey, data[value!.toInt()]);
+                if (valueKey == 'course') {
+                  TimeTableData.updateCurrentCourse(data[value!.toInt()]);
+                } else {
+                  Subject.updateCurrentBatch(data[value!.toInt()]);
+                }
+                // UserPreferences.setData(valueKey, data[value!.toInt()]);
                 refresh();
               },
             ),
             GestureDetector(
               child: Text(data[index]),
               onTap: () {
-                UserPreferences.setData(valueKey, data[index]);
+                if (valueKey == 'course') {
+                  TimeTableData.updateCurrentCourse(data[index]);
+                } else {
+                  Subject.updateCurrentBatch(data[index]);
+                }
+                // UserPreferences.setData(valueKey, data[index]);
                 refresh();
               },
             )

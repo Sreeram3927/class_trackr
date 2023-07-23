@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
   var _currentPage = DrawerSections.timeTable;
 
   Future<void> _discord() async {
-    Uri discordUrl = Uri.parse("https://www.google.com/");
+    Uri discordUrl = Uri.parse("https://discord.gg/AK3sFcKVtf");
     if (!await launchUrl(
       discordUrl,
       mode: LaunchMode.externalApplication,
@@ -131,7 +131,7 @@ class _HomeState extends State<Home> {
           
           menuItem(2, "Settings", Icons.settings_outlined, _currentPage == DrawerSections.settings ? true : false),
           
-          const Divider(),
+          const Divider(thickness: 1.0,),
 
           menuItem(3, "Discord", Icons.discord_rounded, false),
 
@@ -159,7 +159,6 @@ class _HomeState extends State<Home> {
               MaterialPageRoute(builder: (context) => const TermsAndConditionsPage())
             );
           } else if (id == 5) {
-            // aboutApp(context, title, 'subtitle', 'data');
             showDialog(
               context: context,
               builder: (context) => contactDeveloper()

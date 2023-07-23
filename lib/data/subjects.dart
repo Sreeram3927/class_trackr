@@ -1,11 +1,21 @@
 import 'package:infinity_project/data/timetable_data.dart';
 import 'package:infinity_project/data/user_preferences.dart';
+import 'package:infinity_project/firebase/firebase_data.dart';
 
 class Subject {
 
   static List<String> batches = ['Batch 1', 'Batch 2'];
 
   static String currentBatch =  UserPreferences.getData('batch') ?? 'Batch 1';
+
+  static updateCurrentBatch(String batch) {
+    currentBatch = batch;
+    UserPreferences.setData('batch', batch);
+    // FirebaseData.analytics.setUserProperty(
+    //   name: 'selected_lab_batch',
+    //   value: batch,
+    // );
+  }
 
   static Map<String, Map<String, Map<String, dynamic>>> labBatchData = {
     'MH-Core' : {

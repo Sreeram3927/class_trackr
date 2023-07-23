@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:infinity_project/data/subjects.dart';
+import 'package:infinity_project/data/timetable_data.dart';
 import 'package:infinity_project/data/user_preferences.dart';
 import 'package:infinity_project/home/home.dart';
 
@@ -182,7 +184,12 @@ class _DataSelectionPageState extends State<DataSelectionPage> {
                         msg: 'Selected ${widget.dataKey}: $_selectedData',
                         fontSize: 20
                       );
-                      UserPreferences.setData(widget.dataKey, _selectedData!);
+                      if (widget.dataKey == 'course') {
+                        TimeTableData.updateCurrentCourse(_selectedData!);
+                      } else if (widget.dataKey == 'batch') {
+                        Subject.updateCurrentBatch(_selectedData!);
+                      }
+                      // UserPreferences.setData(widget.dataKey, _selectedData!);
                       widget.nextScreen();
                     } else {
                       Fluttertoast.showToast(
