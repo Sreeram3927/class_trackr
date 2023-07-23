@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:infinity_project/home/onboarding_page.dart';
 import 'firebase/firebase_options.dart';
 import 'package:infinity_project/data/user_preferences.dart';
 import 'home/home.dart';
@@ -22,7 +23,7 @@ class InfinityProject extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'IP - SD',
-      home: Home(),
+      home: OnboardingPage(),
       debugShowCheckedModeBanner: true,
       themeMode: ThemeMode.light,
     );
