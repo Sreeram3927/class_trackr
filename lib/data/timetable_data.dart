@@ -10,13 +10,13 @@ class TimeTableData {
 
   static String currentCourse = UserPreferences.getData('course') ?? 'MH-Core';
 
-  static updateCurrentCourse(String course) {
+  static updateCurrentCourse(String course) async {
     currentCourse = course;
     UserPreferences.setData('course', course);
-    // FirebaseData.analytics.setUserProperty(
-    //   name: 'selected_course',
-    //   value: course,
-    // );
+    await FirebaseData.analytics.setUserProperty(
+      name: 'selected_course',
+      value: course,
+    );
   }
 
   static Map<int, String> hour = {

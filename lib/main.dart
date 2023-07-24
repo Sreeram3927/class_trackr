@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:infinity_project/firebase/firebase_data.dart';
 import 'package:infinity_project/home/onboarding_screen.dart';
 import 'firebase/firebase_options.dart';
 import 'package:infinity_project/data/user_preferences.dart';
@@ -8,6 +9,7 @@ import 'home/home.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebaseData.analyticsInit();
   if (Firebase.apps.isNotEmpty) {
     print('Firebase connected');
   } else {

@@ -8,13 +8,13 @@ class Subject {
 
   static String currentBatch =  UserPreferences.getData('batch') ?? 'Batch 1';
 
-  static updateCurrentBatch(String batch) {
+  static updateCurrentBatch(String batch) async {
     currentBatch = batch;
     UserPreferences.setData('batch', batch);
-    // FirebaseData.analytics.setUserProperty(
-    //   name: 'selected_lab_batch',
-    //   value: batch,
-    // );
+    await FirebaseData.analytics.setUserProperty(
+      name: 'selected_lab_batch',
+      value: batch,
+    );
   }
 
   static Map<String, Map<String, Map<String, dynamic>>> labBatchData = {
