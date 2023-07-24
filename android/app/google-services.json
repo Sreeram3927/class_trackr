@@ -29,6 +29,13 @@
             {
               "client_id": "926771884367-jsta7ll69cllgdgdbmebrgjeelj6j78v.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "926771884367-m4us2u689apsb6a3pr6m0u7iv37hai71.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.SreeDev.infinityProject"
+              }
             }
           ]
         }
