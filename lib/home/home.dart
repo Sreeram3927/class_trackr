@@ -156,7 +156,7 @@ class _HomeState extends State<Home> {
           } else if (id == 4) {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const TermsAndConditionsPage())
+              MaterialPageRoute(builder: (context) => const TermsAndConditionsPage(showCheckbox: false,))
             );
           } else if (id == 5) {
             showDialog(

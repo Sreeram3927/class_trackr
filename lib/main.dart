@@ -10,11 +10,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseData.analyticsInit();
-  if (Firebase.apps.isNotEmpty) {
-    print('Firebase connected');
-  } else {
-    print('Firebase not connected');
-  }
   await UserPreferences.init();
   runApp(const InfinityProject());
 }
@@ -26,7 +21,6 @@ class InfinityProject extends StatelessWidget {
     return MaterialApp(
       title: 'IP - SD',
       home: UserPreferences.showHome ? const Home() : const OnboardingPage(),
-      debugShowCheckedModeBanner: true,
       themeMode: ThemeMode.light,
     );
   }

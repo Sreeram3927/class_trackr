@@ -208,14 +208,18 @@ class _DataSelectionPageState extends State<DataSelectionPage> {
 }
 
 class TermsAndConditionsPage extends StatefulWidget {
-  const TermsAndConditionsPage({super.key});
+  final bool showCheckbox;
+  const TermsAndConditionsPage({
+    super.key,
+    required this.showCheckbox,
+  });
 
   @override
   State<TermsAndConditionsPage> createState() => _TermsAndConditionsPageState();
 }
 
 class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
-bool _isAccepted = false;
+  bool _isAccepted = false;
 
   void _startApp() {
     // Navigate to your main app screen here
@@ -224,6 +228,7 @@ bool _isAccepted = false;
       context,
       MaterialPageRoute(builder: (context) => const Home()),
     );
+    UserPreferences.setShowHome(true);
   }
 
   void _acceptTerms() {
@@ -284,42 +289,73 @@ bool _isAccepted = false;
               ),
             ),
             const SizedBox(height: 20),
-            Row(
-              children: [
-                Transform.scale(
-                  scale: 1.25,
-                  child: Checkbox(
-                    value: _isAccepted,
-                    activeColor:  const Color(0xFF38302E).withOpacity(0.75),
-                    onChanged: (value) {
-                      setState(() {
-                        _isAccepted = value ?? false;
-                        UserPreferences.setShowHome(value ?? false);
-                      });
-                    },
-                  ),
-                ),
-                const Text(
-                  'I accept the Terms of service\nand Privacy policy.',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF38302E)),
-                fixedSize: MaterialStateProperty.all<Size>(const Size(125, 50)),
-              ),
-              onPressed: _isAccepted ? _startApp : _acceptTerms,
-              child: const Text('Get Started'),
-            ),
+            
+            widget.showCheckbox ? termsCheckbox() : termsAccpted(),
+
           ],
         ),
       ),
     );
+  }
+  Widget termsCheckbox() {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Transform.scale(
+              scale: 1.25,
+              child: Checkbox(
+                value: _isAccepted,
+                activeColor:  const Color(0xFF38302E).withOpacity(0.75),
+                onChanged: (value) {
+                  setState(() {
+                    _isAccepted = value ?? false;
+                  });
+                },
+              ),
+            ),
+            const Text(
+              'I accept the Terms of service\nand Privacy policy.',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 20),
+        ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF38302E)),
+            fixedSize: MaterialStateProperty.all<Size>(const Size(125, 50)),
+          ),
+          onPressed: _isAccepted ? _startApp : _acceptTerms,
+          child: const Text('Get Started'),
+        ),
+      ],
+    );   
+  }
+
+  Widget termsAccpted() {
+    return Column(
+      children: [
+        const Text(
+          'Terms of service and Privacy policy Accepted.',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 14,
+          ),
+        ),
+        const SizedBox(height: 20),
+        ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF38302E)),
+            fixedSize: MaterialStateProperty.all<Size>(const Size(125, 50)),
+          ),
+          onPressed: _startApp,
+          child: const Text('Go Back'),
+        ),
+      ],
+    ); 
   }
 }

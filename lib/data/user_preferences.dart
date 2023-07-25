@@ -19,9 +19,7 @@ class UserPreferences {
 
   static bool showHome = _preferences.getBool('showHome') ?? false;
   // static bool showHome = false;
-  static void setShowHome(bool value) {
-    showHome = value;
-    _preferences.setBool('showHome', value);
-  }
+  static void setShowHome(bool value) => _preferences.setBool('showHome', value);
+  static void updateShowHome() => showHome = _preferences.getBool('showHome') ?? false;
 
 }

@@ -56,7 +56,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               nextScreen: nextScreen,
             ),
 
-            const TermsAndConditionsPage(),
+            const TermsAndConditionsPage(showCheckbox: true,),
 
           ],
         ),
