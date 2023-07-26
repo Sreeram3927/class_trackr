@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:infinity_project/home/notice.dart';
 import 'package:infinity_project/home/onboarding_pages.dart';
 import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
@@ -69,9 +70,14 @@ class _HomeState extends State<Home> {
 
           actions: [
             IconButton(
-              onPressed: () {}, 
-              icon: const Icon(Icons.help_rounded),
-              tooltip: "Help",
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const InformationScreen())
+                );
+              }, 
+              icon: const Icon(Icons.info_outline_rounded),
+              tooltip: "Notice",
             ),
           ],
         ),
