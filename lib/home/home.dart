@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:infinity_project/home/notice.dart';
+import 'package:infinity_project/home/information.dart';
 import 'package:infinity_project/home/onboarding_pages.dart';
 import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
@@ -107,14 +107,17 @@ class _HomeState extends State<Home> {
       height: 200,
       padding: const EdgeInsets.only(top: 20.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           
-          Container(
-            margin: const EdgeInsets.only(bottom: 10.0),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(image: AssetImage('assets/images/flutter_logo.png')),
+          SizedBox(
+            height: 75,
+            width: 75,
+            child: ClipOval(
+              child: Image.asset(
+                'assets/images/Class Trackr (Logo).jpg',
+                fit: BoxFit.cover,
+              )
             ),
           ),
 
