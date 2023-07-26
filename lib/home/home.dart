@@ -23,13 +23,13 @@ class _HomeState extends State<Home> {
 
   var _currentPage = DrawerSections.timeTable;
 
-  Future<void> _discord() async {
-    Uri discordUrl = Uri.parse("https://discord.gg/AK3sFcKVtf");
+  Future<void> _launch(String url) async {
+    Uri link = Uri.parse(url);
     if (!await launchUrl(
-      discordUrl,
+      link,
       mode: LaunchMode.externalApplication,
     )) {
-      throw Exception('Could not launch $discordUrl');
+      throw Exception('Could not launch $link');
     }
   
   }
@@ -144,9 +144,11 @@ class _HomeState extends State<Home> {
 
           menuItem(3, "Discord", Icons.discord_rounded, false),
 
-          menuItem(4, "Terms of service", Icons.privacy_tip_outlined, false),
+          menuItem(4, 'Feedback Hub', Icons.feedback_rounded, false),
 
-          menuItem(5, "Contact Developer", Icons.headset_mic_rounded, false),
+          menuItem(5, "Terms of service", Icons.privacy_tip_outlined, false),
+
+          menuItem(6, "Contact Developer", Icons.headset_mic_rounded, false),
           
           const Divider(thickness: 2.0,),
         ],
@@ -161,13 +163,15 @@ class _HomeState extends State<Home> {
         onTap: () {
           Navigator.pop(context);
           if (id == 3) {
-            _discord();
+            _launch('https://discord.gg/AK3sFcKVtf');
           } else if (id == 4) {
+            _launch('https://forms.gle/WkEmjMAHRHdEtose8');
+          } else if (id == 5) {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const TermsAndConditionsPage(showCheckbox: false,))
             );
-          } else if (id == 5) {
+          } else if (id == 6) {
             showDialog(
               context: context,
               builder: (context) => contactDeveloper()
