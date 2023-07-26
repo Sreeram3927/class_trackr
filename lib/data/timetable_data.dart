@@ -11,8 +11,8 @@ class TimeTableData {
   static String currentCourse = UserPreferences.getData('course') ?? 'MH-Core';
 
   static updateCurrentCourse(String course) async {
-    currentCourse = course;
     UserPreferences.setData('course', course);
+    UserPreferences.refreshData();
     await FirebaseData.analytics.setUserProperty(
       name: 'selected_course',
       value: course,

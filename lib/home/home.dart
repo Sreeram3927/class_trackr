@@ -135,7 +135,7 @@ class _HomeState extends State<Home> {
 
           menuItem(3, "Discord", Icons.discord_rounded, false),
 
-          menuItem(4, "Privacy Policy", Icons.privacy_tip_outlined, false),
+          menuItem(4, "Terms of service", Icons.privacy_tip_outlined, false),
 
           menuItem(5, "Contact Developer", Icons.headset_mic_rounded, false),
           

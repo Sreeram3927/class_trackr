@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/data/user_preferences.dart';
+import 'package:infinity_project/firebase/firebase_data.dart';
 import 'package:infinity_project/screens/timetable/other_widgets.dart';
 
 class TimeTable extends StatefulWidget {
@@ -44,7 +45,14 @@ class _TimeTableState extends State<TimeTable> {
         );
       }
     );
+
     if (newDate == null) return;
+
+    await FirebaseData.analytics.logEvent(
+        name: 'date_selected',
+        parameters: {'date': '${newDate.day}/${newDate.month}/${newDate.year}',}
+    );
+
     setState(() {
       _currentDate = newDate;
       _getData();

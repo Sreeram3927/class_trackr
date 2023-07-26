@@ -222,8 +222,6 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
   bool _isAccepted = false;
 
   void _startApp() {
-    // Navigate to your main app screen here
-    // For example, you can use Navigator.pushReplacement() to replace the current screen with the main app screen.
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const Home()),

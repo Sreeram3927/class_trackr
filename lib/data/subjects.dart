@@ -9,8 +9,8 @@ class Subject {
   static String currentBatch =  UserPreferences.getData('batch') ?? 'Batch 1';
 
   static updateCurrentBatch(String batch) async {
-    currentBatch = batch;
     UserPreferences.setData('batch', batch);
+    UserPreferences.refreshData();
     await FirebaseData.analytics.setUserProperty(
       name: 'selected_lab_batch',
       value: batch,
