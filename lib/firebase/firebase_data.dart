@@ -6,8 +6,8 @@ class FirebaseData {
   static final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
   static void analyticsInit() {
-    // analytics.setAnalyticsCollectionEnabled(false);
-    analytics.setAnalyticsCollectionEnabled(true);
+    analytics.setAnalyticsCollectionEnabled(false);
+    // analytics.setAnalyticsCollectionEnabled(true);
   }
 
 }

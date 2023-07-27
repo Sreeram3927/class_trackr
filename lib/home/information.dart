@@ -11,10 +11,17 @@ class InformationScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFCCDAD1),
 
       appBar: AppBar(
-        title: const Text('Informations'),
+        title: const Text(
+          'Informations',
+          style: TextStyle(
+            fontSize: 25.0,
+            fontWeight: FontWeight.w800,
+          ),
+        ),
         centerTitle: true,
         backgroundColor: const Color(0xFF38302E),
         foregroundColor: const Color(0xFFCCDAD1),
+        toolbarHeight: 55.0,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -32,7 +39,7 @@ class InformationScreen extends StatelessWidget {
           const SizedBox(height: 10),
           myText('Added lab batches.'),
           const SizedBox(height: 10),
-          myText('Added date selection.'),
+          myText('Added date picker.'),
 
           const SizedBox(height: 20),
           const Divider(thickness: 1.0,),

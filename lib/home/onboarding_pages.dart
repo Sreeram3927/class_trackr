@@ -20,7 +20,7 @@ class WelcomePage extends StatelessWidget {
         child: ListView(
           children: [
             const Text(
-              'Welcome to Beta Timetable App',
+              'Welcome to Class Trackr!',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 25,
@@ -42,7 +42,7 @@ class WelcomePage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             myText(
-              '1. Report Bugs: If you come across any unexpected behavior or encounter bugs while using the app, please let us know immediately. Simply head to the Settings page and choose "Contact Developer" to send us your feedback.',              
+              '1. Report Bugs: If you come across any unexpected behavior or encounter bugs while using the app, please let us know immediately. Simply head to the App Drawer and choose "Feedback Hub" or "Contact Developer" to send us your feedback.',              
             ),
             const SizedBox(height: 10),
             myText(
@@ -62,7 +62,7 @@ class WelcomePage extends StatelessWidget {
             // ),
             // const SizedBox(height: 20),
             myText(
-              'Thank You for Joining Us: Thank you for being an essential part of our beta testing community. Together, we can create a Timetable App that revolutionizes the way you manage your daily schedules.',              
+              'Thank You for Joining Us: Thank you for being an essential part of our beta testing community. Together, we can create a Class Trackr an App that revolutionizes the way you manage your daily schedules.',              
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -256,7 +256,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
             ),
             const SizedBox(height: 20),
             const  Text(
-              'Before you start using our app, we want to ensure that you are aware of the following Terms and Conditions and provide your consent for data collection. By using our app, you agree to the terms outlined below:',
+              'Before you start using our app, we want to ensure that you are aware of the following Terms and Conditions. By using our app, you agree to the terms outlined below:',
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 16,
@@ -278,7 +278,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
               //'Data Deletion: If you wish to delete your user profile and associated data from our app, please contact our support team.\n\n'
               'Contact and Support: If you encounter any issues or have questions about data collection or privacy, please reach out to our support team.\n\n'
               'By accepting these Terms of service and providing your consent for data collection, you acknowledge that you have read and understood our privacy policy, which outlines in detail how we collect, use, and protect your data.\n\n'
-              'Thank you for choosing [Your App Name]! We hope you enjoy the app and have a fantastic user experience.\n\n'
+              'Thank you for choosing Class Trackr! We hope you enjoy the app and have a fantastic user experience.\n\n'
               'Last updated: 23/07/2023\n\n',
               //'[Your Company/Developer Name]',
               textAlign: TextAlign.justify,

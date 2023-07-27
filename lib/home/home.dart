@@ -77,7 +77,7 @@ class _HomeState extends State<Home> {
                 );
               }, 
               icon: const Icon(Icons.info_outline_rounded),
-              tooltip: "Notice",
+              tooltip: "Informations",
             ),
           ],
         ),
@@ -122,8 +122,13 @@ class _HomeState extends State<Home> {
           ),
 
           const Text(
-            "Project Infinity",
+            "Class Trackr",
             style: TextStyle(color: Colors.white ,fontSize: 20.0),
+          ),
+
+          const Text(
+            "Version 0.7.13",
+            style: TextStyle(color: Colors.white ,fontSize: 15.0),
           )
 
         ],

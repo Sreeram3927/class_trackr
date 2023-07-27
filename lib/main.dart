@@ -9,7 +9,7 @@ import 'home/home.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  // FirebaseData.analyticsInit();
+  FirebaseData.analyticsInit();
   await UserPreferences.init();
   runApp(const InfinityProject());
 }

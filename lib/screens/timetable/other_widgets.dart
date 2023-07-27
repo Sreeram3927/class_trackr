@@ -77,18 +77,24 @@ Your feedback is valuable in ensuring the accuracy of our timetable app.
 }
 
 Widget displayData(List data) {
-  return ListView.builder(
-    itemCount: data.length,
-    itemBuilder: (context, index) {
-      bool lab = data[index][3].contains('P');
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
-        child: SubjectCard(
-          title: data[index][2] + (lab ? ' (Lab)' : ''),
-          subjectCode: data[index][1],
-          time: data[index][0],
-        ),
-      );
-    },
+  return RawScrollbar(
+    thumbVisibility: true,
+    thumbColor: const Color(0xFF38302E),
+    thickness: 7.5,
+    radius: const Radius.circular(10.0),
+    child: ListView.builder(
+      itemCount: data.length,
+      itemBuilder: (context, index) {
+        bool lab = data[index][3].contains('P');
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
+          child: SubjectCard(
+            title: data[index][2] + (lab ? ' (Lab)' : ''),
+            subjectCode: data[index][1],
+            time: data[index][0],
+          ),
+        );
+      },
+    ),
   );
 }
