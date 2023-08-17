@@ -115,9 +115,9 @@ class _AppDrawerState extends State<AppDrawer> {
                     throw Exception('Could not launch $url');
                   }
                 } else {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => data[index][2])
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) => data[index][2]
                   );
                 }
               },
@@ -160,7 +160,6 @@ class _AppDrawerState extends State<AppDrawer> {
 
     List contactOptions = [
       [Icons.email_rounded, 'devxpert3927@gmail.com', 'mailto:devxpert3927@gmail.com'],
-      [FontAwesomeIcons.instagram, 'Instagram', 'https://www.instagram.com/sreeram3927/'],
       [FontAwesomeIcons.twitter, 'Twitter', 'https://www.twitter.com/sreeram3927/'],
       [FontAwesomeIcons.linkedin, 'LinkedIn', 'https://www.linkedin.com/in/sreeram3927/'],
       [FontAwesomeIcons.github, 'GitHub', 'https://github.com/sreeram3927']
