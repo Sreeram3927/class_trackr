@@ -23,12 +23,25 @@ class _HomeState extends State<Home> {
   late Widget screen;
 
   Future<void> _selectScreen(BuildContext context) async {
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => AppDrawer(screenNames: _screens, selectedScreen: title,)
-      ),
-    );
+    final result = await showDialog(
+    context: context,
+    builder: (context) {
+      return SlideTransition(
+        position: Tween<Offset>(
+          begin: const Offset(-1.0, 0.0),
+          end: Offset.zero,
+        ).animate(CurvedAnimation(
+          parent: ModalRoute.of(context)!.animation!,
+          curve: Curves.easeInOut,
+        )),
+        child: FractionallySizedBox(
+          alignment: Alignment.centerLeft,
+          widthFactor: 0.8,
+          child: AppDrawer(screenNames: _screens, selectedScreen: title),
+        ),
+      );
+    },
+  );
     if (result == null) return;
     setState(() {
       title = result;
