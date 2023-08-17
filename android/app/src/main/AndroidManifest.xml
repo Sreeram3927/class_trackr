@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.SreeDev.infinity_project">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="Class Trackr"
         android:name="${applicationName}"
