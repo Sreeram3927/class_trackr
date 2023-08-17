@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/data/timetable_data.dart';
-import 'package:infinity_project/home/onboarding_pages.dart';
+import 'package:infinity_project/home/onboarding_screens/onboarding_pages.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});

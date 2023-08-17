@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:infinity_project/home/app_drawer.dart';
 import 'package:infinity_project/home/information.dart';
-import 'package:infinity_project/home/onboarding_pages.dart';
 import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-
-enum DrawerSections {
-  timeTable,
-  settings,
-}
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -21,33 +14,37 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  var _currentPage = DrawerSections.timeTable;
+  final Map<String, List<dynamic>> _screens = {
+    'TimeTable': [const TimeTable(), Icons.calendar_today_rounded],
+    'Settings': [const Settings(), Icons.settings_rounded],
+  };
 
-  Future<void> _launch(String url) async {
-    Uri link = Uri.parse(url);
-    if (!await launchUrl(
-      link,
-      mode: LaunchMode.externalApplication,
-    )) {
-      throw Exception('Could not launch $link');
-    }
-  
+  late String title;
+  late Widget screen;
+
+  Future<void> _selectScreen(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AppDrawer(screenNames: _screens, selectedScreen: title,)
+      ),
+    );
+    if (result == null) return;
+    setState(() {
+      title = result;
+      screen = _screens[title]![0];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    title = _screens.keys.first;
+    screen = _screens[title]![0];
   }
 
   @override
   Widget build(BuildContext context) {
-
-    Widget screen = const TimeTable();
-    String title = "TimeTable";
-
-    if (_currentPage == DrawerSections.timeTable) {
-      screen = const TimeTable();
-      title = "TimeTable";
-    } else if (_currentPage == DrawerSections.settings) {
-      screen = const Settings();
-      title = "Settings";
-    }
-
     return SafeArea(
       child: Scaffold(
 
@@ -68,6 +65,14 @@ class _HomeState extends State<Home> {
           ),
           centerTitle: true,
 
+          leading: IconButton(
+            onPressed: () {
+              _selectScreen(context);
+            }, 
+            icon: const Icon(Icons.menu),
+            tooltip: "Menu",
+          ),
+
           actions: [
             IconButton(
               onPressed: () {
@@ -84,189 +89,7 @@ class _HomeState extends State<Home> {
 
         body: screen,
 
-        drawer: Drawer(
-          backgroundColor: const Color(0xFFCCDAD1),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                drawerHeader(),
-                drawerList(),
-              ],
-            ),
-          ),
-        )
-      ),
-    );
-  }
-
-  
-  Widget drawerHeader() {
-    return Container(
-      color: const Color(0xFF38302E),
-      width: double.infinity,
-      height: 200,
-      padding: const EdgeInsets.only(top: 20.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          
-          SizedBox(
-            height: 75,
-            width: 75,
-            child: ClipOval(
-              child: Image.asset(
-                'assets/images/Class Trackr (Logo).jpg',
-                fit: BoxFit.cover,
-              )
-            ),
-          ),
-
-          const Text(
-            "Class Trackr",
-            style: TextStyle(color: Colors.white ,fontSize: 20.0),
-          ),
-
-          const Text(
-            "Version 0.7.13",
-            style: TextStyle(color: Colors.white ,fontSize: 15.0),
-          )
-
-        ],
-      )
-    );
-  }
-
-  Widget drawerList() {
-    return Container(
-      padding: const EdgeInsets.only(top: 15),
-      child: Column(
-        children: [
-          menuItem(1, "TimeTable", Icons.calendar_today_rounded, _currentPage == DrawerSections.timeTable ? true : false),
-          
-          menuItem(2, "Settings", Icons.settings_outlined, _currentPage == DrawerSections.settings ? true : false),
-          
-          const Divider(thickness: 1.0,),
-
-          menuItem(3, "Discord", Icons.discord_rounded, false),
-
-          menuItem(4, 'Feedback Hub', Icons.feedback_rounded, false),
-
-          menuItem(5, "Terms of service", Icons.privacy_tip_outlined, false),
-
-          menuItem(6, "Contact Developer", Icons.headset_mic_rounded, false),
-          
-          const Divider(thickness: 2.0,),
-        ],
-      ),
-    );
-  }
-
-  Widget menuItem(int id, String title, IconData icon, bool selected) {
-    return Material(
-      color: selected ? const Color(0xFF788585).withOpacity(0.35) : Colors.transparent,
-      child: InkWell(
-        onTap: () {
-          Navigator.pop(context);
-          if (id == 3) {
-            _launch('https://discord.gg/AK3sFcKVtf');
-          } else if (id == 4) {
-            _launch('https://forms.gle/WkEmjMAHRHdEtose8');
-          } else if (id == 5) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const TermsAndConditionsPage(showCheckbox: false,))
-            );
-          } else if (id == 6) {
-            showDialog(
-              context: context,
-              builder: (context) => contactDeveloper()
-            );
-          } else {
-            setState(() {
-              if (id == 1) {
-                _currentPage = DrawerSections.timeTable;
-              } else if (id == 2) {
-                _currentPage = DrawerSections.settings;
-              }
-            });
-          }
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Row(
-            children: [
-              Expanded(
-                child: Icon(
-                  icon,
-                  size: 20,
-                  color: Colors.black,
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );  
-  }
-
-  Widget contactDeveloper() {
-
-    List contactOptions = [
-      [Icons.email_rounded, 'devxpert3927@gmail.com', 'mailto:devxpert3927@gmail.com'],
-      [FontAwesomeIcons.instagram, 'Instagram', 'https://www.instagram.com/sreeram3927/'],
-      [FontAwesomeIcons.twitter, 'Twitter', 'https://www.twitter.com/sreeram3927/'],
-      [FontAwesomeIcons.linkedin, 'LinkedIn', 'https://www.linkedin.com/in/sreeram3927/'],
-      [FontAwesomeIcons.github, 'GitHub', 'https://github.com/sreeram3927']
-    ];
-
-    return AlertDialog(
-      backgroundColor:  const Color(0xFFCCDAD1),
-      title: const Text(
-        'Contact Developer',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 21.0,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-      content: Wrap(
-        direction: Axis.vertical,
-        children: List.generate(contactOptions.length, (index) {
-          return Row(
-            children: [
-              Icon(contactOptions[index][0]),
-              const SizedBox(width: 10.0, height: 50.0,),
-              GestureDetector(
-                child: Text(
-                  contactOptions[index][1],
-                  style: const TextStyle(
-                    color: Color(0xFF38302E),
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-                onTap: () async {
-                  Uri url = Uri.parse(contactOptions[index][2]);
-                  if (!await launchUrl(
-                    url,
-                    mode: LaunchMode.externalApplication,
-                  )) {
-                    throw Exception('Could not launch $url');
-                  }
-                },
-              )
-            ]
-          );
-        }),
+        // drawer: const AppDrawer()
       ),
     );
   }
