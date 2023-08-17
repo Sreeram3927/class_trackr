@@ -62,7 +62,7 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
 
           const Text(
-            "Version 0.7.13",
+            "Version 0.8.14",
             style: TextStyle(color: Colors.white ,fontSize: 15.0),
           )
 
@@ -116,6 +116,7 @@ class _AppDrawerState extends State<AppDrawer> {
                   throw Exception('Could not launch $url');
                 }
               } else {
+                Navigator.pop(context);
                 showDialog(
                   context: context,
                   builder: (BuildContext context) => data[index][2]
