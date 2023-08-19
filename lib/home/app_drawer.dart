@@ -107,7 +107,7 @@ class _AppDrawerState extends State<AppDrawer> {
           color: Colors.transparent,
           child: InkWell(
             onTap: () async {
-              if (index < 1) {
+              if (index == 0) {
                 Uri url = Uri.parse(data[index][2]);
                 if (!await launchUrl(
                   url,
@@ -115,6 +115,14 @@ class _AppDrawerState extends State<AppDrawer> {
                 )) {
                   throw Exception('Could not launch $url');
                 }
+
+              } else if (index == 1) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => data[index][2]
+                  )
+                );
               } else {
                 Navigator.pop(context);
                 showDialog(
@@ -207,5 +215,4 @@ class _AppDrawerState extends State<AppDrawer> {
       ),
     );
   }
-
 }
