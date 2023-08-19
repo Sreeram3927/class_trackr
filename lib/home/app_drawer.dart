@@ -39,17 +39,20 @@ class _AppDrawerState extends State<AppDrawer> {
   }
 
   Widget webUpdateInfo() {
-    return const Row(
+    return const Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
-          Icons.refresh_outlined,
-          size: 20,
-          color: Colors.black,
-        ),
-        SizedBox(width: 10.0),
         Text(
-          "Refresh to Update",
+          "Download as a Web App for easier access!",
+          style: TextStyle(
+            color: Colors.black,
+            decoration: TextDecoration.none,
+            fontSize: 16,
+          )
+        ),
+        SizedBox(height: 10.0),
+        Text(
+          "Refresh to get latest updates",
           style: TextStyle(
             color: Colors.black,
             decoration: TextDecoration.none,
@@ -203,10 +206,10 @@ class _AppDrawerState extends State<AppDrawer> {
   Widget contactDeveloper() {
 
     List contactOptions = [
-      [Icons.email_rounded, 'devxpert3927@gmail.com', 'mailto:devxpert3927@gmail.com'],
-      [FontAwesomeIcons.twitter, 'Twitter', 'https://www.twitter.com/sreeram3927/'],
-      [FontAwesomeIcons.linkedin, 'LinkedIn', 'https://www.linkedin.com/in/sreeram3927/'],
-      [FontAwesomeIcons.github, 'GitHub', 'https://github.com/sreeram3927']
+      [Icons.email_rounded, 'devxpert3927@gmail.com', 'mailto:devxpert3927@gmail.com', 0.0],
+      [const IconData(0x1D54F), 'X', 'https://www.twitter.com/sreeram3927/', 10.0],
+      [FontAwesomeIcons.linkedin, 'LinkedIn', 'https://www.linkedin.com/in/sreeram3927/', 0.0],
+      [FontAwesomeIcons.github, 'GitHub', 'https://github.com/sreeram3927', 0.0]
     ];
 
     return AlertDialog(
@@ -224,7 +227,10 @@ class _AppDrawerState extends State<AppDrawer> {
         children: List.generate(contactOptions.length, (index) {
           return Row(
             children: [
-              Icon(contactOptions[index][0]),
+              Padding(
+                padding: EdgeInsets.only(bottom: contactOptions[index][3]),
+                child: Icon(contactOptions[index][0]),
+              ),
               const SizedBox(width: 10.0, height: 50.0,),
               GestureDetector(
                 child: Text(
