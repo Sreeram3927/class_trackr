@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 
@@ -40,6 +41,10 @@ class InformationScreen extends StatelessWidget {
           myText('Added lab batches.'),
           const SizedBox(height: 10),
           myText('Added date picker.'),
+          const SizedBox(height: 10),
+          myText('Added WebApp support.'),
+          const SizedBox(height: 10),
+          myText('Imporved Widget perfomances.'),
 
           const SizedBox(height: 20),
           const Divider(thickness: 1.0,),
@@ -55,7 +60,10 @@ class InformationScreen extends StatelessWidget {
               style: TextStyle( fontSize: 24),
             ),
           const SizedBox(height: 16),
-          myText('App updates are provided by through Discord server.'),
+          kIsWeb 
+            ? myText('Refresh to Update the WebApp.')
+            : myText('App updates are provided by through Discord server.'),
+
           const SizedBox(height: 10),
           myText('Timetable Data (Hard-coded) - Subject to Change!'),
           const SizedBox(height: 10),

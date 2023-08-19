@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinity_project/home/onboarding_screens/onboarding_pages.dart';
@@ -30,8 +31,32 @@ class _AppDrawerState extends State<AppDrawer> {
           const Divider(thickness: 2.0),
           linkList(),
           const Divider(thickness: 2.0),
+          const SizedBox(height: 15.0,),
+          if (kIsWeb) webUpdateInfo(),
         ],
       ),
+    );
+  }
+
+  Widget webUpdateInfo() {
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          Icons.refresh_outlined,
+          size: 20,
+          color: Colors.black,
+        ),
+        SizedBox(width: 10.0),
+        Text(
+          "Refresh to Update",
+          style: TextStyle(
+            color: Colors.black,
+            decoration: TextDecoration.none,
+            fontSize: 16,
+          )
+        ),
+      ],
     );
   }
 
