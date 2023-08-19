@@ -42,7 +42,7 @@ class InformationScreen extends StatelessWidget {
           const SizedBox(height: 10),
           myText('Added date picker.'),
           const SizedBox(height: 10),
-          myText('Added WebApp support.'),
+          myText('Added WebApp support (only Mobile friendly view).'),
           const SizedBox(height: 10),
           myText('Imporved Widget perfomances.'),
 

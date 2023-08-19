@@ -83,12 +83,22 @@ class _AppDrawerState extends State<AppDrawer> {
 
           const Text(
             "Class Trackr",
-            style: TextStyle(color: Colors.white ,fontSize: 20.0),
+            style: TextStyle(
+              color: Colors.white,
+              decoration: TextDecoration.none,
+              letterSpacing: 2.0,
+              fontSize: 20.0
+            ),
           ),
 
           const Text(
             "Version 0.8.14",
-            style: TextStyle(color: Colors.white ,fontSize: 15.0),
+            style: TextStyle(
+              color: Colors.white,
+              decoration: TextDecoration.none,
+              letterSpacing: 1.5,
+              fontSize: 15.0
+            ),
           )
 
         ],
