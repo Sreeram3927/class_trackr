@@ -1,11 +1,11 @@
 {
-    "name": "infinity_project",
-    "short_name": "infinity_project",
+    "name": "Class Trackr",
+    "short_name": "Class Trackr",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "This Web App displays timetable information for SRMIST students.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
