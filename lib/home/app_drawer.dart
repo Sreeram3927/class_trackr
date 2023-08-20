@@ -206,10 +206,10 @@ class _AppDrawerState extends State<AppDrawer> {
   Widget contactDeveloper() {
 
     List contactOptions = [
-      [Icons.email_outlined, 'devxpert3927@gmail.com', 'mailto:devxpert3927@gmail.com', 0.0],
-      [const IconData(0x1D54F), 'X', 'https://www.twitter.com/sreeram3927/', 10.0],
-      [FontAwesomeIcons.linkedin, 'LinkedIn', 'https://www.linkedin.com/in/sreeram3927/', 0.0],
-      [FontAwesomeIcons.github, 'GitHub', 'https://github.com/sreeram3927', 0.0]
+      [Icons.email, 'devxpert3927@gmail.com', 'mailto:devxpert3927@gmail.com'],
+      [FontAwesomeIcons.squareXTwitter, 'X', 'https://www.twitter.com/sreeram3927/'],
+      [FontAwesomeIcons.linkedin, 'LinkedIn', 'https://www.linkedin.com/in/sreeram3927/'],
+      [FontAwesomeIcons.github, 'GitHub', 'https://github.com/sreeram3927']
     ];
 
     return AlertDialog(
@@ -227,10 +227,7 @@ class _AppDrawerState extends State<AppDrawer> {
         children: List.generate(contactOptions.length, (index) {
           return Row(
             children: [
-              Padding(
-                padding: EdgeInsets.only(bottom: contactOptions[index][3]),
-                child: Icon(contactOptions[index][0]),
-              ),
+              Icon(contactOptions[index][0], size: 25.0,),
               const SizedBox(width: 10.0, height: 50.0,),
               GestureDetector(
                 child: Text(
