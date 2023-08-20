@@ -55,7 +55,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             DataSelectionPage(
               dataList: TimeTableData.courses,
               dataKey: 'course',
-              title: 'Select your course',
+              title: 'Course',
               buttonText: 'Next',
               nextScreen: nextScreen,
             ),
@@ -63,7 +63,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
             DataSelectionPage(
               dataList: Subject.batches,
               dataKey: 'batch',
-              title: 'Select your lab batch',
+              title: 'Lab Batch',
               buttonText: 'Get Started',
               nextScreen: startApp,
             ),

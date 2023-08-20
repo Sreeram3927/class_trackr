@@ -77,7 +77,7 @@ class WelcomePage extends StatelessWidget {
                 fixedSize: MaterialStateProperty.all<Size>(const Size(125, 50)),
               ),
               onPressed: nextScreen,
-              child: const Text('Next'),
+              child: const Text('Continue'),
             )
           ],
         ),
@@ -120,7 +120,7 @@ class _DataSelectionPageState extends State<DataSelectionPage> {
           children: [
     
             Text(
-              'Select ${widget.dataKey}',
+              'Select ${widget.title}',
               style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -146,7 +146,7 @@ class _DataSelectionPageState extends State<DataSelectionPage> {
               }).toList(),
               dropdownColor: const Color(0xFFCCDAD1),
               decoration: InputDecoration(
-                labelText: widget.title,
+                labelText: 'Your ${widget.title}',
                 border: const OutlineInputBorder(),
                 labelStyle: const TextStyle(color: Color(0xFF38302E), fontSize: 20.0),
                 enabledBorder: const OutlineInputBorder(
@@ -251,7 +251,7 @@ class TermsOfServicePage extends StatelessWidget {
               'Contact and Support: If you encounter any issues or have questions about data collection or privacy, please reach out to our support team.\n\n'
               'By continuing you accept these Terms of service and providing your consent for analytics collection, you acknowledge that you have read and understood our Terms of Service, which outlines in detail how we display information.\n\n'
               'Thank you for choosing Class Trackr! We hope you enjoy the app and have a fantastic user experience.\n\n'
-              'Last updated: 23/07/2023\n\n',
+              'Last updated: 20/08/2023\n\n',
               //'[Your Company/Developer Name]',
               textAlign: TextAlign.justify,
               style: TextStyle(
@@ -273,7 +273,7 @@ class TermsOfServicePage extends StatelessWidget {
                 fixedSize: MaterialStateProperty.all<Size>(const Size(125, 50)),
               ),
               onPressed: () => Navigator.pop(context),
-              child: const Text('Go Back'),
+              child: const Text('Continue'),
             ),
           ],
         ),

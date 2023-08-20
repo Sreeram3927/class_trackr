@@ -38,18 +38,18 @@ class InformationScreen extends StatelessWidget {
             style: TextStyle( fontSize: 24),
           ),
           const SizedBox(height: 10),
-          myText('Added lab batches.'),
+          myText('Added day order text.'),
           const SizedBox(height: 10),
-          myText('Added date picker.'),
+          myText('Added date picker (Click on date text).'),
           const SizedBox(height: 10),
           myText('Added WebApp support (only Mobile friendly view).'),
           const SizedBox(height: 10),
           myText('Imporved Widget perfomances.'),
-
           const SizedBox(height: 20),
+
           const Divider(thickness: 1.0,),
-          const SizedBox(height: 20),
 
+          const SizedBox(height: 20),
           const Icon(
             Icons.info_outline,
             size: 48,
@@ -62,8 +62,8 @@ class InformationScreen extends StatelessWidget {
           const SizedBox(height: 16),
           kIsWeb 
             ? myText('Refresh to Update the Web App.')
-            : myText('App updates are provided by through Discord server.'),
-
+            : myText('App updates are provided by through Discord server.')
+          ,
           const SizedBox(height: 10),
           myText('Timetable Data (Hard-coded) - Subject to Change!'),
           const SizedBox(height: 10),
