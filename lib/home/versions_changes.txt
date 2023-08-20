@@ -2,3 +2,4 @@
 0.8.13 = seperated drawer widget
 0.8.14 = added animation to drawer
 0.8.15 = added day order text
+0.8.16 = changed twitter to X

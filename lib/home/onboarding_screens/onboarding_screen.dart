@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/data/timetable_data.dart';
+import 'package:infinity_project/data/user_preferences.dart';
+import 'package:infinity_project/home/home.dart';
 import 'package:infinity_project/home/onboarding_screens/onboarding_pages.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -21,6 +23,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
       duration: const Duration(milliseconds: 400),
       curve: Curves.easeInOut,
     );
+  }
+
+  void startApp() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const Home()),
+    );
+    UserPreferences.setShowHome(true);
   }
 
   @override
@@ -46,6 +56,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               dataList: TimeTableData.courses,
               dataKey: 'course',
               title: 'Select your course',
+              buttonText: 'Next',
               nextScreen: nextScreen,
             ),
 
@@ -53,10 +64,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
               dataList: Subject.batches,
               dataKey: 'batch',
               title: 'Select your lab batch',
-              nextScreen: nextScreen,
+              buttonText: 'Get Started',
+              nextScreen: startApp,
             ),
-
-            const TermsAndConditionsPage(showCheckbox: true,),
 
           ],
         ),

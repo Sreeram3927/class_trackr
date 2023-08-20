@@ -95,7 +95,7 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
 
           const Text(
-            "Version 0.8.15",
+            "Version 0.8.16",
             style: TextStyle(
               color: Colors.white,
               decoration: TextDecoration.none,
@@ -134,7 +134,7 @@ class _AppDrawerState extends State<AppDrawer> {
   Widget linkList() {
     List data = [
       ['FeedBack Hub', Icons.feedback_rounded, 'https://forms.gle/WkEmjMAHRHdEtose8'],
-      ['Terms of Service', Icons.privacy_tip_outlined, const TermsAndConditionsPage(showCheckbox: false)],
+      ['Terms of Service', Icons.privacy_tip_outlined, const TermsOfServicePage()],
       ['Contact Developer', Icons.headset_mic_rounded, contactDeveloper()],
     ];
     return ListView.builder(
@@ -206,7 +206,7 @@ class _AppDrawerState extends State<AppDrawer> {
   Widget contactDeveloper() {
 
     List contactOptions = [
-      [Icons.email_rounded, 'devxpert3927@gmail.com', 'mailto:devxpert3927@gmail.com', 0.0],
+      [Icons.email_outlined, 'devxpert3927@gmail.com', 'mailto:devxpert3927@gmail.com', 0.0],
       [const IconData(0x1D54F), 'X', 'https://www.twitter.com/sreeram3927/', 10.0],
       [FontAwesomeIcons.linkedin, 'LinkedIn', 'https://www.linkedin.com/in/sreeram3927/', 0.0],
       [FontAwesomeIcons.github, 'GitHub', 'https://github.com/sreeram3927', 0.0]

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:infinity_project/data/subjects.dart';
 import 'package:infinity_project/data/timetable_data.dart';
-import 'package:infinity_project/data/user_preferences.dart';
-import 'package:infinity_project/home/home.dart';
 
 class WelcomePage extends StatelessWidget {
   final void Function() nextScreen;
@@ -28,43 +26,51 @@ class WelcomePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            myText(
-              'Discover the power of efficient scheduling and time management with our cutting-edge Timetable App, currently in the beta stage. We\'re delighted to have you on board as a beta user, and your experience with our app means the world to us.'
-            ),
-            const SizedBox(height: 20),
-            myText(
-              'Please be aware that as a beta version, the app may still have some undiscovered quirks and bugs. But don\'t worry! Your feedback is instrumental in helping us identify and fix any issues, making the app even better before its official release.',
-            ),
-            const SizedBox(height: 20),
             const Text(
-              'Here\'s how you can help us improve:',
+              'Discover the power of efficient scheduling and time management with our cutting-edge Timetable App, currently in the beta stage. We\'re delighted to have you on board as a beta user, and your experience with our app means the world to us.\n\n'
+              'Please be aware that as a beta version, the app may still have some undiscovered quirks and bugs. But don\'t worry! Your feedback is instrumental in helping us identify and fix any issues, making the app even better before its official release.\n\n',
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
+            const Text(
+              'Here\'s how you can help us improve:\n',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
-            const SizedBox(height: 10),
-            myText(
-              '1. Report Bugs: If you come across any unexpected behavior or encounter bugs while using the app, please let us know immediately. Simply head to the App Drawer and choose "Feedback Hub" or "Contact Developer" to send us your feedback.',              
+            const Text(
+              '1. Report Bugs: If you come across any unexpected behavior or encounter bugs while using the app, please let us know immediately. Simply head to the App Drawer and choose "Feedback Hub" or "Contact Developer" to send us your feedback.\n\n'
+              '2. Share Your Suggestions: Have ideas for new features or improvements? We\'d love to hear them! Your valuable suggestions can shape the future of the app and make it more tailored to your needs.\n\n'
+              '3. User Experience Matters: We care about your experience with the app. Let us know if you find any aspects confusing or challenging to navigate, so we can enhance the user interface for everyone.\n\n',
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                fontSize: 16,
+              ),
             ),
-            const SizedBox(height: 10),
-            myText(
-              '2. Share Your Suggestions: Have ideas for new features or improvements? We\'d love to hear them! Your valuable suggestions can shape the future of the app and make it more tailored to your needs.',              
+            const Text(
+              'Terms of Service:\n',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
-            const SizedBox(height: 10),
-            myText(
-              '3. User Experience Matters: We care about your experience with the app. Let us know if you find any aspects confusing or challenging to navigate, so we can enhance the user interface for everyone.',              
+            const  Text(
+              'Before you start using our app, we want to ensure that you are aware of the following Terms and Conditions. By using our app, you agree to the terms outlined below:\n\n'
+              'Accuracy: This app may produce inaccurate results from time to time. While we strive to maintain accuracy, certain factors beyond our control may affect the outcomes. The app\'s functionality and results are provided on an \'as-is\' basis, without any warranties or guarantees of accuracy, completeness, or reliability. Users are encouraged to exercise their own judgment and discretion while interpreting and using the information provided by the app. We shall not be held liable for any consequences resulting from the use of the app or its inaccurate results.\n\n'
+              'Firebase Analytics: We use Firebase Analytics to gain insights into user behavior and app usage. This helps us improve our app\'s performance and user experience. The data collected includes but is not limited to app screens visited, buttons clicked, and interactions within the app.\n\n'
+              'Event Logs: Our app logs various events to track app performance and to identify and troubleshoot issues. These logs may include technical data such as device information, app version, and error reports.\n\n'
+              'Third-Party Services: Our app may use third-party services or APIs to enhance its functionality. Your usage of these services may be subject to their own terms and privacy policies.\n\n'
+              'Push Notifications: With your consent, we may send you push notifications to keep you updated about important app-related information, events, or new features.\n\n'
+              'Usage Tracking and Cookies: We may use cookies or similar technologies to track your usage patterns within the app. This data helps us improve user experience and app functionality.\n\n'
+              'Updates and Changes: Our app and its features may be updated from time to time. By continuing to use the app after such updates, you accept any revised terms and conditions.\n\n'
+              'Contact and Support: If you encounter any issues or have questions about data collection or privacy, please reach out to our support team.\n\n'
+              'By continuing you accept these Terms of service and providing your consent for analytics collection, you acknowledge that you have read and understood our Terms of Service, which outlines in detail how we display information.\n\n'
+              // 'Thank you for choosing Class Trackr! We hope you enjoy the app and have a fantastic user experience.\n\n'
+              // 'Last updated: 23/07/2023\n\n',
+              'While our beta version may not have cloud sync functionality, rest assured that we\'re continuously working to bring you new and exciting updates in the future. Your patience and understanding are greatly appreciated during this phase.\n\n'
+              'Thank You for Joining Us: Thank you for being an essential part of our beta testing community. Together, we can create a Class Trackr an App that revolutionizes the way you manage your daily schedules.\n\n',
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                fontSize: 16,
+              ),
             ),
-            const SizedBox(height: 20),
-            myText(
-              'While our beta version may not have cloud sync functionality, rest assured that we\'re continuously working to bring you new and exciting updates in the future. Your patience and understanding are greatly appreciated during this phase.',              
-            ),
-            const SizedBox(height: 20),
-            // myText(
-            //   'Data and Privacy: Protecting your data and privacy is our utmost priority. Be confident that your information remains secure within the app.',              
-            // ),
-            // const SizedBox(height: 20),
-            myText(
-              'Thank You for Joining Us: Thank you for being an essential part of our beta testing community. Together, we can create a Class Trackr an App that revolutionizes the way you manage your daily schedules.',              
-            ),
-            const SizedBox(height: 20),
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF38302E)),
@@ -78,15 +84,6 @@ class WelcomePage extends StatelessWidget {
       ),
     );
   }
-  Widget myText(String data) {
-    return Text(
-      data,
-      style: const TextStyle(
-        fontSize: 16,
-      ),
-      textAlign: TextAlign.justify,
-    );
-  }
 }
 
 class DataSelectionPage extends StatefulWidget {
@@ -94,6 +91,7 @@ class DataSelectionPage extends StatefulWidget {
   final String dataKey;
   final String title;
   final void Function() nextScreen;
+  final String buttonText;
 
   const DataSelectionPage({
     super.key,
@@ -101,6 +99,7 @@ class DataSelectionPage extends StatefulWidget {
     required this.dataKey,
     required this.title,
     required this.nextScreen,
+    required this.buttonText,
   });
 
   @override
@@ -189,7 +188,6 @@ class _DataSelectionPageState extends State<DataSelectionPage> {
                       } else if (widget.dataKey == 'batch') {
                         Subject.updateCurrentBatch(_selectedData!);
                       }
-                      // UserPreferences.setData(widget.dataKey, _selectedData!);
                       widget.nextScreen();
                     } else {
                       Fluttertoast.showToast(
@@ -198,7 +196,7 @@ class _DataSelectionPageState extends State<DataSelectionPage> {
                       );
                     }
                   },
-                  child: const Text('Next'),
+                  child: Text(widget.buttonText),
                 ),
               ],
             ),
@@ -207,34 +205,8 @@ class _DataSelectionPageState extends State<DataSelectionPage> {
   }
 }
 
-class TermsAndConditionsPage extends StatefulWidget {
-  final bool showCheckbox;
-  const TermsAndConditionsPage({
-    super.key,
-    required this.showCheckbox,
-  });
-
-  @override
-  State<TermsAndConditionsPage> createState() => _TermsAndConditionsPageState();
-}
-
-class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
-  bool _isAccepted = false;
-
-  void _startApp() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const Home()),
-    );
-    UserPreferences.setShowHome(true);
-  }
-
-  void _acceptTerms() {
-    Fluttertoast.showToast(
-      msg: 'Please accept the Terms of service and Privacy policy to continue',
-      fontSize: 20
-    );
-  }
+class TermsOfServicePage extends StatelessWidget {
+  const TermsOfServicePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -247,7 +219,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
-              'Terms of service\nand Privacy policy',
+              'Terms of service',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 25,
@@ -277,7 +249,7 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
               //'Age Restriction: Our app is intended for users of all ages. However, if you are under the age of 13, you must seek parental consent before using the app.\n\n'
               //'Data Deletion: If you wish to delete your user profile and associated data from our app, please contact our support team.\n\n'
               'Contact and Support: If you encounter any issues or have questions about data collection or privacy, please reach out to our support team.\n\n'
-              'By accepting these Terms of service and providing your consent for data collection, you acknowledge that you have read and understood our privacy policy, which outlines in detail how we collect, use, and protect your data.\n\n'
+              'By continuing you accept these Terms of service and providing your consent for analytics collection, you acknowledge that you have read and understood our Terms of Service, which outlines in detail how we display information.\n\n'
               'Thank you for choosing Class Trackr! We hope you enjoy the app and have a fantastic user experience.\n\n'
               'Last updated: 23/07/2023\n\n',
               //'[Your Company/Developer Name]',
@@ -287,73 +259,25 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
               ),
             ),
             const SizedBox(height: 20),
-            
-            widget.showCheckbox ? termsCheckbox() : termsAccpted(),
-
-          ],
-        ),
-      ),
-    );
-  }
-  Widget termsCheckbox() {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Transform.scale(
-              scale: 1.25,
-              child: Checkbox(
-                value: _isAccepted,
-                activeColor:  const Color(0xFF38302E).withOpacity(0.75),
-                onChanged: (value) {
-                  setState(() {
-                    _isAccepted = value ?? false;
-                  });
-                },
-              ),
-            ),
             const Text(
-              'I accept the Terms of service\nand Privacy policy.',
-              textAlign: TextAlign.left,
+              'Terms of service and Privacy policy Accepted.',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 14,
               ),
             ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF38302E)),
+                fixedSize: MaterialStateProperty.all<Size>(const Size(125, 50)),
+              ),
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Go Back'),
+            ),
           ],
         ),
-        const SizedBox(height: 20),
-        ElevatedButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF38302E)),
-            fixedSize: MaterialStateProperty.all<Size>(const Size(125, 50)),
-          ),
-          onPressed: _isAccepted ? _startApp : _acceptTerms,
-          child: const Text('Get Started'),
-        ),
-      ],
-    );   
-  }
-
-  Widget termsAccpted() {
-    return Column(
-      children: [
-        const Text(
-          'Terms of service and Privacy policy Accepted.',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 14,
-          ),
-        ),
-        const SizedBox(height: 20),
-        ElevatedButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF38302E)),
-            fixedSize: MaterialStateProperty.all<Size>(const Size(125, 50)),
-          ),
-          onPressed: _startApp,
-          child: const Text('Go Back'),
-        ),
-      ],
-    ); 
+      ),
+    );
   }
 }

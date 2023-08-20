@@ -96,6 +96,8 @@ class _TimeTableState extends State<TimeTable> {
           children: dateInfoData
         ),
 
+        const SizedBox(height: 5.0),
+
         if (!_isHoliday) Text(
           'Day Order ${_currentDayOrder.toString()}',
           style: const TextStyle(
@@ -103,6 +105,8 @@ class _TimeTableState extends State<TimeTable> {
             fontWeight: FontWeight.w600,
           ),
         ),
+
+        const SizedBox(height: 2.5),
 
         Expanded(
           child: _isHoliday
