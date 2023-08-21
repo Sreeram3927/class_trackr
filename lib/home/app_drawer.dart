@@ -32,34 +32,17 @@ class _AppDrawerState extends State<AppDrawer> {
           linkList(),
           const Divider(thickness: 2.0),
           const SizedBox(height: 15.0,),
-          if (kIsWeb) webUpdateInfo(),
+          if (kIsWeb) const Text(
+            'Refresh to update',
+            style: TextStyle(
+              color: Colors.black,
+              decoration: TextDecoration.none,
+              letterSpacing: 1.25,
+              fontSize: 18.0
+            ),
+          ),
         ],
       ),
-    );
-  }
-
-  Widget webUpdateInfo() {
-    return const Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Download as a Web App for easier access!",
-          style: TextStyle(
-            color: Colors.black,
-            decoration: TextDecoration.none,
-            fontSize: 16,
-          )
-        ),
-        SizedBox(height: 10.0),
-        Text(
-          "Refresh to get latest updates",
-          style: TextStyle(
-            color: Colors.black,
-            decoration: TextDecoration.none,
-            fontSize: 16,
-          )
-        ),
-      ],
     );
   }
 
@@ -95,7 +78,7 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
 
           const Text(
-            "Version 0.8.17",
+            "Version 0.8.18",
             style: TextStyle(
               color: Colors.white,
               decoration: TextDecoration.none,
@@ -136,6 +119,7 @@ class _AppDrawerState extends State<AppDrawer> {
       ['FeedBack Hub', Icons.feedback_rounded, 'https://forms.gle/WkEmjMAHRHdEtose8'],
       ['Terms of Service', Icons.privacy_tip_outlined, const TermsOfServicePage()],
       ['Contact Developer', Icons.headset_mic_rounded, contactDeveloper()],
+      if (kIsWeb) ['Download as a Web App', Icons.download_rounded, showWebAppDownload()],
     ];
     return ListView.builder(
       shrinkWrap: true,
@@ -253,4 +237,41 @@ class _AppDrawerState extends State<AppDrawer> {
       ),
     );
   }
+
+  Widget showWebAppDownload() {
+    return const AlertDialog(
+      backgroundColor:Color(0xFFCCDAD1),
+      title: Text(
+        'Download as a Web App',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 21.0,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'For Desktop: Click on the "Install Class Trackr" button in the address bar.',
+            textAlign: TextAlign.justify,
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          SizedBox(height: 15.0,),
+          Text(
+            'For Mobile: Click on the 3 dots and select Install App.',
+            textAlign: TextAlign.justify,
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
 }
