@@ -14,7 +14,17 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
-  <base href="$FLUTTER_BASE_HREF">
+  <!-- <base href="$FLUTTER_BASE_HREF"> -->
+  <base href="/" id="baseHref">
+  <script>
+    var currentUrl = window.location.href;
+    var baseHrefElement = document.getElementById('baseHref');
+    if (currentUrl.includes("localhost")) {
+      baseHrefElement.setAttribute('href', "/");
+    } else if (currentUrl.includes("sreeram3927.github.io")) {
+      baseHrefElement.setAttribute('href', "/class_trackr/");
+    }
+  </script>
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
