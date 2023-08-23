@@ -31,16 +31,6 @@ class _AppDrawerState extends State<AppDrawer> {
           const Divider(thickness: 2.0),
           linkList(),
           const Divider(thickness: 2.0),
-          const SizedBox(height: 15.0,),
-          if (kIsWeb) const Text(
-            'Refresh to update',
-            style: TextStyle(
-              color: Colors.black,
-              decoration: TextDecoration.none,
-              letterSpacing: 1.25,
-              fontSize: 18.0
-            ),
-          ),
         ],
       ),
     );
@@ -68,7 +58,6 @@ class _AppDrawerState extends State<AppDrawer> {
                   Image.asset(
                     'assets/images/class_trackr_logo.png',
                     fit: BoxFit.cover,
-                    // scale: 0.01,
                   ),
                 ],
               ),
@@ -86,7 +75,7 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
 
           const Text(
-            "Version 0.8.19",
+            "Version 0.8.20",
             style: TextStyle(
               color: Colors.white,
               decoration: TextDecoration.none,

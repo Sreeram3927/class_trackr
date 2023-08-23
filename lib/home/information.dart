@@ -40,7 +40,7 @@ class InformationScreen extends StatelessWidget {
           const SizedBox(height: 10),
           myText('Added day order text.'),
           const SizedBox(height: 10),
-          myText('Added date picker (Click on date text).'),
+          myText('Updated day order data.'),
           const SizedBox(height: 10),
           myText('Added WebApp support (only Mobile friendly view).'),
           const SizedBox(height: 10),
