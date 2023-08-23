@@ -62,7 +62,7 @@ class InformationScreen extends StatelessWidget {
           const SizedBox(height: 16),
           kIsWeb 
             ? myText('Refresh to Update the Web App.')
-            : myText('App updates are provided by through Discord server.')
+            : myText('Use the latest version to get the latest informations.')
           ,
           const SizedBox(height: 10),
           myText('Timetable Data (Hard-coded) - Subject to Change!'),

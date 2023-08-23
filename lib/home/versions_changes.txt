@@ -5,3 +5,4 @@
 0.8.16 = changed twitter to X
 0.8.17 = remove ToS from onboarding_pages
 0.8.18 = add download as web app
+0.8.19 = change day order

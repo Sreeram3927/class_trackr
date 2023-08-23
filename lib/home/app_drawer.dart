@@ -78,7 +78,7 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
 
           const Text(
-            "Version 0.8.18",
+            "Version 0.8.19",
             style: TextStyle(
               color: Colors.white,
               decoration: TextDecoration.none,
