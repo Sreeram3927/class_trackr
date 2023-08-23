@@ -60,10 +60,18 @@ class _AppDrawerState extends State<AppDrawer> {
             height: 75,
             width: 75,
             child: ClipOval(
-              child: Image.asset(
-                'assets/images/Class Trackr (Logo).jpg',
-                fit: BoxFit.cover,
-              )
+              child: Stack(
+                children: [
+                  Container(
+                    color: Colors.white,
+                  ),
+                  Image.asset(
+                    'assets/images/class_trackr_logo.png',
+                    fit: BoxFit.cover,
+                    // scale: 0.01,
+                  ),
+                ],
+              ),
             ),
           ),
 
