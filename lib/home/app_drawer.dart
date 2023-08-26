@@ -2,22 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinity_project/home/onboarding_screens/onboarding_pages.dart';
+import 'package:infinity_project/screens/settings/settings.dart';
+import 'package:infinity_project/screens/timetable/timetable.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AppDrawer extends StatefulWidget {
-  final Map screenNames;
-  final String selectedScreen;
-  const AppDrawer({
-    super.key,
-    required this.screenNames,
-    required this.selectedScreen,
-  });
+class AppDrawer extends StatelessWidget {
+  const AppDrawer({super.key});
 
-  @override
-  State<AppDrawer> createState() => _AppDrawerState();
-}
-
-class _AppDrawerState extends State<AppDrawer> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -90,19 +81,30 @@ class _AppDrawerState extends State<AppDrawer> {
   }
 
   Widget screenList() {
-    Iterable keys = widget.screenNames.keys;
+    List screens = [
+    ['TimeTable', const TimeTable(), Icons.calendar_today_rounded],
+    ['Settings', const Settings(), Icons.settings_rounded],
+    ];
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: keys.length,
+      itemCount: screens.length,
       itemBuilder: (BuildContext context, int index) {
-        final String screenName = keys.elementAt(index);
-        final String currentScreen = widget.selectedScreen;
-        final IconData icon = widget.screenNames[screenName][1];
+        final String screenName = screens[index][0];
+        final IconData icon = screens[index][2];
         return Material(
-          color: screenName == currentScreen ? const Color(0xFF788585).withOpacity(0.35) : Colors.transparent,
+          color: index == 0 ? const Color(0xFF788585).withOpacity(0.35) : Colors.transparent,
           child: InkWell(
             onTap: () {
-              Navigator.pop(context, screenName);
+              if (index > 0) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => screens[index][1]
+                  )
+                );
+              } else {
+                Navigator.pop(context);
+              }
             },
             child: drawerListTile(icon, screenName),
             ),

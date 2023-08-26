@@ -30,28 +30,36 @@ class _SettingsState extends State<Settings> {
     //   // aboutApp(context, 'App Version', '0.3.1', 'For updates check Discord')
     // ];
 
-    return ListView(
-      // itemCount: settings.length,
-      // itemBuilder: (context, index) => settings[index],
-      children: [
+    return Scaffold(
 
-        changeSettingsTile(
-          name: 'Change Course',
-          valueKey: 'course',
-          data: TimeTableData.courses,
-          currentValue: TimeTableData.currentCourse,
-          refresh: setData
-        ),
+      appBar: AppBar(
+        title: const Text('Settings'),
+        centerTitle: true,
+      ),
 
-        changeSettingsTile(
-          name: 'Change Lab Batch',
-          valueKey: 'batch',
-          data: Subject.batches,
-          currentValue: Subject.currentBatch,
-          refresh: setData
-        )
-
-      ],
+      body: ListView(
+        // itemCount: settings.length,
+        // itemBuilder: (context, index) => settings[index],
+        children: [
+    
+          changeSettingsTile(
+            name: 'Change Course',
+            valueKey: 'course',
+            data: TimeTableData.courses,
+            currentValue: TimeTableData.currentCourse,
+            refresh: setData
+          ),
+    
+          changeSettingsTile(
+            name: 'Change Lab Batch',
+            valueKey: 'batch',
+            data: Subject.batches,
+            currentValue: Subject.currentBatch,
+            refresh: setData
+          )
+    
+        ],
+      ),
     );
 
   }
@@ -61,7 +69,7 @@ class _SettingsState extends State<Settings> {
     required String valueKey,
     required List data,
     required String currentValue,
-    required void Function() refresh
+    required VoidCallback refresh
   }) {
     return ListTile(
       title: Text(

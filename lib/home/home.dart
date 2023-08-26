@@ -14,46 +14,26 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  final Map<String, List<dynamic>> _screens = {
-    'TimeTable': [const TimeTable(), Icons.calendar_today_rounded],
-    'Settings': [const Settings(), Icons.settings_rounded],
-  };
-
-  late String title;
-  late Widget screen;
-
-  Future<void> _selectScreen(BuildContext context) async {
-    final result = await showDialog(
-    context: context,
-    builder: (context) {
-      return SlideTransition(
-        position: Tween<Offset>(
-          begin: const Offset(-1.0, 0.0),
-          end: Offset.zero,
-        ).animate(CurvedAnimation(
-          parent: ModalRoute.of(context)!.animation!,
-          curve: Curves.easeInOut,
-        )),
-        child: FractionallySizedBox(
-          alignment: Alignment.centerLeft,
-          widthFactor: 0.8,
-          child: AppDrawer(screenNames: _screens, selectedScreen: title),
-        ),
-      );
-    },
-  );
-    if (result == null) return;
-    setState(() {
-      title = result;
-      screen = _screens[title]![0];
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    title = _screens.keys.first;
-    screen = _screens[title]![0];
+  void _appDrawer() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(-1.0, 0.0),
+            end: Offset.zero,
+          ).animate(CurvedAnimation(
+            parent: ModalRoute.of(context)!.animation!,
+            curve: Curves.easeInOut,
+          )),
+          child: const FractionallySizedBox(
+            alignment: Alignment.centerLeft,
+            widthFactor: 0.8,
+            child: AppDrawer(),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -69,9 +49,9 @@ class _HomeState extends State<Home> {
           foregroundColor: const Color(0xFFCCDAD1),
           toolbarHeight: 55.0,
 
-          title: Text(
-            title,
-            style: const TextStyle(
+          title: const Text(
+            'TimeTable',
+            style: TextStyle(
               fontSize: 25.0,
               fontWeight: FontWeight.w800
             )
@@ -79,9 +59,7 @@ class _HomeState extends State<Home> {
           centerTitle: true,
 
           leading: IconButton(
-            onPressed: () {
-              _selectScreen(context);
-            }, 
+            onPressed: _appDrawer, 
             icon: const Icon(Icons.menu),
             tooltip: "Menu",
           ),
@@ -100,7 +78,7 @@ class _HomeState extends State<Home> {
           ],
         ),
 
-        body: screen,
+        body: const TimeTable(),
 
       ),
     );
