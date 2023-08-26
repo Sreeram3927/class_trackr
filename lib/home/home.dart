@@ -41,12 +41,12 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
 
-        backgroundColor: const Color(0xFFCCDAD1),
+        // backgroundColor: const Color(0xFFCCDAD1),
     
         appBar: AppBar(
           elevation: 5.0,
-          backgroundColor: const Color(0xFF38302E),
-          foregroundColor: const Color(0xFFCCDAD1),
+          // backgroundColor: const Color(0xFF38302E),
+          // foregroundColor: const Color(0xFFCCDAD1),
           toolbarHeight: 55.0,
 
           title: const Text(

@@ -12,7 +12,7 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFFCCDAD1),
+      // color: const Color(0xFFCCDAD1),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -29,7 +29,7 @@ class AppDrawer extends StatelessWidget {
 
   Widget drawerHeader() {
     return Container(
-      color: const Color(0xFF38302E),
+      // color: const Color(0xFF38302E),
       width: double.infinity,
       height: 200,
       padding: const EdgeInsets.only(top: 20.0),

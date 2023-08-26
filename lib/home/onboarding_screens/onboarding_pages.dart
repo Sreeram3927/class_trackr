@@ -211,7 +211,7 @@ class TermsOfServicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFCCDAD1),
+      // backgroundColor: const Color(0xFFCCDAD1),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(32.0),
         child: Column(
@@ -227,7 +227,7 @@ class TermsOfServicePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const  Text(
+            const Text(
               'Before you start using our app, we want to ensure that you are aware of the following Terms and Conditions. By using our app, you agree to the terms outlined below:',
               textAlign: TextAlign.justify,
               style: TextStyle(

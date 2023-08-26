@@ -36,7 +36,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFCCDAD1),
+      // backgroundColor: const Color(0xFFCCDAD1),
       body: SafeArea(
         child: PageView(
           physics: const NeverScrollableScrollPhysics(),
