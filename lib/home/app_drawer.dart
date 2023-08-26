@@ -96,7 +96,8 @@ class AppDrawer extends StatelessWidget {
           child: InkWell(
             onTap: () {
               if (index > 0) {
-                Navigator.pushReplacement(
+                Navigator.pop(context);
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => screens[index][1]

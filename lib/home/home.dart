@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/home/app_drawer.dart';
 import 'package:infinity_project/home/information.dart';
-import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
 
 
@@ -13,28 +12,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
-  void _appDrawer() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return SlideTransition(
-          position: Tween<Offset>(
-            begin: const Offset(-1.0, 0.0),
-            end: Offset.zero,
-          ).animate(CurvedAnimation(
-            parent: ModalRoute.of(context)!.animation!,
-            curve: Curves.easeInOut,
-          )),
-          child: const FractionallySizedBox(
-            alignment: Alignment.centerLeft,
-            widthFactor: 0.8,
-            child: AppDrawer(),
-          ),
-        );
-      },
-    );
-  }
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +20,7 @@ class _HomeState extends State<Home> {
       child: Scaffold(
 
         // backgroundColor: const Color(0xFFCCDAD1),
+        key: _scaffoldKey,
     
         appBar: AppBar(
           elevation: 5.0,
@@ -59,7 +38,7 @@ class _HomeState extends State<Home> {
           centerTitle: true,
 
           leading: IconButton(
-            onPressed: _appDrawer, 
+            onPressed: () => _scaffoldKey.currentState!.openDrawer(),
             icon: const Icon(Icons.menu),
             tooltip: "Menu",
           ),
@@ -79,6 +58,8 @@ class _HomeState extends State<Home> {
         ),
 
         body: const TimeTable(),
+
+        drawer: const AppDrawer(),
 
       ),
     );
