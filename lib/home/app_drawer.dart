@@ -6,24 +6,59 @@ import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AppDrawer extends StatelessWidget {
+class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});
 
   @override
+  State<AppDrawer> createState() => _AppDrawerState();
+}
+
+class _AppDrawerState extends State<AppDrawer> {
+  int drawerIndex = 0;
+  @override
   Widget build(BuildContext context) {
-    return Drawer(
-      // color: const Color(0xFFCCDAD1),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          drawerHeader(),
-          const SizedBox(height: 15.0,),
-          screenList(),
-          const Divider(thickness: 2.0),
-          linkList(),
-          const Divider(thickness: 2.0),
-        ],
-      ),
+    return NavigationDrawer(
+
+      onDestinationSelected: (selectedIndex) {
+        setState(() {
+          drawerIndex = selectedIndex;
+          destinations[selectedIndex].navigate(context);
+        });
+      },
+
+      selectedIndex: drawerIndex,
+
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
+          child: Text(
+            'Screens',
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+        ),
+        ...destinations.map((destination) {
+          return NavigationDrawerDestination(
+            label: Text(destination.label),
+            icon: destination.icon,
+            selectedIcon: destination.selectedIcon,
+          );
+        }),
+        // const Divider(indent: 28, endIndent: 28),
+        // Padding(
+        //   padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
+        //   child: Text(
+        //     'Labels',
+        //     style: Theme.of(context).textTheme.titleSmall,
+        //   ),
+        // ),
+        // ...labelDestinations.map((destination) {
+        //   return NavigationDrawerDestination(
+        //     label: Text(destination.label),
+        //     icon: destination.icon,
+        //     selectedIcon: destination.selectedIcon,
+        //   );
+        // }),
+      ],
     );
   }
 
@@ -266,5 +301,31 @@ class AppDrawer extends StatelessWidget {
       ),
     );
   }
+}
+
+class NavDrawerDestination {
+
+  String label;
+  Widget screen;
+  late Widget icon;
+  late Widget selectedIcon;
+
+  NavDrawerDestination(this.label, this.screen, icon, selectedIcon) {
+    this.icon = Icon(icon);
+    this.selectedIcon = Icon(selectedIcon);
+  }
+
+  void navigate(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => screen)
+    );
+  }
 
 }
+
+List<NavDrawerDestination> destinations = [
+  NavDrawerDestination('TimeTable', const Placeholder(), Icons.calendar_today_outlined, Icons.calendar_today_rounded),
+  NavDrawerDestination('Settings', const Settings(), Icons.settings_outlined, Icons.settings_rounded),
+  NavDrawerDestination('Terms of Service', const TermsOfServicePage(), Icons.privacy_tip_outlined, Icons.privacy_tip_rounded),
+];
