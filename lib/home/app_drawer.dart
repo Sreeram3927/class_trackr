@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:infinity_project/data/meta_data.dart';
 import 'package:infinity_project/home/onboarding_screens/onboarding_pages.dart';
 import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -100,9 +101,9 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
           ),
 
-          const Text(
-            "Class Trackr",
-            style: TextStyle(
+          Text(
+            AppMetaData.name,
+            style: const TextStyle(
               color: Colors.white,
               decoration: TextDecoration.none,
               letterSpacing: 2.0,
@@ -110,9 +111,9 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
           ),
 
-          const Text(
-            "Version 0.8.20",
-            style: TextStyle(
+          Text(
+            'Version ${AppMetaData.version}',
+            style: const TextStyle(
               color: Colors.white,
               decoration: TextDecoration.none,
               letterSpacing: 1.5,
@@ -207,7 +208,6 @@ Widget contactDeveloper() {
   ];
 
   return AlertDialog(
-    backgroundColor:  const Color(0xFFCCDAD1),
     title: const Text(
       'Contact Developer',
       textAlign: TextAlign.center,
@@ -250,7 +250,6 @@ Widget contactDeveloper() {
 
 Widget showWebAppDownload() {
   return const AlertDialog(
-    backgroundColor:Color(0xFFCCDAD1),
     title: Text(
       'Download as a Web App',
       textAlign: TextAlign.center,

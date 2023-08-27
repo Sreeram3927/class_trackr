@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:infinity_project/data/meta_data.dart';
 import 'package:infinity_project/firebase/firebase_data.dart';
 import 'package:infinity_project/home/onboarding_screens/onboarding_screen.dart';
 import 'package:infinity_project/themes/theme_data.dart';
@@ -20,7 +21,7 @@ class InfinityProject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Class Trackr',
+      title: AppMetaData.name,
       home: UserPreferences.showHome ? const Home() : const OnboardingPage(),
       themeMode: ThemeMode.light,
       theme: ThemeValues.lightTheme,
