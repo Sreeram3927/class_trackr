@@ -11,7 +11,7 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Drawer(
       // color: const Color(0xFFCCDAD1),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -82,8 +82,9 @@ class AppDrawer extends StatelessWidget {
 
   Widget screenList() {
     List screens = [
-    ['TimeTable', const TimeTable(), Icons.calendar_today_rounded],
-    ['Settings', const Settings(), Icons.settings_rounded],
+      ['TimeTable', const TimeTable(), Icons.calendar_today_rounded],
+      ['Settings', const Settings(), Icons.settings_rounded],
+      ['Terms of Service',  const TermsOfServicePage(), Icons.privacy_tip_outlined],
     ];
     return ListView.builder(
       shrinkWrap: true,
@@ -117,7 +118,6 @@ class AppDrawer extends StatelessWidget {
   Widget linkList() {
     List data = [
       ['FeedBack Hub', Icons.feedback_rounded, 'https://forms.gle/WkEmjMAHRHdEtose8'],
-      ['Terms of Service', Icons.privacy_tip_outlined, const TermsOfServicePage()],
       ['Contact Developer', Icons.headset_mic_rounded, contactDeveloper()],
       if (kIsWeb) ['Download as a Web App', Icons.download_rounded, showWebAppDownload()],
     ];
@@ -138,13 +138,6 @@ class AppDrawer extends StatelessWidget {
                   throw Exception('Could not launch $url');
                 }
 
-              } else if (index == 1) {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => data[index][2]
-                  )
-                );
               } else {
                 Navigator.pop(context);
                 showDialog(
