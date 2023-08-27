@@ -24,7 +24,11 @@ class InfinityProject extends StatelessWidget {
       title: AppMetaData.name,
       home: UserPreferences.showHome ? const Home() : const OnboardingPage(),
       themeMode: ThemeMode.light,
-      theme: ThemeValues.lightTheme,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: Colors.green,
+        brightness: Brightness.light,
+      ),
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/data/user_preferences.dart';
-import 'package:infinity_project/firebase/firebase_data.dart';
 import 'package:infinity_project/screens/timetable/other_widgets.dart';
 
 class TimeTable extends StatefulWidget {
@@ -31,27 +30,9 @@ class _TimeTableState extends State<TimeTable> {
       initialDate: _currentDate,
       firstDate: DataManager.minDate,
       lastDate: DataManager.maxDate,
-      // builder: (BuildContext context, Widget? child) {
-      //   return Theme(
-      //     data: ThemeData.light().copyWith(
-      //       colorScheme: ThemeData.light().colorScheme.copyWith(
-      //         primary: const Color(0xFF6F6866),
-      //       ),
-      //       datePickerTheme: const DatePickerThemeData(
-      //         headerBackgroundColor: Color(0xFF38302E)
-      //       ),
-      //     ), 
-      //     child: child!,
-      //   );
-      // }
     );
 
     if (newDate == null) return;
-
-    await FirebaseData.analytics.logEvent(
-        name: 'date_selected',
-        parameters: {'date': '${newDate.day}/${newDate.month}/${newDate.year}',}
-    );
 
     setState(() {
       _currentDate = newDate;
@@ -73,6 +54,13 @@ class _TimeTableState extends State<TimeTable> {
     });
   }
 
+  void setCurrentDate() {
+    setState(() {
+      _currentDate = DateTime.now();
+      _getData();
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -84,7 +72,7 @@ class _TimeTableState extends State<TimeTable> {
   Widget build(BuildContext context) {
     List<Widget> dateInfoData = [
       changeDate(previousDate, 'previous', Icons.arrow_left_sharp, _currentDate),
-      currentDateText(selectDate, _currentDate),
+      currentDateText(selectDate, setCurrentDate,_currentDate),
       changeDate(nextDate, 'next', Icons.arrow_right_sharp, _currentDate),
     ];
 

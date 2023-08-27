@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/screens/timetable/subject_card/subject_card.dart';
 
-Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date) {
+Widget changeDate(VoidCallback fn, String tip, IconData icon, DateTime date) {
   void dateError() {
     Fluttertoast.cancel();
     Fluttertoast.showToast(
@@ -11,32 +11,20 @@ Widget changeDate(void Function() fn, String tip, IconData icon, DateTime date) 
       fontSize: 20
     );
   }
-  return Tooltip(
-    message: tip,
-    child: TextButton(
-      style: ButtonStyle(
-        overlayColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) => const Color(0xFF788585)
-        ),
-      ),
-      onPressed: DataManager.dateOutOfBounds(date, tip) ? dateError : fn,
-      child: Icon(
-        icon,
-        color: Colors.black87,
-        size: 30.0
-      ),    
-    ),
+  return IconButton(
+    onPressed: DataManager.dateOutOfBounds(date, tip) ? dateError : fn,
+    icon: Icon(
+      icon,
+      color: Colors.black87,
+      size: 30.0
+    ),    
   );
 }
 
-Widget currentDateText(void Function() fn, DateTime date) {
-  return TextButton(
-    style: ButtonStyle(
-      overlayColor: MaterialStateProperty.resolveWith<Color?>(
-        (Set<MaterialState> states) => const Color(0xFF788585)
-      ),
-    ),
+Widget currentDateText(VoidCallback fn, VoidCallback fn2, DateTime date) {
+  return OutlinedButton(
     onPressed: fn,
+    onLongPress: fn2,
     child: Text(
       '${date.day}/${date.month}/${date.year}',
       style: const TextStyle(
