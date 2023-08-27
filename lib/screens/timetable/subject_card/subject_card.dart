@@ -15,56 +15,55 @@ class SubjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    Color textColor = const Color(0xFF0B0500);
-
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xFF788585).withOpacity(0.45),
+    return Card(
+      shape: RoundedRectangleBorder(
         borderRadius: const BorderRadius.all(Radius.circular(20)),
-        border: Border.all(
+        side: BorderSide(
           width: 2,
-          color: const Color(0xFF788585).withOpacity(0.7)
+          color: const Color(0xFF788585).withOpacity(0.7),
         ),
       ),
-      height: 150.0,
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+        child: Container(
+          height: 160.0,
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
 
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 21.0,
-              fontWeight: FontWeight.w600,
-              color: textColor
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            
+            Flexible(
+              fit: FlexFit.loose,
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 21.0,
+                  fontWeight: FontWeight.w600,
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-            textAlign: TextAlign.center,
-          ),
-          
-          Text(
-            subjectCode,
-            style: TextStyle(
-              fontSize: 14.0,
-              fontWeight: FontWeight.w500,
-              color: textColor
+            
+            Text(
+              subjectCode,
+              style: const TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
 
-          Text(
-            time,
-            style: TextStyle(
-              fontSize: 25.0,
-              fontWeight: FontWeight.w700,
-              color: textColor
-            ),
-          )
+            Text(
+              time,
+              style: const TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.w700,
+              ),
+            )
 
-        ]
-      ),
-
+          ]
+        ),
+      )
     );
   }
 }

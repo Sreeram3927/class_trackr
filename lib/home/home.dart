@@ -18,13 +18,10 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      // backgroundColor: const Color(0xFFCCDAD1),
       key: _scaffoldKey,
     
       appBar: AppBar(
         elevation: 5.0,
-        // backgroundColor: const Color(0xFF38302E),
-        // foregroundColor: const Color(0xFFCCDAD1),
         toolbarHeight: 55.0,
 
         title: const Text(

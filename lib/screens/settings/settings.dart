@@ -20,16 +20,6 @@ class _SettingsState extends State<Settings> {
       setState(() => UserPreferences.refreshData());
     }
 
-    // final List<Widget> settings = [
-    //   settingsTile('Change Course/Batch', TimeTableData.currentCourse, setData),
-    //   //changeData(context, 'Change Foreign Language', TimeTableData.curLang),
-    //   // feedbackForm(),
-    //   // darkTheme(context),
-    //   // sourceCode(),
-    //   // aboutApp(context, 'App Name', 'IP_SD', 'IP_SD'),
-    //   // aboutApp(context, 'App Version', '0.3.1', 'For updates check Discord')
-    // ];
-
     return Scaffold(
 
       appBar: AppBar(
@@ -38,8 +28,6 @@ class _SettingsState extends State<Settings> {
       ),
 
       body: ListView(
-        // itemCount: settings.length,
-        // itemBuilder: (context, index) => settings[index],
         children: [
     
           changeSettingsTile(
