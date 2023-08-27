@@ -29,6 +29,11 @@ class InfinityProject extends StatelessWidget {
         colorSchemeSeed: Colors.green,
         brightness: Brightness.light,
       ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: Colors.green,
+        brightness: Brightness.dark,
+      ),
     );
   }
 }

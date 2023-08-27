@@ -57,7 +57,7 @@ class _AppDrawerState extends State<AppDrawer> {
         Padding(
           padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
           child: Text(
-            'Links',
+            'Other',
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),
@@ -74,50 +74,48 @@ class _AppDrawerState extends State<AppDrawer> {
   }
 
   Widget drawerHeader() {
+    Color color = Theme.of(context).colorScheme.primary;
     return Container(
-      color: Theme.of(context).primaryColor,
+      decoration: BoxDecoration(
+        color: color.withAlpha(90),
+        border: Border.all( 
+          color: Theme.of(context).colorScheme.primary,
+          width: 2.5
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(20.0))
+      ),
+
       width: double.infinity,
       height: 200,
       padding: const EdgeInsets.only(top: 20.0),
+      margin: const EdgeInsets.all(10.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           
-          SizedBox(
-            height: 75,
-            width: 75,
-            child: ClipOval(
-              child: Stack(
-                children: [
-                  Container(
-                    color: Colors.white,
-                  ),
-                  Image.asset(
-                    'assets/images/class_trackr_logo.png',
-                    fit: BoxFit.cover,
-                  ),
-                ],
-              ),
+          CircleAvatar(
+            radius: 40.0,
+            backgroundColor: color,
+            child: Image.asset(
+              'assets/images/class_trackr_logo.png',
             ),
           ),
 
           Text(
             AppMetaData.name,
             style: const TextStyle(
-              color: Colors.white,
-              decoration: TextDecoration.none,
               letterSpacing: 2.0,
-              fontSize: 20.0
+              fontSize: 20.0,
+              fontWeight: FontWeight.w600
             ),
           ),
 
           Text(
             'Version ${AppMetaData.version}',
             style: const TextStyle(
-              color: Colors.white,
-              decoration: TextDecoration.none,
               letterSpacing: 1.5,
-              fontSize: 15.0
+              fontSize: 15.0,
+              fontWeight: FontWeight.w500
             ),
           )
 
