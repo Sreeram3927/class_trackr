@@ -9,8 +9,6 @@ class InformationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      // backgroundColor: const Color(0xFFCCDAD1),
-
       appBar: AppBar(
         title: const Text(
           'Informations',
@@ -20,9 +18,8 @@ class InformationScreen extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        // backgroundColor: const Color(0xFF38302E),
-        // foregroundColor: const Color(0xFFCCDAD1),
         toolbarHeight: 55.0,
+        elevation: 5.0,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

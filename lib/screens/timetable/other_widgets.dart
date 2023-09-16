@@ -15,7 +15,6 @@ Widget changeDate(VoidCallback fn, String tip, IconData icon, DateTime date) {
     onPressed: DataManager.dateOutOfBounds(date, tip) ? dateError : fn,
     icon: Icon(
       icon,
-      color: Colors.black87,
       size: 30.0
     ),    
   );
@@ -31,7 +30,6 @@ Widget currentDateText(VoidCallback fn, VoidCallback fn2, DateTime date) {
         letterSpacing: 1.7,
         fontSize: 22.0,
         fontWeight: FontWeight.w500,
-        color: Colors.black87,
       ),
     )
   );

@@ -225,7 +225,6 @@ Widget contactDeveloper() {
               child: Text(
                 contactOptions[index][1],
                 style: const TextStyle(
-                  color: Color(0xFF38302E),
                   decoration: TextDecoration.underline,
                 ),
               ),

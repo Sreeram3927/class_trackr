@@ -8,16 +8,6 @@ class ThemeValues {
 
     colorSchemeSeed: Colors.green,
 
-    appBarTheme: const AppBarTheme(
-      // backgroundColor: Colors.green,
-      // foregroundColor: Colors.white,
-      // color: Theme.of(context).colorScheme.primary,,
-      titleTextStyle: TextStyle(
-        fontSize: 25.0,
-        fontWeight: FontWeight.w800
-      )
-    ),
-
   );
 
 }

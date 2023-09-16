@@ -25,6 +25,8 @@ class _SettingsState extends State<Settings> {
       appBar: AppBar(
         title: const Text('Settings'),
         centerTitle: true,
+        toolbarHeight: 55.0,
+        elevation: 5.0,
       ),
 
       body: ListView(

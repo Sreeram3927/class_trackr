@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/data/user_preferences.dart';
+import 'package:infinity_project/home/app_drawer.dart';
+import 'package:infinity_project/home/information.dart';
 import 'package:infinity_project/screens/timetable/other_widgets.dart';
 
 class TimeTable extends StatefulWidget {
@@ -76,33 +78,65 @@ class _TimeTableState extends State<TimeTable> {
       changeDate(nextDate, 'next', Icons.arrow_right_sharp, _currentDate),
     ];
 
-    return Column(
-      children: [
+    return Scaffold(
 
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
-          children: dateInfoData
+      appBar: AppBar(
+        elevation: 5.0,
+        toolbarHeight: 55.0,
+
+        title: const Text(
+          'TimeTable',
+          style: TextStyle(
+            fontSize: 25.0,
+            fontWeight: FontWeight.w800
+          )
         ),
+        centerTitle: true,
 
-        const SizedBox(height: 2.5),
-
-        if (!_isHoliday) Text(
-          'Day Order ${_currentDayOrder.toString()}',
-          style: const TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.w600,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const InformationScreen())
+              );
+            }, 
+            icon: const Icon(Icons.info_outline_rounded),
+            tooltip: "Informations",
           ),
-        ),
+        ],
+      ),
 
-        const SizedBox(height: 3.0),
+      drawer: const AppDrawer(),
 
-        Expanded(
-          child: _isHoliday
-            ? holiday()
-            : displayData(_currentData),
-        ),
-
-      ],
+      body: Column(
+        children: [
+    
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
+            children: dateInfoData
+          ),
+    
+          const SizedBox(height: 2.5),
+    
+          if (!_isHoliday) Text(
+            'Day Order ${_currentDayOrder.toString()}',
+            style: const TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+    
+          const SizedBox(height: 3.0),
+    
+          Expanded(
+            child: _isHoliday
+              ? holiday()
+              : displayData(_currentData),
+          ),
+    
+        ],
+      ),
     );
   }
 }
