@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:infinity_project/data/subjects.dart';
-import 'package:infinity_project/data/timetable_data.dart';
+import 'package:infinity_project/data/timetable/subjects.dart';
+import 'package:infinity_project/data/timetable/timetable_data.dart';
 import 'package:infinity_project/data/user_preferences.dart';
 import 'package:infinity_project/home/home.dart';
 import 'package:infinity_project/home/onboarding_screens/onboarding_pages.dart';

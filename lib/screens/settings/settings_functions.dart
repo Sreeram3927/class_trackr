@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:infinity_project/data/subjects.dart';
-import 'package:infinity_project/data/timetable_data.dart';
+import 'package:infinity_project/data/timetable/subjects.dart';
+import 'package:infinity_project/data/timetable/timetable_data.dart';
 
 // Widget alertCard(BuildContext context, String data) {
 //   return AlertDialog(

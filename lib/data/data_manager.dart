@@ -1,9 +1,20 @@
-import 'package:infinity_project/data/date_of_day_order.dart';
-import 'package:infinity_project/data/subjects.dart';
-import 'package:infinity_project/data/timetable_data.dart';
+import 'package:infinity_project/data/day_order/backend.dart';
+import 'package:infinity_project/data/day_order/date_of_day_order.dart';
+import 'package:infinity_project/data/timetable/subjects.dart';
+import 'package:infinity_project/data/timetable/timetable_data.dart';
+import 'package:infinity_project/data/user_preferences.dart';
 import 'package:intl/intl.dart';
 
 class DataManager {
+
+  static Future<void> refreshFromBackend(DateTime date) async {
+    int dayOrderBack = await Backend.getDayOrder(DateFormat('dd/MM').format(date));
+    int dayOrderFront = getDayOrder(date);
+    if (dayOrderBack != dayOrderFront) {
+      await Backend.updateDates();
+      UserPreferences.refreshDayOrders();
+    }
+  }
 
   static bool isHoliday(DateTime date) {    
     String val = DateFormat('dd/MM').format(date);
@@ -22,7 +33,7 @@ class DataManager {
     else if (DayOrderDate.dayOrder_3.contains(val)) {return 3;} 
     else if (DayOrderDate.dayOrder_4.contains(val)) {return 4;} 
     else if (DayOrderDate.dayOrder_5.contains(val)) {return 5;}
-    else {return 9;}
+    else {return 0;}
   }
 
   static List getCurrentData(int dayOrder) {

@@ -36,6 +36,7 @@ dependencies:
   shared_preferences: ^2.1.2
   fluttertoast: ^8.2.2
   url_launcher: ^6.1.11
+  http: ^1.1.0
   # font_awesome_flutter: ^10.5.0
   font_awesome_flutter:
     path: C:/my_dependencies/font_awesome_flutter

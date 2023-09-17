@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:infinity_project/data/subjects.dart';
-import 'package:infinity_project/data/timetable_data.dart';
+import 'package:infinity_project/data/timetable/subjects.dart';
+import 'package:infinity_project/data/timetable/timetable_data.dart';
 
 class WelcomePage extends StatelessWidget {
   final void Function() nextScreen;
