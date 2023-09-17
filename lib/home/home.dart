@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:infinity_project/data/meta_data.dart';
 import 'package:infinity_project/home/app_drawer.dart';
-import 'package:infinity_project/home/information.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
 
 
@@ -14,38 +14,32 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  void checkVersion() {
+    if (AppMetaData.storedVersion != AppMetaData.version) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('New Update Available'),
+            content: const Text('Please update the app to the latest version.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 
       key: _scaffoldKey,
-    
-      appBar: AppBar(
-        elevation: 5.0,
-        toolbarHeight: 55.0,
-
-        title: const Text(
-          'TimeTable',
-          style: TextStyle(
-            fontSize: 25.0,
-            fontWeight: FontWeight.w800
-          )
-        ),
-        centerTitle: true,
-
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const InformationScreen())
-              );
-            }, 
-            icon: const Icon(Icons.info_outline_rounded),
-            tooltip: "Informations",
-          ),
-        ],
-      ),
 
       body: const TimeTable(),
 

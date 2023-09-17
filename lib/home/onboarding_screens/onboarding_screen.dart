@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:infinity_project/data/timetable/subjects.dart';
 import 'package:infinity_project/data/timetable/timetable_data.dart';
 import 'package:infinity_project/data/user_preferences.dart';
-import 'package:infinity_project/home/home.dart';
 import 'package:infinity_project/home/onboarding_screens/onboarding_pages.dart';
+import 'package:infinity_project/screens/timetable/timetable.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -28,7 +28,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   void startApp() {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const Home()),
+      MaterialPageRoute(builder: (context) => const TimeTable()),
     );
     UserPreferences.setShowHome(true);
   }
@@ -36,7 +36,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: const Color(0xFFCCDAD1),
       body: SafeArea(
         child: PageView(
           physics: const NeverScrollableScrollPhysics(),
