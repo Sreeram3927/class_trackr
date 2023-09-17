@@ -23,7 +23,13 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
 
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: const Text(
+          'Settings',
+          style: TextStyle(
+            fontSize: 25.0,
+            fontWeight: FontWeight.w800
+          ),
+        ),
         centerTitle: true,
         toolbarHeight: 55.0,
         elevation: 5.0,
@@ -73,7 +79,7 @@ class _SettingsState extends State<Settings> {
         currentValue,
         style: const TextStyle(
           fontSize: 14.5,
-          fontWeight: FontWeight.w400
+          fontWeight: FontWeight.w300
         ),
       ),
       onTap: () {

@@ -143,7 +143,7 @@ class NavDrawerDestination {
     this.selectedIcon = Icon(selectedIcon);
   }
 
-  void navigate(BuildContext context) {
+  void navigate(BuildContext context) async {
     if (screen != null) {
       Navigator.push(
         context,
@@ -155,7 +155,13 @@ class NavDrawerDestination {
         builder: (BuildContext context) => dialog!,
       );
     } else if (url != null) {
-
+      Uri link = Uri.parse(url!);
+        if (!await launchUrl(
+          link,
+          mode: LaunchMode.externalApplication,
+        )) {
+          throw Exception('Could not launch $url');
+        }
     }
   }
 
