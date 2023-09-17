@@ -65,13 +65,13 @@ class _TimeTableState extends State<TimeTable> {
 
   Future<void> fetchDataFromBackend() async {
     try {
-      DataManager.refreshFromBackend(_currentDate);
+      await DataManager.refreshFromBackend(_currentDate);
       setState(() {
         _getData();
       });
     } catch (e) {
-      const snackBar = SnackBar(
-        content: Text('Failed to connect to backend'),
+      final snackBar = SnackBar(
+        content: Text("Failed to connect to backend: $e"),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }

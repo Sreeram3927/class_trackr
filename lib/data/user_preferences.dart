@@ -27,8 +27,8 @@ class UserPreferences {
     DayOrderDate.dayOrder_5 = UserPreferences.getList('day_order_5') ?? DayOrderDate.defaultDayOrder_5;
   }
 
-  // static bool showHome = _preferences.getBool('showHome') ?? false;
-  static bool showHome = false;
+  static bool showHome = _preferences.getBool('showHome') ?? false;
+  // static bool showHome = false;
   static void setShowHome(bool value) => _preferences.setBool('showHome', value);
   static void updateShowHome() => showHome = _preferences.getBool('showHome') ?? false;
 

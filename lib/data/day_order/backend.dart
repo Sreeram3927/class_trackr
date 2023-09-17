@@ -8,9 +8,13 @@ class Backend {
 
   static Future<int> getDayOrder(String date) async {
     var url = Uri.parse('$baseURL/day_order?date=$date');
-    var response = await http.get(url);
+    try {
+    var response = await http.get(url).timeout(const Duration(seconds: 5));
     int dayOrder = jsonDecode(response.body)['day_order'];
     return dayOrder;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   static Future<void> updateDates() async {

@@ -7,7 +7,6 @@ import 'package:infinity_project/screens/timetable/timetable.dart';
 import 'package:infinity_project/themes/theme_data.dart';
 import 'firebase/firebase_options.dart';
 import 'package:infinity_project/data/user_preferences.dart';
-import 'home/home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
