@@ -15,6 +15,9 @@ class UserPreferences {
   static void setList(String key, List<String> data) => _preferences.setStringList(key, data);
   static getList(String key) => _preferences.getStringList(key);
 
+  static void setVersion(String key, int value) => _preferences.setInt(key, value);
+  static getVersion(String key) => _preferences.getInt(key);
+
   static void refreshData() {
     TimeTableData.currentCourse = UserPreferences.getData('course') ?? 'MH-Core';
     Subject.currentBatch = UserPreferences.getData('batch') ?? 'Batch 1';

@@ -1,5 +1,6 @@
 import 'package:infinity_project/data/day_order/backend.dart';
 import 'package:infinity_project/data/day_order/date_of_day_order.dart';
+import 'package:infinity_project/data/meta_data.dart';
 import 'package:infinity_project/data/timetable/subjects.dart';
 import 'package:infinity_project/data/timetable/timetable_data.dart';
 import 'package:infinity_project/data/user_preferences.dart';
@@ -8,11 +9,11 @@ import 'package:intl/intl.dart';
 class DataManager {
 
   static Future<void> refreshFromBackend(DateTime date) async {
-    int dayOrderBack = await Backend.getDayOrder(DateFormat('dd/MM').format(date));
-    int dayOrderFront = getDayOrder(date);
-    if (dayOrderBack != dayOrderFront) {
+    int dataVersionBack = await Backend.checkDataVersion();
+    if (dataVersionBack != AppMetaData.dataVersionFront) {
       await Backend.updateDates();
       UserPreferences.refreshDayOrders();
+      UserPreferences.setVersion('data_version', dataVersionBack);
     }
   }
 

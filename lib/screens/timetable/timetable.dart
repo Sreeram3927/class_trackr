@@ -71,7 +71,7 @@ class _TimeTableState extends State<TimeTable> {
       });
     } catch (e) {
       final snackBar = SnackBar(
-        content: Text("Failed to connect to backend: $e"),
+        content: Text("Failed to update[Network Issue]: $e"),
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }

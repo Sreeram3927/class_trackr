@@ -8,3 +8,4 @@
 0.8.19 = change day order
 0.8.20 = change logo to png
 0.9.20 = add backend
+0.9.21 = handle backend errors

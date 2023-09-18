@@ -6,12 +6,13 @@ class Backend {
   
   static String baseURL = 'http://192.168.1.40:8080';
 
-  static Future<int> getDayOrder(String date) async {
-    var url = Uri.parse('$baseURL/day_order?date=$date');
+  static Future<int> checkDataVersion() async {
+    var url = Uri.parse('$baseURL/check_version');
     try {
-    var response = await http.get(url).timeout(const Duration(seconds: 5));
-    int dayOrder = jsonDecode(response.body)['day_order'];
-    return dayOrder;
+      var response = await http.get(url).timeout(const Duration(seconds: 5));
+      Map data = jsonDecode(response.body);
+      int value = data['dataVersion'];
+      return value;
     } catch (e) {
       rethrow;
     }
@@ -19,12 +20,20 @@ class Backend {
 
   static Future<void> updateDates() async {
     var url = Uri.parse('$baseURL/day_order_dates');
-    var response = await http.get(url);
-    Map data = jsonDecode(response.body);
-    data.forEach((key, value) {
-      List<String> stringList = value.cast<String>().toList();
-      UserPreferences.setList(key, stringList);
-    });
+    try {
+      var response = await http.get(url).timeout(const Duration(seconds: 5));
+      Map data = jsonDecode(response.body);
+      if (data['status'] != 'success') {
+        throw data['msg'];
+      }
+      data.forEach((key, value) {
+        if (key == 'status') {return;}
+        List<String> stringList = value.cast<String>().toList();
+        UserPreferences.setList(key, stringList);
+      });
+    } catch (e) {
+      rethrow;
+    }
   }
 
 }
