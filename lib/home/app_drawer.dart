@@ -111,7 +111,7 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
 
           Text(
-            'Version ${AppMetaData.version}',
+            'Version ${AppMetaData.version} (dV ${AppMetaData.dataVersionFront})',
             style: const TextStyle(
               letterSpacing: 1.5,
               fontSize: 15.0,

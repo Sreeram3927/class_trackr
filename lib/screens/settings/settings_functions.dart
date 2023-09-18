@@ -29,7 +29,6 @@ Widget selectCourse({
   // int currentValue = data.indexOf(TimeTableData.currentCourse);
 
   return AlertDialog(
-    backgroundColor: const Color(0xFFCCDAD1),
     title: Text(
       name,
       textAlign: TextAlign.center,

@@ -4,7 +4,8 @@ import 'package:infinity_project/data/user_preferences.dart';
 
 class Backend {
   
-  static String baseURL = 'http://192.168.1.40:8080';
+  // static String baseURL = 'http://192.168.1.40:8080';
+  static String baseURL = 'https://sreeram3927.pythonanywhere.com';
 
   static Future<int> checkDataVersion() async {
     var url = Uri.parse('$baseURL/check_version');
