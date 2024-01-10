@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/data_manager.dart';
-import 'package:infinity_project/data/user_preferences.dart';
+import 'package:infinity_project/data/user_data.dart';
 import 'package:infinity_project/home/app_drawer.dart';
 import 'package:infinity_project/home/information.dart';
 import 'package:infinity_project/screens/timetable/other_widgets.dart';
@@ -14,15 +14,18 @@ class TimeTable extends StatefulWidget {
 
 class _TimeTableState extends State<TimeTable> {
   DateTime _currentDate = DateTime.now();
-  int _currentDayOrder = 9;
+  int? _currentDayOrder;
   List _currentData = [];
   bool _isHoliday = true;
 
+  final DataManager _manager = DataManager();
+  final UserData _userData = UserData();
+
   void _getData() {
-    _isHoliday = DataManager.isHoliday(_currentDate);
+    _isHoliday = _manager.isHoliday(_currentDate);
     if (!_isHoliday) {
-      _currentDayOrder = DataManager.getDayOrder(_currentDate);
-      _currentData = DataManager.getCurrentData(_currentDayOrder);
+      _currentDayOrder = _manager.getDayOrder(_currentDate);
+      // _currentData = _manager.getCurrentData(_currentDayOrder);
     }
   }
 
@@ -30,8 +33,8 @@ class _TimeTableState extends State<TimeTable> {
     DateTime? newDate = await showDatePicker(
       context: context,
       initialDate: _currentDate,
-      firstDate: DataManager.minDate,
-      lastDate: DataManager.maxDate,
+      firstDate: _manager.minDate,
+      lastDate: _manager.maxDate,
     );
 
     if (newDate == null) return;
@@ -65,7 +68,7 @@ class _TimeTableState extends State<TimeTable> {
 
   Future<void> fetchDataFromBackend() async {
     try {
-      await DataManager.refreshFromBackend(_currentDate);
+      // await _manager.refreshFromBackend(_currentDate);
       setState(() {
         _getData();
       });
@@ -80,8 +83,8 @@ class _TimeTableState extends State<TimeTable> {
   @override
   void initState() {
     super.initState();
-    UserPreferences.refreshData();
-    fetchDataFromBackend();
+    // UserPreferences.refreshData();
+    // fetchDataFromBackend();
     _getData();
   }
 

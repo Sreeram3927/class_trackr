@@ -1,7 +1,6 @@
 import 'package:infinity_project/data/day_order.dart';
 import 'package:infinity_project/data/meta_data.dart';
 import 'package:infinity_project/data/timetable/subjects.dart';
-import 'package:infinity_project/data/timetable/timetable_data.dart';
 import 'package:infinity_project/data/user_data.dart';
 import 'package:intl/intl.dart';
 
@@ -34,13 +33,16 @@ class DataManager {
   // }
 
   bool isHoliday(DateTime date) {
-    String val = DateFormat('dd/MM').format(date);
-    if (d1.contains(val) || d2.contains(val) || d3.contains(val) || d4.contains(val) || d5.contains(val)) return false;
-    return true;
+    String val = DateFormat('dd/MM/yy').format(date);
+    if (d1.contains(val) || d2.contains(val) || d3.contains(val) || d4.contains(val) || d5.contains(val)) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   int getDayOrder(DateTime date) {
-    String val = DateFormat('dd/MM').format(date);
+    String val = DateFormat('dd/MM/yy').format(date);
     if (d1.contains(val)) {return 1;} 
     else if (d2.contains(val)) {return 2;} 
     else if (d3.contains(val)) {return 3;} 

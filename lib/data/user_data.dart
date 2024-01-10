@@ -1,13 +1,13 @@
-import 'package:infinity_project/data/day_order/date_of_day_order.dart';
 import 'package:infinity_project/data/timetable/subjects.dart';
-import 'package:infinity_project/data/timetable/timetable_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserData {
 
   static late SharedPreferences _preferences;
 
-  Future get init async => _preferences = await SharedPreferences.getInstance();
+  Future get init async {
+    _preferences = await SharedPreferences.getInstance();
+  }
 
   Future<void> setData(String key, String data) async => await _preferences.setString(key, data);
   getData(String key) => _preferences.getString(key);
@@ -20,7 +20,7 @@ class UserData {
   int getDataVersion() => _preferences.getInt('data_version') ?? 0;
 
   void refreshData() {
-    TimeTableData().currentCourse = getData('course') ?? 'MH-Core';
+    // TimeTableData().currentCourse = getData('course') ?? 'MH-Core';
     Subject().currentBatch = getData('batch') ?? 'Batch 1';
   }
   // void refreshDayOrders() {

@@ -12,7 +12,8 @@ Widget changeDate(VoidCallback fn, String tip, IconData icon, DateTime date) {
     );
   }
   return IconButton(
-    onPressed: DataManager.dateOutOfBounds(date, tip) ? dateError : fn,
+    // onPressed: DataManager.dateOutOfBounds(date, tip) ? dateError : fn,
+    onPressed: fn,
     icon: Icon(
       icon,
       size: 30.0
