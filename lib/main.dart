@@ -5,13 +5,13 @@ import 'package:infinity_project/firebase/firebase_data.dart';
 import 'package:infinity_project/home/onboarding_screens/onboarding_screen.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
 import 'firebase/firebase_options.dart';
-import 'package:infinity_project/data/user_preferences.dart';
+import 'package:infinity_project/data/user_data.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseData.analyticsInit();
-  await UserPreferences.init();
+  await UserData().init;
   runApp(const InfinityProject());
 }
 
@@ -20,8 +20,8 @@ class InfinityProject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: AppMetaData.name,
-      home: UserPreferences.showHome ? const TimeTable() : const OnboardingPage(),
+      title: AppMetaData().name,
+      home: UserData().showHome ? const TimeTable() : const OnboardingPage(),
       themeMode: ThemeMode.system,
       theme: ThemeData(
         useMaterial3: true,

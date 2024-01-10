@@ -1,9 +1,17 @@
-import 'package:infinity_project/data/user_preferences.dart';
+import 'package:infinity_project/data/user_data.dart';
 
 
 class DayOrderDate {
 
-  static List<String> defaultDayOrder_1 = [
+  final UserData _userData = UserData();
+
+  List<String> dayOrder_1() => _userData.getList('day_order_1') ?? defaultDayOrder_1;
+  List<String> dayOrder_2() => _userData.getList('day_order_2') ?? defaultDayOrder_2;
+  List<String> dayOrder_3() => _userData.getList('day_order_3') ?? defaultDayOrder_3;
+  List<String> dayOrder_4() => _userData.getList('day_order_4') ?? defaultDayOrder_4;
+  List<String> dayOrder_5() => _userData.getList('day_order_5') ?? defaultDayOrder_5;
+
+  final List<String> defaultDayOrder_1 = [
     '06/07',
     '13/07',
     '20/07',
@@ -31,7 +39,7 @@ class DayOrderDate {
     '29/12',
   ];
 
-  static List<String> defaultDayOrder_2 = [
+  final List<String> defaultDayOrder_2 = [
     '07/07',
     '14/07',
     '21/07',
@@ -60,7 +68,7 @@ class DayOrderDate {
   ];
 
 
-  static List<String> defaultDayOrder_3 = [
+  final List<String> defaultDayOrder_3 = [
     '10/07',
     '17/07',
     '24/07',
@@ -88,7 +96,7 @@ class DayOrderDate {
 
   ];
 
-  static List<String> defaultDayOrder_4 = [
+  final List<String> defaultDayOrder_4 = [
     '04/07',
     '11/07',
     '18/07',
@@ -115,7 +123,7 @@ class DayOrderDate {
     '27/12',
   ];
 
-  static List<String> defaultDayOrder_5 = [
+  final List<String> defaultDayOrder_5 = [
     '05/07',
     '12/07',
     '19/07',
@@ -141,11 +149,5 @@ class DayOrderDate {
     '20/12',
     '28/12',
   ];
-
-  static List dayOrder_1 = UserPreferences.getList('day_order_1') ?? defaultDayOrder_1;
-  static List dayOrder_2 = UserPreferences.getList('day_order_2') ?? defaultDayOrder_2;
-  static List dayOrder_3 = UserPreferences.getList('day_order_3') ?? defaultDayOrder_3;
-  static List dayOrder_4 = UserPreferences.getList('day_order_4') ?? defaultDayOrder_4;
-  static List dayOrder_5 = UserPreferences.getList('day_order_5') ?? defaultDayOrder_5;
-
+  
 }

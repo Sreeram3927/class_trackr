@@ -1,13 +1,15 @@
-import 'package:infinity_project/data/user_preferences.dart';
+import 'package:infinity_project/data/user_data.dart';
 
 class AppMetaData {
 
-  static String name = 'Class Trackr';
+  final UserData _userData = UserData();
 
-  static String version = '0.9.21';
+  String name = 'Class Trackr';
 
-  static String storedVersion = UserPreferences.getData('version') ?? version;
+  String version = '0.9.21';
 
-  static int dataVersionFront = UserPreferences.getVersion('data_version') ?? 0;
+  String storedVersion() => _userData.getData('version') ?? version;
+
+  int dataVersionFront() => _userData.getDataVersion();
 
 }
