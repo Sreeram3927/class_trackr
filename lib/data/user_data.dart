@@ -1,4 +1,6 @@
 import 'package:infinity_project/data/timetable/subjects.dart';
+import 'package:infinity_project/models/course.dart';
+import 'package:infinity_project/models/timetable_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserData {
@@ -35,5 +37,19 @@ class UserData {
   // bool showHome = false;
   void setShowHome(bool value) => _preferences.setBool('showHome', value);
   // void updateShowHome() => _preferences.getBool('showHome') ?? false;
+
+  TimetableData get data {
+    return TimetableData(
+      batch: 1,
+      a: const Course(name: 'a'),
+      b: const Course(name: 'b'),
+      c: const Course(name: 'c'),
+      d: const Course(name: 'd'),
+      e: const Course(name: 'e'),
+      f: const Course(name: 'f'),
+      g: const Course(name: 'g'),
+
+    );
+  }
 
 }

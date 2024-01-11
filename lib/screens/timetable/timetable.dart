@@ -3,6 +3,7 @@ import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/data/user_data.dart';
 import 'package:infinity_project/home/app_drawer.dart';
 import 'package:infinity_project/home/information.dart';
+import 'package:infinity_project/models/timetable_data.dart';
 import 'package:infinity_project/screens/timetable/other_widgets.dart';
 
 class TimeTable extends StatefulWidget {
@@ -15,7 +16,7 @@ class TimeTable extends StatefulWidget {
 class _TimeTableState extends State<TimeTable> {
   DateTime _currentDate = DateTime.now();
   int? _currentDayOrder;
-  List _currentData = [];
+  late TimetableData _currentData;
   bool _isHoliday = true;
 
   final DataManager _manager = DataManager();
@@ -26,6 +27,7 @@ class _TimeTableState extends State<TimeTable> {
     if (!_isHoliday) {
       _currentDayOrder = _manager.getDayOrder(_currentDate);
       // _currentData = _manager.getCurrentData(_currentDayOrder);
+      _currentData = _userData.data;
     }
   }
 
@@ -150,7 +152,7 @@ class _TimeTableState extends State<TimeTable> {
           Expanded(
             child: _isHoliday
               ? holiday()
-              : displayData(_currentData),
+              : displayData(_currentData, _currentDayOrder!),
           ),
     
         ],

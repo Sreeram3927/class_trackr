@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:infinity_project/data/data_manager.dart';
+import 'package:infinity_project/models/timetable_data.dart';
 import 'package:infinity_project/screens/timetable/subject_card/subject_card.dart';
 
 Widget changeDate(VoidCallback fn, String tip, IconData icon, DateTime date) {
@@ -12,8 +13,7 @@ Widget changeDate(VoidCallback fn, String tip, IconData icon, DateTime date) {
     );
   }
   return IconButton(
-    // onPressed: DataManager.dateOutOfBounds(date, tip) ? dateError : fn,
-    onPressed: fn,
+    onPressed: DataManager().dateOutOfBounds(date, tip) ? dateError : fn,
     icon: Icon(
       icon,
       size: 30.0
@@ -63,25 +63,22 @@ Your feedback is valuable in ensuring the accuracy of our timetable app.
   );
 }
 
-Widget displayData(List data) {
-  return RawScrollbar(
-    thumbVisibility: true,
-    thumbColor: const Color(0xFF38302E),
-    thickness: 7.5,
-    radius: const Radius.circular(10.0),
-    child: ListView.builder(
-      itemCount: data.length,
-      itemBuilder: (context, index) {
-        bool lab = data[index][3].contains('P');
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
-          child: SubjectCard(
-            title: data[index][2] + (lab ? ' (Lab)' : ''),
-            subjectCode: data[index][1],
-            time: data[index][0],
-          ),
-        );
-      },
-    ),
+Widget displayData(TimetableData timetableData, int dayOrder) {
+
+  final data = timetableData.data[dayOrder];
+
+  return ListView.builder(
+    itemCount: data!.length,
+    itemBuilder: (context, index) {
+      final course = data[index];
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.5),
+        child: SubjectCard(
+          title: course.name,
+          subjectCode: course.code,
+          time: course.timing,
+        ),
+      );
+    },
   );
 }
