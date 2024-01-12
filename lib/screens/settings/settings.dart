@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:infinity_project/screens/settings/settings_functions.dart';
 import 'package:infinity_project/data/user_data.dart';
 
 class Settings extends StatefulWidget {
@@ -10,16 +9,11 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+
+  final UserData _userData = UserData();
+
   @override
   Widget build(BuildContext context) {
-
-    final UserData _userData = UserData();
-
-    void setData() {
-      Navigator.pop(context);
-      // setState(() => UserPreferences.refreshData());
-    }
-
     return Scaffold(
 
       appBar: AppBar(
@@ -39,9 +33,9 @@ class _SettingsState extends State<Settings> {
         children: [
     
           ListTile(
-            title: Text(
+            title: const Text(
               'Change Timetable',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 17.0,
                 fontWeight: FontWeight.w400,
               ),
@@ -54,48 +48,68 @@ class _SettingsState extends State<Settings> {
               ),
             ),
             onTap: () {
-
+              showDialog(
+                context: context,
+                builder: (context) => changeTimetable()
+              );
             }
           ),
-    
-      //     changeSettingsTile(
-      //       name: 'Change Lab Batch',
-      //       valueKey: 'batch',
-      //       data: Subject.batches,
-      //       currentValue: Subject.currentBatch,
-      //       refresh: setData
-      //     )
-    
+          
         ],
       ),
     );
-
   }
 
-  Widget changeSettingsTile({
-    required String name,
-    required String valueKey,
-    required String currentValue,
-    required VoidCallback refresh
-  }) {
-    return ListTile(
-      title: Text(
-        name,
-        style: const TextStyle(
-          fontSize: 17.0,
-          fontWeight: FontWeight.w400,
-        ),
-      ),
-      subtitle: Text(
-        currentValue,
-        style: const TextStyle(
-          fontSize: 14.5,
-          fontWeight: FontWeight.w300
-        ),
-      ),
-      onTap: () {
+  Widget changeTimetable() {
 
-      }
+    final data = _userData.timetables;
+    final currentValue = _userData.getCurTimetable;
+
+    void setValue(int value) {
+      setState(() {
+        _userData.setCurTimetable = value;
+      });
+      Navigator.pop(context);
+    }
+
+    return AlertDialog(
+      title: const Text(
+        'Change Timetable',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 21.0,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      content: Wrap(
+        direction: Axis.vertical,
+        children: List.generate(data.length, (index) {
+
+          final bool hasData = data[index]!.name != null;
+
+          return Row(
+            children: [
+              Radio(
+                value: index,
+                groupValue: currentValue,
+                onChanged: (value) {
+                  if (hasData) {
+                    setValue(value!.toInt());
+                  }
+                },
+              ),
+              GestureDetector(
+                child: Text(data[index]?.name ?? 'Unavailable'),
+                onTap: () {
+                  if (hasData) {
+                    setValue(index);
+                  }
+                },
+              )
+            ],
+          );
+        }),
+      ),
     );
   }
 }

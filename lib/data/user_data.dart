@@ -22,8 +22,7 @@ class UserData {
   int getDataVersion() => _preferences.getInt('data_version') ?? 0;
 
   void refreshData() {
-    // TimeTableData().currentCourse = getData('course') ?? 'MH-Core';
-    // Subject().currentBatch = getData('batch') ?? 'Batch 1';
+    
   }
   // void refreshDayOrders() {
   //   _dayOrderDate.dayOrder_1 = getList('day_order_1') ?? _dayOrderDate.defaultDayOrder_1;
@@ -40,12 +39,17 @@ class UserData {
 
 
   TimetablePreset getTimetable() {
-    return timetables[curtimetable]!;
+    return timetables[_curTimetable]!;
   }
 
-  static int curtimetable = 0;
+  int _curTimetable = _preferences.getInt('curtimetable') ?? 0;
+  int get getCurTimetable => _curTimetable;
+  set setCurTimetable(int value) {
+    _curTimetable = value;
+    _preferences.setInt('curtimetable', value);
+  }
 
-  static Map<int, TimetablePreset> timetables = {
+  Map<int, TimetablePreset> get timetables => {
     0: timetable1,
     1: timetable2,
     2: timetable3,
@@ -53,7 +57,7 @@ class UserData {
     4: timetable5,
   };
 
-  static TimetablePreset timetable1 = TimetablePreset(
+  TimetablePreset timetable1 = TimetablePreset(
     name: 'MH - Core',
     data: TimetableData(
       batch: 1,
@@ -67,7 +71,7 @@ class UserData {
     ),
   );
 
-  static TimetablePreset timetable2 = TimetablePreset(
+  TimetablePreset timetable2 = TimetablePreset(
     name: 'MH - Robo',
     data: TimetableData(
       batch: 2,
@@ -81,15 +85,15 @@ class UserData {
     ),
   );
 
-  static TimetablePreset timetable3 = TimetablePreset(
+  TimetablePreset timetable3 = TimetablePreset(
     name: null,
     data: null,
   );
-  static TimetablePreset timetable4 = TimetablePreset(
+  TimetablePreset timetable4 = TimetablePreset(
     name: null,
     data: null,
   );
-  static TimetablePreset timetable5 = TimetablePreset(
+  TimetablePreset timetable5 = TimetablePreset(
     name: null,
     data: null,
   );

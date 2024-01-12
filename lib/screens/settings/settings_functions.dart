@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:infinity_project/data/timetable/subjects.dart';
-import 'package:infinity_project/data/timetable/timetable_data.dart';
 
 // Widget alertCard(BuildContext context, String data) {
 //   return AlertDialog(
@@ -47,9 +45,9 @@ Widget selectCourse({
               groupValue: currentValue,
               onChanged: (value) {  
                 if (valueKey == 'course') {
-                  TimeTableData.updateCurrentCourse(data[value!.toInt()]);
+                  // TimeTableData.updateCurrentCourse(data[value!.toInt()]);
                 } else {
-                  Subject.updateCurrentBatch(data[value!.toInt()]);
+                  // Subject.updateCurrentBatch(data[value!.toInt()]);
                 }
                 // UserPreferences.setData(valueKey, data[value!.toInt()]);
                 refresh();
@@ -59,9 +57,9 @@ Widget selectCourse({
               child: Text(data[index]),
               onTap: () {
                 if (valueKey == 'course') {
-                  TimeTableData.updateCurrentCourse(data[index]);
+                  // TimeTableData.updateCurrentCourse(data[index]);
                 } else {
-                  Subject.updateCurrentBatch(data[index]);
+                  // Subject.updateCurrentBatch(data[index]);
                 }
                 // UserPreferences.setData(valueKey, data[index]);
                 refresh();
