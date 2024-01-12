@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:infinity_project/data/timetable/subjects.dart';
-import 'package:infinity_project/data/timetable/timetable_data.dart';
 import 'package:infinity_project/screens/settings/settings_functions.dart';
-import 'package:infinity_project/data/user_preferences.dart';
+import 'package:infinity_project/data/user_data.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -15,9 +13,11 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
 
+    final UserData _userData = UserData();
+
     void setData() {
       Navigator.pop(context);
-      setState(() => UserPreferences.refreshData());
+      // setState(() => UserPreferences.refreshData());
     }
 
     return Scaffold(
@@ -38,21 +38,33 @@ class _SettingsState extends State<Settings> {
       body: ListView(
         children: [
     
-          changeSettingsTile(
-            name: 'Change Course',
-            valueKey: 'course',
-            data: TimeTableData.courses,
-            currentValue: TimeTableData.currentCourse,
-            refresh: setData
+          ListTile(
+            title: Text(
+              'Change Timetable',
+              style: const TextStyle(
+                fontSize: 17.0,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            subtitle: Text(
+              _userData.getTimetable().name!,
+              style: const TextStyle(
+                fontSize: 14.5,
+                fontWeight: FontWeight.w300
+              ),
+            ),
+            onTap: () {
+
+            }
           ),
     
-          changeSettingsTile(
-            name: 'Change Lab Batch',
-            valueKey: 'batch',
-            data: Subject.batches,
-            currentValue: Subject.currentBatch,
-            refresh: setData
-          )
+      //     changeSettingsTile(
+      //       name: 'Change Lab Batch',
+      //       valueKey: 'batch',
+      //       data: Subject.batches,
+      //       currentValue: Subject.currentBatch,
+      //       refresh: setData
+      //     )
     
         ],
       ),
@@ -63,7 +75,6 @@ class _SettingsState extends State<Settings> {
   Widget changeSettingsTile({
     required String name,
     required String valueKey,
-    required List data,
     required String currentValue,
     required VoidCallback refresh
   }) {
@@ -83,16 +94,7 @@ class _SettingsState extends State<Settings> {
         ),
       ),
       onTap: () {
-        showDialog(
-          context: context,
-          builder: (context) => selectCourse(
-            name: name,
-            valueKey: valueKey,
-            data: data, 
-            currentValue: data.indexOf(currentValue),
-            refresh: refresh
-          )
-        );
+
       }
     );
   }

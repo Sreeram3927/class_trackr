@@ -1,6 +1,6 @@
-import 'package:infinity_project/data/timetable/subjects.dart';
 import 'package:infinity_project/models/course.dart';
 import 'package:infinity_project/models/timetable_data.dart';
+import 'package:infinity_project/models/timetable_preset.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserData {
@@ -23,7 +23,7 @@ class UserData {
 
   void refreshData() {
     // TimeTableData().currentCourse = getData('course') ?? 'MH-Core';
-    Subject().currentBatch = getData('batch') ?? 'Batch 1';
+    // Subject().currentBatch = getData('batch') ?? 'Batch 1';
   }
   // void refreshDayOrders() {
   //   _dayOrderDate.dayOrder_1 = getList('day_order_1') ?? _dayOrderDate.defaultDayOrder_1;
@@ -38,8 +38,24 @@ class UserData {
   void setShowHome(bool value) => _preferences.setBool('showHome', value);
   // void updateShowHome() => _preferences.getBool('showHome') ?? false;
 
-  TimetableData get data {
-    return TimetableData(
+
+  TimetablePreset getTimetable() {
+    return timetables[curtimetable]!;
+  }
+
+  static int curtimetable = 0;
+
+  static Map<int, TimetablePreset> timetables = {
+    0: timetable1,
+    1: timetable2,
+    2: timetable3,
+    3: timetable4,
+    4: timetable5,
+  };
+
+  static TimetablePreset timetable1 = TimetablePreset(
+    name: 'MH - Core',
+    data: TimetableData(
       batch: 1,
       a: const Course(name: 'a'),
       b: const Course(name: 'b'),
@@ -48,8 +64,34 @@ class UserData {
       e: const Course(name: 'e'),
       f: const Course(name: 'f'),
       g: const Course(name: 'g'),
+    ),
+  );
 
-    );
-  }
+  static TimetablePreset timetable2 = TimetablePreset(
+    name: 'MH - Robo',
+    data: TimetableData(
+      batch: 2,
+      a: const Course(name: 'a'),
+      b: const Course(name: 'b'),
+      c: const Course(name: 'c'),
+      d: const Course(name: 'd'),
+      e: const Course(name: 'e'),
+      f: const Course(name: 'f'),
+      g: const Course(name: 'g'),
+    ),
+  );
+
+  static TimetablePreset timetable3 = TimetablePreset(
+    name: null,
+    data: null,
+  );
+  static TimetablePreset timetable4 = TimetablePreset(
+    name: null,
+    data: null,
+  );
+  static TimetablePreset timetable5 = TimetablePreset(
+    name: null,
+    data: null,
+  );
 
 }
