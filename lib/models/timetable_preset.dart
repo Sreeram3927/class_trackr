@@ -1,4 +1,3 @@
-
 import 'package:infinity_project/models/timetable_data.dart';
 
 class TimetablePreset {

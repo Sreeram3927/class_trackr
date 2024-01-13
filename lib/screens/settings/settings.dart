@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/user_data.dart';
+import 'package:infinity_project/screens/settings/edit_timetable.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -54,7 +55,7 @@ class _SettingsState extends State<Settings> {
               );
             }
           ),
-          
+
         ],
       ),
     );
@@ -81,13 +82,14 @@ class _SettingsState extends State<Settings> {
           fontWeight: FontWeight.w600,
         ),
       ),
-      content: Wrap(
-        direction: Axis.vertical,
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
         children: List.generate(data.length, (index) {
 
           final bool hasData = data[index]!.name != null;
 
           return Row(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Radio(
                 value: index,
@@ -99,13 +101,31 @@ class _SettingsState extends State<Settings> {
                 },
               ),
               GestureDetector(
-                child: Text(data[index]?.name ?? 'Unavailable'),
+                child: Text(
+                  data[index]?.name ?? 'Unavailable',
+                  style: TextStyle(
+                    color: hasData ? Colors.black : Colors.grey,
+                  ),
+                ),
                 onTap: () {
                   if (hasData) {
                     setValue(index);
                   }
                 },
-              )
+              ),
+              // IconButton.filledTonal(
+              //   onPressed: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) => EditTimetablePage(
+              //           timetable: data[index]!,
+              //         )
+              //       )
+              //     );
+              //   },
+              //   icon: const Icon(Icons.edit, size: 17.0,),
+              // )
             ],
           );
         }),
