@@ -6,9 +6,7 @@ class AppMetaData {
 
   String name = 'Class Trackr';
 
-  String version = '0.9.21';
-
-  String storedVersion() => _userData.getData('version') ?? version;
+  String get version => '0.9.21';
 
   int dataVersionFront() => _userData.getDataVersion();
 

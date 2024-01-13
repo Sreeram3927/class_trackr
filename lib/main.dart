@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:infinity_project/data/meta_data.dart';
 import 'package:infinity_project/firebase/firebase_data.dart';
-import 'package:infinity_project/home/onboarding_screens/onboarding_screen.dart';
+import 'package:infinity_project/screens/home/onboarding_screens/onboarding_screen.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
 import 'firebase/firebase_options.dart';
 import 'package:infinity_project/data/user_data.dart';
