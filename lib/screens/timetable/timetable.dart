@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/data/user_data.dart';
-import 'package:infinity_project/screens/home/app_drawer.dart';
 import 'package:infinity_project/screens/home/information.dart';
 import 'package:infinity_project/models/timetable_data.dart';
 import 'package:infinity_project/screens/timetable/other_widgets.dart';
@@ -126,8 +125,6 @@ class _TimeTableState extends State<TimeTable> {
           ),
         ],
       ),
-
-      drawer: const AppDrawer(),
 
       body: Column(
         children: [
