@@ -1,6 +1,5 @@
 import 'package:infinity_project/models/course.dart';
 import 'package:infinity_project/models/timetable_data.dart';
-import 'package:infinity_project/models/timetable_preset.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserData {
@@ -30,7 +29,7 @@ class UserData {
   void setShowHome(bool value) => _preferences.setBool('showHome', value);
 
 
-  TimetablePreset getTimetable() {
+  TimetableData getTimetable() {
     return timetables[getCurTimetable]!;
   }
 
@@ -40,7 +39,7 @@ class UserData {
     _preferences.setInt('curTimetable', value);
   }
 
-  Map<int, TimetablePreset> get timetables => {
+  Map<int, TimetableData> get timetables => {
     0: timetable1,
     1: timetable2,
     2: timetable3,
@@ -48,45 +47,41 @@ class UserData {
     4: timetable5,
   };
 
-  TimetablePreset timetable1 = TimetablePreset(
+  TimetableData timetable1 = TimetableData(
     name: 'MH - Core',
-    data: TimetableData(
-      batch: 1,
-      a: const Course(name: 'a'),
-      b: const Course(name: 'b'),
-      c: const Course(name: 'c'),
-      d: const Course(name: 'd'),
-      e: const Course(name: 'e'),
-      f: const Course(name: 'f'),
-      g: const Course(name: 'g'),
-    ),
+    batch: 1,
+    a: const Course(name: 'a'),
+    b: const Course(name: 'b'),
+    c: const Course(name: 'c'),
+    d: const Course(name: 'd'),
+    e: const Course(name: 'e'),
+    f: const Course(name: 'f'),
+    g: const Course(name: 'g'),
   );
 
-  TimetablePreset timetable2 = TimetablePreset(
+  TimetableData timetable2 = TimetableData(
     name: 'MH - Robo',
-    data: TimetableData(
-      batch: 2,
-      a: const Course(name: 'a'),
-      b: const Course(name: 'b'),
-      c: const Course(name: 'c'),
-      d: const Course(name: 'd'),
-      e: const Course(name: 'e'),
-      f: const Course(name: 'f'),
-      g: const Course(name: 'g'),
-    ),
+    batch: 2,
+    a: const Course(name: 'a'),
+    b: const Course(name: 'b'),
+    c: const Course(name: 'c'),
+    d: const Course(name: 'd'),
+    e: const Course(name: 'e'),
+    f: const Course(name: 'f'),
+    g: const Course(name: 'g'),
   );
 
-  TimetablePreset timetable3 = TimetablePreset(
-    name: null,
-    data: null,
+  TimetableData timetable3 = TimetableData(
+    name: '',
+    batch: 1,
   );
-  TimetablePreset timetable4 = TimetablePreset(
-    name: null,
-    data: null,
+  TimetableData timetable4 = TimetableData(
+    name: '',
+    batch: 1,
   );
-  TimetablePreset timetable5 = TimetablePreset(
-    name: null,
-    data: null,
+  TimetableData timetable5 = TimetableData(
+    name: '',
+    batch: 1,
   );
 
 }

@@ -26,7 +26,7 @@ class _TimeTableState extends State<TimeTable> {
     if (!_isHoliday) {
       _currentDayOrder = _manager.getDayOrder(_currentDate);
       // _currentData = _manager.getCurrentData(_currentDayOrder);
-      _currentData = _userData.getTimetable().data!;
+      _currentData = _userData.getTimetable();
     }
   }
 

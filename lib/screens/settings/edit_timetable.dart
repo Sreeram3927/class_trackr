@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/models/timetable_data.dart';
-import 'package:infinity_project/models/timetable_preset.dart';
 
 class EditTimetablePage extends StatefulWidget {
-  final TimetablePreset timetable;
+  final TimetableData timetable;
   const EditTimetablePage({
     super.key,
     required this.timetable
@@ -21,7 +20,7 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
   @override
   void initState() {
     super.initState();
-    _timetableData = widget.timetable.data;
+    _timetableData = widget.timetable;
     _timetableName = widget.timetable.name;
   }
 

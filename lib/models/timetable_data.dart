@@ -2,6 +2,7 @@ import 'package:infinity_project/models/course.dart';
 
 class TimetableData {
 
+  final String name;
   final int batch;
   
   Course? a;
@@ -26,6 +27,7 @@ class TimetableData {
   late Map<int, List<Course>> data;
 
   TimetableData({
+    required this.name,
     required this.batch,
     this.a,
     this.b,

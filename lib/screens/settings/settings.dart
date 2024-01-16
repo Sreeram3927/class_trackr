@@ -215,19 +215,19 @@ class _SettingsState extends State<Settings> {
                   }
                 },
               ),
-              // IconButton.filledTonal(
-              //   onPressed: () {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) => EditTimetablePage(
-              //           timetable: data[index]!,
-              //         )
-              //       )
-              //     );
-              //   },
-              //   icon: const Icon(Icons.edit, size: 17.0,),
-              // )
+              IconButton.filledTonal(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditTimetablePage(
+                        timetable: data[index]!,
+                      )
+                    )
+                  );
+                },
+                icon: const Icon(Icons.edit, size: 17.0,),
+              )
             ],
           );
         }),
