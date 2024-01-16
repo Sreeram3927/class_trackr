@@ -1,11 +1,11 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 
 
-class FirebaseData {
+class Analytics {
 
-  static final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
-  static void analyticsInit() {
+  get init {
     // analytics.setAnalyticsCollectionEnabled(false);
     analytics.setAnalyticsCollectionEnabled(true);
   }
