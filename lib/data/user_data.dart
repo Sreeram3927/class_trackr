@@ -30,7 +30,7 @@ class UserData {
 
 
   TimetableData getTimetable() {
-    return timetables[getCurTimetable]!;
+    return timetables[getCurTimetable];
   }
 
   // int getCurTimetable = _preferences.getInt('curtimetable') ?? 0;
@@ -39,13 +39,13 @@ class UserData {
     _preferences.setInt('curTimetable', value);
   }
 
-  Map<int, TimetableData> get timetables => {
-    0: timetable1,
-    1: timetable2,
-    2: timetable3,
-    3: timetable4,
-    4: timetable5,
-  };
+  List<TimetableData> get timetables => [
+    timetable1,
+    timetable2,
+    timetable3,
+    timetable4,
+    timetable5,
+  ];
 
   TimetableData timetable1 = TimetableData(
     name: 'MH - Core',

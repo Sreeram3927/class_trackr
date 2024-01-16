@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinity_project/data/meta_data.dart';
 import 'package:infinity_project/data/user_data.dart';
+import 'package:infinity_project/models/timetable_data.dart';
 import 'package:infinity_project/screens/home/onboarding_screens/onboarding_pages.dart';
 import 'package:infinity_project/screens/settings/edit_timetable.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -42,7 +43,7 @@ class _SettingsState extends State<Settings> {
           _settingsTile(
             icon: Icons.edit_calendar_rounded,
             title: 'Change Timetable',
-            subtitle: _userData.timetables[_userData.getCurTimetable]?.name ?? 'Unavailable',
+            subtitle: _userData.timetables[_userData.getCurTimetable].name,
             onTap: () {
               showDialog(
                 context: context,
@@ -188,7 +189,8 @@ class _SettingsState extends State<Settings> {
         mainAxisSize: MainAxisSize.min,
         children: List.generate(data.length, (index) {
 
-          final bool hasData = data[index]!.name != null;
+          final TimetableData curData = data[index];
+          final bool hasData = curData.name.isNotEmpty;
 
           return Row(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -204,7 +206,7 @@ class _SettingsState extends State<Settings> {
               ),
               GestureDetector(
                 child: Text(
-                  data[index]?.name ?? 'Unavailable',
+                  hasData ? curData.name : 'Unavailable',
                   style: TextStyle(
                     color: hasData ? Colors.black : Colors.grey,
                   ),
@@ -215,19 +217,19 @@ class _SettingsState extends State<Settings> {
                   }
                 },
               ),
-              IconButton.filledTonal(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EditTimetablePage(
-                        timetable: data[index]!,
-                      )
-                    )
-                  );
-                },
-                icon: const Icon(Icons.edit, size: 17.0,),
-              )
+              // IconButton.filledTonal(
+              //   onPressed: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) => EditTimetablePage(
+              //           timetable: data[index],
+              //         )
+              //       )
+              //     );
+              //   },
+              //   icon: const Icon(Icons.edit, size: 17.0,),
+              // )
             ],
           );
         }),
