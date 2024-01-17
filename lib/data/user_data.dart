@@ -6,8 +6,18 @@ class UserData {
 
   static late SharedPreferences _preferences;
 
+  static late int _dataVersion;
+  int  get getDataVersion => _dataVersion;
+  set setDataVersion(int value) {
+    _dataVersion = value;
+    _preferences.setInt('data_version', value);
+  }
+
+  String get version => '0.9.21';
+
   Future<void> get init async {
     _preferences = await SharedPreferences.getInstance();
+    _dataVersion = _preferences.getInt('data_version') ?? 0;
   }
 
   Future<void> setData(String key, String data) async => await _preferences.setString(key, data);
@@ -16,9 +26,6 @@ class UserData {
   void setList(String key, List<String> data) => _preferences.setStringList(key, data);
   getList(String key) => _preferences.getStringList(key);
 
-  void setVersion(int value) => _preferences.setInt('version', value);
-  
-  int getDataVersion() => _preferences.getInt('data_version') ?? 0;
 
   void refreshData() {
     

@@ -9,5 +9,4 @@ class DatabaseService {
     return _initData.snapshots();
   }
   
-  
 }

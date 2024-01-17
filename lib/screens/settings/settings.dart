@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:infinity_project/data/meta_data.dart';
 import 'package:infinity_project/data/user_data.dart';
 import 'package:infinity_project/models/timetable_data.dart';
 import 'package:infinity_project/screens/home/onboarding_screens/onboarding_pages.dart';
@@ -95,7 +94,6 @@ class _SettingsState extends State<Settings> {
 
   Widget drawerHeader() {
     Color color = Theme.of(context).colorScheme.primary;
-    final AppMetaData appData = AppMetaData();
     return Container(
       height: 200,
       padding: const EdgeInsets.only(top: 20.0),
@@ -112,9 +110,9 @@ class _SettingsState extends State<Settings> {
             ),
           ),
 
-          Text(
-            appData.name,
-            style: const TextStyle(
+          const Text(
+            'Class Trackr',
+            style: TextStyle(
               letterSpacing: 2.0,
               fontSize: 20.0,
               fontWeight: FontWeight.w600
@@ -122,7 +120,7 @@ class _SettingsState extends State<Settings> {
           ),
 
           Text(
-            'Version ${appData.version} (dV ${appData.dataVersionFront()})',
+            'Version ${_userData.version} (dV ${_userData.getDataVersion})',
             style: const TextStyle(
               letterSpacing: 1.5,
               fontSize: 15.0,

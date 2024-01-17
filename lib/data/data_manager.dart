@@ -1,5 +1,4 @@
 import 'package:infinity_project/data/day_order.dart';
-import 'package:infinity_project/data/meta_data.dart';
 import 'package:infinity_project/data/user_data.dart';
 import 'package:intl/intl.dart';
 
