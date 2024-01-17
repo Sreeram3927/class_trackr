@@ -18,6 +18,8 @@ class UserData {
   Future<void> get init async {
     _preferences = await SharedPreferences.getInstance();
     _dataVersion = _preferences.getInt('data_version') ?? 0;
+    _preferences.remove('course');
+    _preferences.remove('batch');
   }
 
   Future<void> setData(String key, String data) async => await _preferences.setString(key, data);
@@ -26,13 +28,7 @@ class UserData {
   void setList(String key, List<String> data) => _preferences.setStringList(key, data);
   getList(String key) => _preferences.getStringList(key);
 
-
-  void refreshData() {
-    
-  }
-
   bool get showHome => _preferences.getBool('showHome') ?? false;
-  // bool showHome = false;
   void setShowHome(bool value) => _preferences.setBool('showHome', value);
 
 

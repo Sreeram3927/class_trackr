@@ -55,22 +55,6 @@ class DataManager {
     else {return 0;}
   }
 
-  // List getCurrentData(int dayOrder) {
-  //   List timetable = TimeTableData.timetable[TimeTableData.currentCourse][dayOrder];
-  //   List data = [];
-
-  //   for (int i = 0; i < timetable.length; i++) {
-  //     Subject.subData.forEach((courseCode, courseInfo) {
-  //       final List slots = Subject.getSlots(courseCode);
-  //       if (slots.contains(timetable[i][1])) {
-  //         data.add([TimeTableData.hour[timetable[i][0]], courseCode, courseInfo['name'], timetable[i][1]]);
-  //       }
-  //     });
-  //   }
-    
-  //   return data;
-  // }
-
   DateTime minDate = DateTime(2024, 01, 01);
   DateTime maxDate = DateTime(2024, 06, 30);
 
