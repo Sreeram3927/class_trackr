@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:infinity_project/data/data_manager.dart';
+import 'package:infinity_project/data/user_data.dart';
 import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
-
+import 'package:infinity_project/services/db.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,6 +14,30 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  final DataManager _manager = DataManager();
+  final UserData _userData = UserData();
+
+  final DatabaseService _db = DatabaseService();
+  Future<void> _initBackend() async {
+    try {
+      final backendData = await _db.getInitData();
+      if (backendData['data_version'] != _userData.getDataVersion) {
+        _manager.updateData(
+          dataVersion: backendData['data_version'],
+          dayOrders: backendData['day_orders'],
+        );
+      }
+    } catch (e) {
+      if(context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Failed to connect to the server."),
+          )
+        );
+      }
+    }
+  }
 
   late int _selectedIndex;
   final List<BottomNavigationBarItem> _bottomNavBarItems = const [
@@ -41,6 +67,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+    _initBackend();
     _selectedIndex = 0;
   }
 

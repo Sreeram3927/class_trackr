@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 class DataManager {
 
   final DayOrder _do = DayOrder();
+  final UserData _userData = UserData();
   
   late final List<String> d1;
   late final List<String> d2;
@@ -21,14 +22,19 @@ class DataManager {
   }
   
 
-  // Future<void> refreshFromBackend(DateTime date) async {
-  //   int dataVersionBack = await Backend.checkDataVersion();
-  //   if (dataVersionBack != AppMetaData.dataVersionFront) {
-  //     await Backend.updateDates();
-  //     UserPreferences.refreshDayOrders();
-  //     UserPreferences.setVersion('data_version', dataVersionBack);
-  //   }
-  // }
+  void updateData({
+    required int dataVersion,
+    required Map<int, List<String>> dayOrders,
+  }) {
+    _userData.setDataVersion = dataVersion;
+    _do.setAllDayOrders(
+      do1: dayOrders[1]!,
+      do2: dayOrders[2]!,
+      do3: dayOrders[3]!,
+      do4: dayOrders[4]!,
+      do5: dayOrders[5]!,
+    );
+  }
 
   bool isHoliday(DateTime date) {
     String val = DateFormat('dd/MM/yy').format(date);

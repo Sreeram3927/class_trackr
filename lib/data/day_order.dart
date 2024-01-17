@@ -11,6 +11,20 @@ class DayOrder {
   List<String> dayOrder_4() => _userData.getList('day_order_4') ?? defaultDayOrder_4;
   List<String> dayOrder_5() => _userData.getList('day_order_5') ?? defaultDayOrder_5;
 
+  void setAllDayOrders({
+    required List<String> do1,
+    required List<String> do2,
+    required List<String> do3,
+    required List<String> do4,
+    required List<String> do5,
+  }) {
+    _userData.setList('day_order_1', do1);
+    _userData.setList('day_order_2', do2);
+    _userData.setList('day_order_3', do3);
+    _userData.setList('day_order_4', do4);
+    _userData.setList('day_order_5', do5);
+  }
+
   final List<String> defaultDayOrder_1 = [
     '04/01/24',
     '11/01/24',

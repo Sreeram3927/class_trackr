@@ -25,7 +25,6 @@ class _TimeTableState extends State<TimeTable> {
     _isHoliday = _manager.isHoliday(_currentDate);
     if (!_isHoliday) {
       _currentDayOrder = _manager.getDayOrder(_currentDate);
-      // _currentData = _manager.getCurrentData(_currentDayOrder);
       _currentData = _userData.getTimetable();
     }
   }
@@ -67,25 +66,9 @@ class _TimeTableState extends State<TimeTable> {
     });
   }
 
-  Future<void> fetchDataFromBackend() async {
-    try {
-      // await _manager.refreshFromBackend(_currentDate);
-      setState(() {
-        _getData();
-      });
-    } catch (e) {
-      final snackBar = SnackBar(
-        content: Text("Failed to update[Network Issue]: $e"),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-    // UserPreferences.refreshData();
-    // fetchDataFromBackend();
     _getData();
   }
 
