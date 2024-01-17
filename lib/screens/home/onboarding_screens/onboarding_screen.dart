@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/user_data.dart';
+import 'package:infinity_project/models/timetable_data.dart';
+import 'package:infinity_project/screens/home/home.dart';
 import 'package:infinity_project/screens/home/onboarding_screens/onboarding_pages.dart';
-import 'package:infinity_project/screens/timetable/timetable.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -11,6 +12,8 @@ class OnboardingPage extends StatefulWidget {
 }
 
 class _OnboardingPageState extends State<OnboardingPage> {
+
+  final UserData _userData = UserData();
 
   final PageController pageController = PageController(initialPage: 0);
   int currentPage = 0;
@@ -26,9 +29,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
   void startApp() {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => const TimeTable()),
+      MaterialPageRoute(builder: (context) => const Home()),
     );
-    UserData().setShowHome(true);
+    _userData.setShowHome(true);
   }
 
   @override
@@ -49,6 +52,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
               nextScreen: nextScreen,
             ),
 
+            changeTimetable(),
+
             // DataSelectionPage(
             //   dataList: TimeTableData.courses,
             //   dataKey: 'course',
@@ -68,6 +73,83 @@ class _OnboardingPageState extends State<OnboardingPage> {
           ],
         ),
       )
+    );
+  }
+  Widget changeTimetable() {
+
+    final data = _userData.timetables;
+    final currentValue = _userData.getCurTimetable;
+    
+    void setValue(int value) {
+      setState(() {
+        _userData.setCurTimetable = value;
+      });
+    }
+
+    final List<Widget> children = List.generate(data.length, (index) {
+
+      final TimetableData curData = data[index];
+      final bool hasData = curData.name.isNotEmpty;
+
+      return Row(
+        children: [
+          Radio(
+            value: index,
+            groupValue: currentValue,
+            onChanged: (value) {
+              if (hasData) {
+                setValue(value!.toInt());
+              }
+            },
+          ),
+          GestureDetector(
+            child: Text(
+              hasData ? curData.name : 'Unavailable',
+              style: TextStyle(
+                color: hasData ? Colors.black : Colors.grey,
+              ),
+            ),
+            onTap: () {
+              if (hasData) {
+                setValue(index);
+              }
+            },
+          ),
+        ],
+      );
+    });
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+      
+          const Text(
+            'Change Timetable',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 21.0,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+
+          const SizedBox(height: 20.0,),
+      
+          ...children,
+
+          const SizedBox(height: 20.0,),
+
+          ElevatedButton(
+            onPressed: startApp,
+            style: ButtonStyle(
+              fixedSize: MaterialStateProperty.all(const Size(200.0, 50.0)),
+            ),
+            child: const Text('Done'),
+          ),
+      
+        ]
+      ),
     );
   }
 }

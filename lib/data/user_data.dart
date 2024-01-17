@@ -18,8 +18,12 @@ class UserData {
   Future<void> get init async {
     _preferences = await SharedPreferences.getInstance();
     _dataVersion = _preferences.getInt('data_version') ?? 0;
-    _preferences.remove('course');
-    _preferences.remove('batch');
+    if (_preferences.containsKey('course')) {
+      _preferences.setBool('showHome', false);
+      _preferences.remove('course');
+      _preferences.remove('batch');
+    }
+  print(_preferences.getKeys());
   }
 
   Future<void> setData(String key, String data) async => await _preferences.setString(key, data);
@@ -53,25 +57,25 @@ class UserData {
   TimetableData timetable1 = TimetableData(
     name: 'MH - Core',
     batch: 1,
-    a: const Course(name: 'a'),
-    b: const Course(name: 'b'),
-    c: const Course(name: 'c'),
-    d: const Course(name: 'd'),
-    e: const Course(name: 'e'),
-    f: const Course(name: 'f'),
-    g: const Course(name: 'g'),
+    a: const Course(name: 'Mechanics of Solids and Fluids'),
+    b: const Course(name: 'Microcontroller and Embedded Systems'),
+    c: const Course(name: 'Numerical Methods'),
+    d: const Course(name: 'Professional Elective'),
+    e: const Course(name: 'Project Management and Industrial Practices'),
+    f: const Course(name: 'Artificial Interligence'),
+    g: const Course(name: 'Design Thinking and Methodology'),
   );
 
   TimetableData timetable2 = TimetableData(
     name: 'MH - Robo',
     batch: 2,
-    a: const Course(name: 'a'),
-    b: const Course(name: 'b'),
-    c: const Course(name: 'c'),
-    d: const Course(name: 'd'),
-    e: const Course(name: 'e'),
-    f: const Course(name: 'f'),
-    g: const Course(name: 'g'),
+    a: const Course(name: 'Mechanics of Solids and Fluids'),
+    b: const Course(name: 'Microcontroller and Embedded Systems'),
+    c: const Course(name: 'Numerical Methods'),
+    d: const Course(name: 'Professional Elective'),
+    e: const Course(name: 'Project Management and Industrial Practices'),
+    f: const Course(name: 'Artificial Interligence'),
+    g: const Course(name: 'Design Thinking and Methodology'),
   );
 
   TimetableData timetable3 = TimetableData(
