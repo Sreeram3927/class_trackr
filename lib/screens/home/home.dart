@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:infinity_project/screens/settings/settings.dart';
