@@ -206,7 +206,7 @@ class _SettingsState extends State<Settings> {
                 child: Text(
                   hasData ? curData.name : 'Unavailable',
                   style: TextStyle(
-                    color: hasData ? Colors.black : Colors.grey,
+                    color: hasData ? Colors.grey[200] : Colors.grey,
                   ),
                 ),
                 onTap: () {

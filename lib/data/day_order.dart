@@ -5,11 +5,11 @@ class DayOrder {
 
   final UserData _userData = UserData();
 
-  List<String> dayOrder_1() => _userData.getList('day_order_1') ?? defaultDayOrder_1;
-  List<String> dayOrder_2() => _userData.getList('day_order_2') ?? defaultDayOrder_2;
-  List<String> dayOrder_3() => _userData.getList('day_order_3') ?? defaultDayOrder_3;
-  List<String> dayOrder_4() => _userData.getList('day_order_4') ?? defaultDayOrder_4;
-  List<String> dayOrder_5() => _userData.getList('day_order_5') ?? defaultDayOrder_5;
+  List<String> dayOrder_1() => defaultDayOrder_1;
+  List<String> dayOrder_2() => defaultDayOrder_2;
+  List<String> dayOrder_3() => defaultDayOrder_3;
+  List<String> dayOrder_4() => defaultDayOrder_4;
+  List<String> dayOrder_5() => defaultDayOrder_5;
 
   void setAllDayOrders({
     required List<String> do1,

@@ -23,7 +23,6 @@ class UserData {
       _preferences.remove('course');
       _preferences.remove('batch');
     }
-  print(_preferences.getKeys());
   }
 
   Future<void> setData(String key, String data) async => await _preferences.setString(key, data);

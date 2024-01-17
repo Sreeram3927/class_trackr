@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
       if (backendData['data_version'] != _userData.getDataVersion) {
         _manager.updateData(
           dataVersion: backendData['data_version'],
-          dayOrders: backendData['day_orders'],
+          dayOrders: backendData['day_orders'] as Map<String, List<String>>,
         );
       }
     } catch (e) {
@@ -99,6 +99,11 @@ class _HomeState extends State<Home> {
           currentIndex: _selectedIndex,
           onTap: _changePage,
         ),
+
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: _db.updateDayOrders,
+        //   child: const Icon(Icons.upgrade_rounded),
+        // )
       ),
     );
   }
