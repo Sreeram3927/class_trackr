@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:infinity_project/data/data_manager.dart';
+import 'package:infinity_project/models/course.dart';
 import 'package:infinity_project/models/timetable_data.dart';
 import 'package:infinity_project/screens/timetable/subject_card/subject_card.dart';
 
@@ -65,10 +66,10 @@ Your feedback is valuable in ensuring the accuracy of our timetable app.
 
 Widget displayData(TimetableData timetableData, int dayOrder) {
 
-  final data = timetableData.data[dayOrder];
+  final List<Course> data = timetableData.getTimetable(dayOrder);
 
   return ListView.builder(
-    itemCount: data!.length,
+    itemCount: data.length,
     itemBuilder: (context, index) {
       final course = data[index];
       return Padding(

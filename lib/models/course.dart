@@ -4,9 +4,9 @@ class Course {
   final String name;
   final String code;
   final String faculty;
-  final String timing;
+  String timing;
 
-  const Course({
+  Course({
     required this.name,
     this.code = '',
     this.faculty = '',

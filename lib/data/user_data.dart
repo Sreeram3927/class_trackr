@@ -56,38 +56,45 @@ class UserData {
   TimetableData timetable1 = TimetableData(
     name: 'MH - Core',
     batch: 1,
-    a: const Course(name: 'Mechanics of Solids and Fluids'),
-    b: const Course(name: 'Microcontroller and Embedded Systems'),
-    c: const Course(name: 'Numerical Methods'),
-    d: const Course(name: 'Professional Elective'),
-    e: const Course(name: 'Project Management and Industrial Practices'),
-    f: const Course(name: 'Artificial Interligence'),
-    g: const Course(name: 'Design Thinking and Methodology'),
+    data: {
+      'a': Course(name: 'Mechanics of Solids and Fluids'),
+      'b': Course(name: 'Microcontroller and Embedded Systems'),
+      'c': Course(name: 'Numerical Methods'),
+      'd': Course(name: 'Professional Elective'),
+      'e': Course(name: 'Project Management and Industrial Practices'),
+      'f': Course(name: 'Artificial Interligence'),
+      'g': Course(name: 'Design Thinking and Methodology'),
+    },
   );
 
   TimetableData timetable2 = TimetableData(
     name: 'MH - Robo',
     batch: 2,
-    a: const Course(name: 'Mechanics of Solids and Fluids'),
-    b: const Course(name: 'Microcontroller and Embedded Systems'),
-    c: const Course(name: 'Numerical Methods'),
-    d: const Course(name: 'Professional Elective'),
-    e: const Course(name: 'Project Management and Industrial Practices'),
-    f: const Course(name: 'Artificial Interligence'),
-    g: const Course(name: 'Design Thinking and Methodology'),
+    data: {
+      'a': Course(name: 'Mechanics of Solids and Fluids'),
+      'b': Course(name: 'Microcontroller and Embedded Systems'),
+      'c': Course(name: 'Numerical Methods'),
+      'd': Course(name: 'Professional Elective'),
+      'e': Course(name: 'Project Management and Industrial Practices'),
+      'f': Course(name: 'Artificial Interligence'),
+      'g': Course(name: 'Design Thinking and Methodology'),
+    },
   );
 
   TimetableData timetable3 = TimetableData(
     name: '',
     batch: 1,
+    data: {}
   );
   TimetableData timetable4 = TimetableData(
     name: '',
     batch: 1,
+    data: {},
   );
   TimetableData timetable5 = TimetableData(
     name: '',
     batch: 1,
+    data: {},
   );
 
 }
