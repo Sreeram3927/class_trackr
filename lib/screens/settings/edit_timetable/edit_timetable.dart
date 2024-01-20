@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infinity_project/models/course.dart';
 import 'package:infinity_project/models/timetable_data.dart';
 
 class EditTimetablePage extends StatefulWidget {
@@ -14,9 +15,12 @@ class EditTimetablePage extends StatefulWidget {
 
 class _EditTimetablePageState extends State<EditTimetablePage> {
 
-  late TimetableData? _timetableData;
+  late TimetableData _timetableData;
   late String? _timetableName;
   late int? _selectedBatch;
+
+  late List<String> _totSlots;
+  late List<String> _avaSlots;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -24,8 +28,10 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
   void initState() {
     super.initState();
     _timetableData = widget.timetable;
-    _timetableName = widget.timetable.name;
-    _selectedBatch = widget.timetable.batch;
+    _timetableName = _timetableData.name;
+    _selectedBatch = _timetableData.batch;
+    _totSlots = _timetableData.totalSlots;
+    _avaSlots = _timetableData.availableSlots;
   }
 
   @override
@@ -50,6 +56,24 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
             children: [
               _timetableNameEditor(),
               _batchEditor(),
+              Expanded(child: _slotsUsed()),
+              ElevatedButton.icon(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+                  }
+                },
+                icon: const Icon(Icons.save),
+                label: const Text('Save Changes'),
+                style: ButtonStyle(
+                  maximumSize: MaterialStateProperty.all<Size>(const Size(double.infinity, 50.0)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
@@ -84,7 +108,6 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
           'Select Batch:',
           style: TextStyle(fontSize: 16.0),
         ),
-        const SizedBox(height: 10.0),
         Row(
           children: [
             Radio<int>(
@@ -111,6 +134,48 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
           ],
         ),
       ],
+    );
+  }
+
+  Widget _slotsUsed() {
+
+    final List<String> usedSlots = _totSlots.where((slot) => !_avaSlots.contains(slot)).toList();
+    // final List<String> _unusedSlots = _totSlots.where((slot) => _avaSlots.contains(slot)).toList();
+
+    final Map<String, Course> data = _timetableData.data;
+
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.grey,
+          width: 1.0,
+        ),
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+      child: ListView.separated(
+        shrinkWrap: true,
+        itemCount: usedSlots.length,
+        itemBuilder: (context, index) {
+          final String slot = usedSlots[index];
+          final Course course = data[slot] ?? Course(name: '', code: '');
+          return ListTile(
+            leading: CircleAvatar(
+              child: Text(
+                slot.toUpperCase(),
+              ),
+            ),
+            title: Text(course.name),
+            subtitle: Text(course.code),
+            trailing: IconButton(
+              icon: const Icon(Icons.edit),
+              onPressed: () {},
+            ),
+          );
+        },
+        separatorBuilder: (context, index) {
+          return const Divider();
+        },
+      )
     );
   }
 }

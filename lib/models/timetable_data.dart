@@ -20,9 +20,8 @@ class TimetableData {
   }) {
 
     totalSlots = _slotsCommen + (batch == 1 ? _slotsBatch1 : _slotsBatch2);
-    availableSlots = totalSlots;
+    availableSlots = List.from(totalSlots);
     _checkData();
-
   }
 
   void _checkData() {

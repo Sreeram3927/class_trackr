@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinity_project/data/user_data.dart';
 import 'package:infinity_project/models/timetable_data.dart';
 import 'package:infinity_project/screens/home/onboarding_screens/onboarding_pages.dart';
-import 'package:infinity_project/screens/settings/edit_timetable.dart';
+import 'package:infinity_project/screens/settings/edit_timetable/edit_timetable.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Settings extends StatefulWidget {
@@ -191,7 +191,7 @@ class _SettingsState extends State<Settings> {
           final bool hasData = curData.name.isNotEmpty;
 
           return Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Radio(
                 value: index,
@@ -206,7 +206,7 @@ class _SettingsState extends State<Settings> {
                 child: Text(
                   hasData ? curData.name : 'Unavailable',
                   style: TextStyle(
-                    color: hasData ? Colors.grey[200] : Colors.grey,
+                    color: hasData ? null : Colors.grey,
                   ),
                 ),
                 onTap: () {
@@ -215,19 +215,19 @@ class _SettingsState extends State<Settings> {
                   }
                 },
               ),
-              // IconButton.filledTonal(
-              //   onPressed: () {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) => EditTimetablePage(
-              //           timetable: data[index],
-              //         )
-              //       )
-              //     );
-              //   },
-              //   icon: const Icon(Icons.edit, size: 17.0,),
-              // )
+              IconButton.filledTonal(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditTimetablePage(
+                        timetable: data[index],
+                      )
+                    )
+                  );
+                },
+                icon: const Icon(Icons.edit, size: 17.0,),
+              )
             ],
           );
         }),
