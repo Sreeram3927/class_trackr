@@ -25,14 +25,18 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
 
   final _formKey = GlobalKey<FormState>();
 
+  void _resetState() {
+    _timetableName = widget.timetable.name;
+    _selectedBatch = widget.timetable.batch;
+    _data = Map.of(widget.timetable.data);
+    _usdSlots = List.from(widget.timetable.usedSlots);
+    _avaSlots = List.from(widget.timetable.availableSlots);
+  }
+
   @override
   void initState() {
     super.initState();
-    _timetableName = widget.timetable.name;
-    _selectedBatch = widget.timetable.batch;
-    _data = widget.timetable.data;
-    _usdSlots = widget.timetable.usedSlots;
-    _avaSlots = widget.timetable.availableSlots;
+    _resetState();
   }
 
   @override
@@ -43,44 +47,75 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Edit Timetable'),
-        centerTitle: true,
-        elevation: 5.0,
-      ),
-      body: Form(
-        key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-          child: Column(
-            children: [
-              _timetableNameEditor(),
-              _batchEditor(),
-              const Divider(),
-              Expanded(child: _slotsUsed()),
-              ElevatedButton.icon(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    _formKey.currentState!.save();
-                  }
-                },
-                icon: const Icon(Icons.save),
-                label: const Text('Save Changes'),
-                style: ButtonStyle(
-                  maximumSize: MaterialStateProperty.all<Size>(const Size(double.infinity, 50.0)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) async {
+        if (!didPop) {
+          final bool? shdPop = await showDialog(context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('Discard Changes?'),
+              content: const Text('Are you sure you want to discard the changes?'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context, false);
+                  },
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context, true);
+                  },
+                  child: const Text('Discard'),
+                ),
+              ],
+            )
+          );
+          if (shdPop == true && context.mounted) {
+            _resetState();
+            Navigator.pop(context);
+          }
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Edit Timetable'),
+          centerTitle: true,
+          elevation: 5.0,
+        ),
+        body: Form(
+          key: _formKey,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            child: Column(
+              children: [
+                _timetableNameEditor(),
+                _batchEditor(),
+                const Divider(),
+                Expanded(child: _slotsUsed()),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                    }
+                  },
+                  icon: const Icon(Icons.save),
+                  label: const Text('Save Changes'),
+                  style: ButtonStyle(
+                    maximumSize: MaterialStateProperty.all<Size>(const Size(double.infinity, 50.0)),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
                     ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
+        floatingActionButton: _addSlot(),
       ),
-      floatingActionButton: _addSlot(),
     );
   }
 
@@ -245,7 +280,6 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
                 IconButton(
                   icon: const Icon(Icons.delete_forever_rounded, color: Colors.red,),
                   onPressed: () {
-                    print(slot);
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(

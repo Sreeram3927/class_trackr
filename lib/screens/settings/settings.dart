@@ -217,6 +217,7 @@ class _SettingsState extends State<Settings> {
               ),
               IconButton.filledTonal(
                 onPressed: () {
+                  Navigator.pop(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
