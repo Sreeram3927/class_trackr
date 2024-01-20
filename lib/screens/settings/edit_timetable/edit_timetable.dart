@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/models/course.dart';
 import 'package:infinity_project/models/timetable_data.dart';
+import 'package:infinity_project/screens/settings/edit_timetable/edit_info.dart';
 
 class EditTimetablePage extends StatefulWidget {
   final TimetableData timetable;
@@ -168,7 +169,22 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
             subtitle: Text(course.code),
             trailing: IconButton(
               icon: const Icon(Icons.edit),
-              onPressed: () {},
+              onPressed: () async {
+                final Course? result = await showDialog<Course?>(
+                  context: context,
+                  builder: (context) => EditInfo(
+                    slot: slot,
+                    course: course,
+                  ),
+                );
+                // if (result != null) {
+                //   setState(() {
+                //     data[slot] = result;
+                //   });
+                // }
+                print(result?.name);
+                print(result?.code);
+              },
             ),
           );
         },

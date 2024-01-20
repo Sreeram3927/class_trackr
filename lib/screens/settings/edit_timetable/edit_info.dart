@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/models/course.dart';
 
-class EditInfo extends StatelessWidget {
+class EditInfo extends StatefulWidget {
   final String slot;
   final Course course;
   const EditInfo({
@@ -11,7 +11,88 @@ class EditInfo extends StatelessWidget {
   });
 
   @override
+  State<EditInfo> createState() => _EditInfoState();
+}
+
+class _EditInfoState extends State<EditInfo> {
+  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+
+    final formKey = GlobalKey<FormState>();
+
+    String? courseName = widget.course.name;
+    String? courseCode = widget.course.code;
+
+    void save() {
+      formKey.currentState!.save();
+      if (formKey.currentState!.validate()) {
+        Navigator.pop(context, Course(name: courseName!, code: courseCode!));
+        // print(courseName);
+        // print(courseCode);
+      }
+    }
+
+    return AlertDialog.adaptive(
+      title: Text(
+        'Slot: ${widget.slot.toUpperCase()}',
+        style: const TextStyle(
+          fontSize: 20.0,
+          fontWeight: FontWeight.w600
+        ),
+        textAlign: TextAlign.center,
+      ),
+      content: Form(
+        key: formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextFormField(
+              initialValue: courseName,
+              decoration: const InputDecoration(
+                labelText: 'Course Name',
+                border: OutlineInputBorder()
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter a course name';
+                }
+                return null;
+              },
+              onSaved: (newValue) => courseName = newValue,
+            ),
+            const SizedBox(height: 10.0),
+            TextFormField(
+              initialValue: courseCode,
+              decoration: const InputDecoration(
+                labelText: 'Course Code',
+                border: OutlineInputBorder()
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter a course code';
+                }
+                return null;
+              },
+              onSaved: (newValue) => courseCode = newValue,
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            save();
+            // Navigator.pop(context);
+          },
+          child: const Text('Save'),
+        ),
+      ],
+    );
   }
 }
