@@ -216,24 +216,65 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
                 slot.toUpperCase(),
               ),
             ),
-            title: Text(course.name),
+            title: Text(
+              course.name,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
             subtitle: Text(course.code),
-            trailing: IconButton(
-              icon: const Icon(Icons.edit),
-              onPressed: () async {
-                final Course? result = await showDialog<Course?>(
-                  context: context,
-                  builder: (context) => EditInfo(
-                    slot: slot,
-                    course: course,
-                  ),
-                );
-                if (result != null) {
-                  setState(() {
-                    _data[slot] = result;
-                  });
-                }
-              },
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.edit_rounded),
+                  onPressed: () async {
+                    final Course? result = await showDialog<Course?>(
+                      context: context,
+                      builder: (context) => EditInfo(
+                        slot: slot,
+                        course: course,
+                      ),
+                    );
+                    if (result != null) {
+                      setState(() {
+                        _data[slot] = result;
+                      });
+                    }
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.delete_forever_rounded, color: Colors.red,),
+                  onPressed: () {
+                    print(slot);
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text('Delete Slot ${slot.toUpperCase()}'),
+                        content: const Text('Are you sure you want to delete this slot?'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                _usdSlots.remove(slot);
+                                _avaSlots.add(slot);
+                                _data.remove(slot);
+                              });
+                              Navigator.pop(context);
+                            },
+                            child: const Text('Delete', style: TextStyle(color: Colors.red),),
+                          ),
+                        ],
+                      )
+                    );
+                  },
+                ),
+              ],
             ),
           );
         },
