@@ -48,3 +48,4 @@ app.*.map.json
 
 # Other files
 /other_files
+lib/screens/home/versions_changes.txt
