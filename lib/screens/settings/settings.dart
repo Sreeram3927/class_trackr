@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinity_project/data/user_data.dart';
@@ -80,6 +81,31 @@ class _SettingsState extends State<Settings> {
               context: context, 
               builder: (context) => contactDeveloper()
             );
+          }
+        ),
+
+        if(kIsWeb) _settingsTile(
+          icon: Icons.file_download_rounded,
+          title: 'Download APK',
+          onTap: () async {
+            Uri link = Uri.parse('https://github.com/Sreeram3927/class_trackr/releases');
+            try {
+              await launchUrl(
+                link,
+                mode: LaunchMode.externalApplication,
+              );
+            } catch (e) {
+              if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'Could not launch link ',
+                      textAlign: TextAlign.center,
+                    ),
+                  )
+                );
+              }
+            }
           }
         ),
 

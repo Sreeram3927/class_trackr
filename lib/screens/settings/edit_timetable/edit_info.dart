@@ -55,6 +55,8 @@ class _EditInfoState extends State<EditInfo> {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter a course name';
+                } else if (value.length > 75) {
+                  return 'Course name is too long (Max 75 characters)';
                 }
                 return null;
               },
@@ -70,6 +72,8 @@ class _EditInfoState extends State<EditInfo> {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter a course code';
+                } else if (value.length > 10) {
+                  return 'Course code is too long (Max 10 characters)';
                 }
                 return null;
               },

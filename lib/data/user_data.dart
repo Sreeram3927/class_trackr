@@ -74,11 +74,36 @@ class UserData {
   static late TimetableData timetable4;
 
   void getTimetableDatas() {
-    timetable0 = _preferences.containsKey('timetable0') ? TimetableData.fromJson(jsonDecode(getData('timetable0')!)) : _mhCore;
-    timetable1 = _preferences.containsKey('timetable1') ? TimetableData.fromJson(jsonDecode(getData('timetable1')!)) : _mhRobo;
-    timetable2 = _preferences.containsKey('timetable2') ? TimetableData.fromJson(jsonDecode(getData('timetable2')!)) : _emptyTimetable;
-    timetable3 = _preferences.containsKey('timetable3') ? TimetableData.fromJson(jsonDecode(getData('timetable3')!)) : _emptyTimetable;
-    timetable4 = _preferences.containsKey('timetable4') ? TimetableData.fromJson(jsonDecode(getData('timetable4')!)) : _emptyTimetable;
+    if (_preferences.containsKey('timeTable0')) {
+      timetable0 = TimetableData.fromJson(jsonDecode(getData('timetable0')!));
+    } else {
+      timetable0 = _mhCore;
+      setData('timetable0', jsonEncode(_mhCore));
+    }
+    if (_preferences.containsKey('timeTable1')) {
+      timetable1 = TimetableData.fromJson(jsonDecode(getData('timetable1')!));
+    } else {
+      timetable1 = _mhRobo;
+      setData('timetable1', jsonEncode(_mhRobo));
+    }
+    if (_preferences.containsKey('timeTable2')) {
+      timetable2 = TimetableData.fromJson(jsonDecode(getData('timetable2')!));
+    } else {
+      timetable2 = _emptyTimetable;
+      setData('timetable2', jsonEncode(_emptyTimetable));
+    }
+    if (_preferences.containsKey('timeTable3')) {
+      timetable3 = TimetableData.fromJson(jsonDecode(getData('timetable3')!));
+    } else {
+      timetable3 = _emptyTimetable;
+      setData('timetable3', jsonEncode(_emptyTimetable));
+    }
+    if (_preferences.containsKey('timeTable4')) {
+      timetable4 = TimetableData.fromJson(jsonDecode(getData('timetable4')!));
+    } else {
+      timetable4 = _emptyTimetable;
+      setData('timetable4', jsonEncode(_emptyTimetable));
+    }
     _curTimetable = _preferences.getInt('curTimetable') ?? 0;
   }
 
@@ -130,7 +155,7 @@ class UserData {
       'b': Course(name: 'Microcontroller and Embedded Systems', code: '21MHC205T'),
       'c': Course(name: 'Numerical Methods', code: '21MAB202T'),
       'e': Course(name: 'Project Management and Industrial Practices', code: '21MHC209T'),
-      'f': Course(name: 'Artificial Interligence', code: '21CSC206T'),
+      'f': Course(name: 'Artificial Intelligence', code: '21CSC206T'),
       'g': Course(name: 'Design Thinking and Methodology', code: '21DCS201P'),
       'p29': Course(name: 'Microcontroller and Embedded Systems Lab', code: '21MHC207L'),
       'p30': Course(name: 'Microcontroller and Embedded Systems Lab', code: '21MHC207L'),
@@ -149,7 +174,7 @@ class UserData {
       'b': Course(name: 'Microcontroller and Embedded Systems', code: '21MHC205T'),
       'c': Course(name: 'Numerical Methods', code: '21MAB202T'),
       'e': Course(name: 'Project Management and Industrial Practices', code: '21MHC209T'),
-      'f': Course(name: 'Artificial Interligence', code: '21CSC206T'),
+      'f': Course(name: 'Artificial Intelligence', code: '21CSC206T'),
       'g': Course(name: 'Design Thinking and Methodology', code: '21DCS201P'),
       'p19': Course(name: 'Microcontroller and Embedded Systems Lab', code: '21MHC207L'),
       'p20': Course(name: 'Microcontroller and Embedded Systems Lab', code: '21MHC207L'),
