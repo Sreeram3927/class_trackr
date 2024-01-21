@@ -24,15 +24,15 @@ class DataManager {
 
   void updateData({
     required int dataVersion,
-    required Map<String, List<String>> dayOrders,
+    required Map<String, dynamic> dayOrders,
   }) {
     _userData.setDataVersion = dataVersion;
     _do.setAllDayOrders(
-      do1: dayOrders['day_order_1']!,
-      do2: dayOrders['day_order_2']!,
-      do3: dayOrders['day_order_3']!,
-      do4: dayOrders['day_order_4']!,
-      do5: dayOrders['day_order_5']!,
+      do1: dayOrders['day_order_1']! as List<String>,
+      do2: dayOrders['day_order_2']! as List<String>,
+      do3: dayOrders['day_order_3']! as List<String>,
+      do4: dayOrders['day_order_4']! as List<String>,
+      do5: dayOrders['day_order_5']! as List<String>,
     );
   }
 

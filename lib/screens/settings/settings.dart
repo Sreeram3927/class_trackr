@@ -19,76 +19,60 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ListView(
+      children: [
 
-      appBar: AppBar(
-        title: const Text(
-          'Settings',
-          style: TextStyle(
-            fontSize: 25.0,
-            fontWeight: FontWeight.w800
-          ),
+        drawerHeader(),
+
+        _settingsTile(
+          icon: Icons.edit_calendar_rounded,
+          title: 'Change Timetable',
+          subtitle: _userData.timetables[_userData.getCurTimetable].name,
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (context) => changeTimetable()
+            );
+          }
         ),
-        centerTitle: true,
-        toolbarHeight: 55.0,
-        elevation: 5.0,
-      ),
 
-      body: ListView(
-        children: [
+        _settingsTile(
+          icon: Icons.privacy_tip_rounded,
+          title: 'Terms of Service',
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const TermsOfServicePage()),
+            );
+          }
+        ),
 
-          drawerHeader(),
-
-          _settingsTile(
-            icon: Icons.edit_calendar_rounded,
-            title: 'Change Timetable',
-            subtitle: _userData.timetables[_userData.getCurTimetable].name,
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (context) => changeTimetable()
-              );
+        _settingsTile(
+          icon: Icons.feedback_rounded,
+          title: 'Feedback Hub',
+          onTap: () async {
+            Uri link = Uri.parse('https://forms.gle/WkEmjMAHRHdEtose8');
+            if (!await launchUrl(
+              link,
+              mode: LaunchMode.externalApplication,
+            )) {
+              throw Exception('Could not launch $link');
             }
-          ),
+          }
+        ),
 
-          _settingsTile(
-            icon: Icons.privacy_tip_rounded,
-            title: 'Terms of Service',
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const TermsOfServicePage()),
-              );
-            }
-          ),
+        _settingsTile(
+          icon: Icons.headset_mic_rounded,
+          title: 'Contact Developer',
+          onTap: () {
+            showDialog(
+              context: context, 
+              builder: (context) => contactDeveloper()
+            );
+          }
+        ),
 
-          _settingsTile(
-            icon: Icons.feedback_rounded,
-            title: 'Feedback Hub',
-            onTap: () async {
-              Uri link = Uri.parse('https://forms.gle/WkEmjMAHRHdEtose8');
-              if (!await launchUrl(
-                link,
-                mode: LaunchMode.externalApplication,
-              )) {
-                throw Exception('Could not launch $link');
-              }
-            }
-          ),
-
-          _settingsTile(
-            icon: Icons.headset_mic_rounded,
-            title: 'Contact Developer',
-            onTap: () {
-              showDialog(
-                context: context, 
-                builder: (context) => contactDeveloper()
-              );
-            }
-          ),
-
-        ],
-      ),
+      ],
     );
   }
 

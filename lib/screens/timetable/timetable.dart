@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/data/user_data.dart';
-import 'package:infinity_project/screens/home/information.dart';
 import 'package:infinity_project/models/timetable_data.dart';
 import 'package:infinity_project/screens/timetable/other_widgets.dart';
 
@@ -80,63 +79,33 @@ class _TimeTableState extends State<TimeTable> {
       changeDate(nextDate, 'next', Icons.arrow_right_sharp, _currentDate),
     ];
 
-    return Scaffold(
-
-      appBar: AppBar(
-        elevation: 5.0,
-        toolbarHeight: 55.0,
-
-        title: const Text(
-          'TimeTable',
-          style: TextStyle(
-            fontSize: 25.0,
-            fontWeight: FontWeight.w800
-          )
+    return Column(
+      children: [
+  
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
+          children: dateInfoData
         ),
-        centerTitle: true,
-
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const InformationScreen())
-              );
-            }, 
-            icon: const Icon(Icons.info_outline_rounded),
-            tooltip: "Informations",
+  
+        const SizedBox(height: 2.5),
+  
+        if (!_isHoliday) Text(
+          'Day Order ${_currentDayOrder.toString()}',
+          style: const TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.w600,
           ),
-        ],
-      ),
-
-      body: Column(
-        children: [
-    
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
-            children: dateInfoData
-          ),
-    
-          const SizedBox(height: 2.5),
-    
-          if (!_isHoliday) Text(
-            'Day Order ${_currentDayOrder.toString()}',
-            style: const TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-    
-          const SizedBox(height: 3.0),
-    
-          Expanded(
-            child: _isHoliday
-              ? holiday()
-              : displayData(_currentData, _currentDayOrder!),
-          ),
-    
-        ],
-      ),
+        ),
+  
+        const SizedBox(height: 3.0),
+  
+        Expanded(
+          child: _isHoliday
+            ? holiday()
+            : displayData(_currentData, _currentDayOrder!),
+        ),
+  
+      ],
     );
   }
 }

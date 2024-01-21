@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/data/user_data.dart';
+import 'package:infinity_project/screens/home/information.dart';
 import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
 import 'package:infinity_project/services/db.dart';
@@ -25,11 +26,12 @@ class _HomeState extends State<Home> {
       if (backendData['data_version'] != _userData.getDataVersion) {
         _manager.updateData(
           dataVersion: backendData['data_version'],
-          dayOrders: backendData['day_orders'] as Map<String, List<String>>,
+          dayOrders: backendData['day_orders'],
         );
       }
     } catch (e) {
       if(context.mounted) {
+        print(e);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text("Failed to connect to the server."),
@@ -83,6 +85,30 @@ class _HomeState extends State<Home> {
         }
       },
       child: Scaffold(
+
+        appBar: AppBar(
+
+          title: Text(
+            _bottomNavBarItems[_selectedIndex].label!,
+            style: const TextStyle(
+              fontSize: 25.0,
+              fontWeight: FontWeight.w800
+            )
+          ),
+          centerTitle: true,
+
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const InformationScreen())
+                );
+              }, 
+              icon: const Icon(Icons.info_outline_rounded),
+            ),
+          ],
+        ),
       
         body: PageView(
           onPageChanged: _changePage,
