@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/data/user_data.dart';
-import 'package:infinity_project/screens/home/information.dart';
 import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
 import 'package:infinity_project/services/db.dart';
@@ -99,17 +98,17 @@ class _HomeState extends State<Home> {
           ),
           centerTitle: true,
 
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const InformationScreen())
-                );
-              }, 
-              icon: const Icon(Icons.info_outline_rounded),
-            ),
-          ],
+          // actions: [
+          //   IconButton(
+          //     onPressed: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(builder: (context) => const InformationScreen())
+          //       );
+          //     }, 
+          //     icon: const Icon(Icons.info_outline_rounded),
+          //   ),
+          // ],
         ),
       
         body: PageView(

@@ -55,8 +55,15 @@ class _SettingsState extends State<Settings> {
             if (!await launchUrl(
               link,
               mode: LaunchMode.externalApplication,
-            )) {
-              throw Exception('Could not launch $link');
+            ) && mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    'Could not launch link',
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              );
             }
           }
         ),
@@ -69,6 +76,27 @@ class _SettingsState extends State<Settings> {
               context: context, 
               builder: (context) => contactDeveloper()
             );
+          }
+        ),
+
+        _settingsTile(
+          icon: Icons.code_rounded,
+          title: 'Source Code',
+          onTap: () async {
+            Uri link = Uri.parse('https://github.com/Sreeram3927/class_trackr');
+            if (!await launchUrl(
+              link,
+              mode: LaunchMode.externalApplication,
+            ) && mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    'Could not launch link',
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              );
+            }
           }
         ),
 
