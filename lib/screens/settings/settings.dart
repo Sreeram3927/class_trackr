@@ -165,7 +165,7 @@ class _SettingsState extends State<Settings> {
           ),
 
           Text(
-            'Version ${_userData.version} (dV ${_userData.getDataVersion})',
+            'Version ${_userData.getVersion} (dV ${_userData.getDataVersion})',
             style: const TextStyle(
               letterSpacing: 1.5,
               fontSize: 15.0,

@@ -14,16 +14,26 @@ class UserData {
     _preferences.setInt('data_version', value);
   }
 
-  String get version => '0.9.21';
+  static const String appVersion = '1.0.0';
+  static late String _storedVersion;
+  String get getVersion => _storedVersion;
+  void updateVersion() {
+    _storedVersion = appVersion;
+    _preferences.setString('app_version', appVersion);
+  }
 
   Future<void> get init async {
     _preferences = await SharedPreferences.getInstance();
     _dataVersion = _preferences.getInt('data_version') ?? 0;
+    if (!_preferences.containsKey('timetable0')) {
+      _preferences.setBool('showHome', false);
+    }
     if (_preferences.containsKey('course')) {
       _preferences.setBool('showHome', false);
       _preferences.remove('course');
       _preferences.remove('batch');
     }
+    _storedVersion = _preferences.getString('app_version') ?? appVersion;
     getTimetableDatas();
   }
 
