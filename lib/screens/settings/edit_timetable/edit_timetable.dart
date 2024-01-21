@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:infinity_project/data/user_data.dart';
 import 'package:infinity_project/models/course.dart';
 import 'package:infinity_project/models/timetable_data.dart';
@@ -29,6 +30,28 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
   late List<String> _avaSlots;
 
   final _formKey = GlobalKey<FormState>();
+
+  void saveTimetable() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      if (_usdSlots.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Please add at least one slot'),
+          ),
+        );
+      } else {
+        final newTimetable = TimetableData(
+          name: _timetableName!,
+          batch: _selectedBatch!,
+          data: _data,
+        );
+        _userData.setTimetable(widget.id, newTimetable);
+        Navigator.pop(context, true);
+        Fluttertoast.showToast(msg: "Timetable Updated",);
+      }
+    }
+  }
 
   void _resetState() {
     _timetableName = widget.timetable.name;
@@ -105,18 +128,7 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ElevatedButton.icon(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-              }
-              final newTimetable = TimetableData(
-                name: _timetableName!,
-                batch: _selectedBatch!,
-                data: _data,
-              );
-              _userData.setTimetable(widget.id, newTimetable);
-              Navigator.pop(context);
-            },
+            onPressed: saveTimetable,
             icon: const Icon(Icons.save),
             label: const Text('Save Changes'),
             style: ButtonStyle(
