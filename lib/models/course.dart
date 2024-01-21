@@ -21,4 +21,23 @@ class Course {
       timing: timing,
     );
   }
+
+  factory Course.fromJson(Map<String, dynamic> json) {
+    return Course(
+      name: json['name'] as String,
+      code: json['code'] as String,
+      faculty: json['faculty'] as String,
+      timing: json['timing'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'code': code,
+      'faculty': faculty,
+      'timing': timing,
+    };
+  }
+
 }

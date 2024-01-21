@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:infinity_project/models/course.dart';
 import 'package:infinity_project/models/timetable_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,10 +24,11 @@ class UserData {
       _preferences.remove('course');
       _preferences.remove('batch');
     }
+    getTimetableDatas();
   }
 
   Future<void> setData(String key, String data) async => await _preferences.setString(key, data);
-  getData(String key) => _preferences.getString(key);
+  String? getData(String key) => _preferences.getString(key);
 
   void setList(String key, List<String> data) => _preferences.setStringList(key, data);
   getList(String key) => _preferences.getStringList(key);
@@ -39,21 +41,63 @@ class UserData {
     return timetables[getCurTimetable];
   }
 
-  // int getCurTimetable = _preferences.getInt('curtimetable') ?? 0;
-  int get getCurTimetable => _preferences.getInt('curTimetable') ?? 0;
+  static late int _curTimetable;
+
+  int get getCurTimetable => _curTimetable;
   set setCurTimetable(int value) {
+    _curTimetable = value;
     _preferences.setInt('curTimetable', value);
   }
 
   List<TimetableData> get timetables => [
+    timetable0,
     timetable1,
     timetable2,
     timetable3,
     timetable4,
-    timetable5,
   ];
 
-  TimetableData timetable1 = TimetableData(
+  static late TimetableData timetable0;
+  static late TimetableData timetable1; 
+  static late TimetableData timetable2; 
+  static late TimetableData timetable3; 
+  static late TimetableData timetable4;
+
+  void getTimetableDatas() {
+    timetable0 = _preferences.containsKey('timetable0') ? TimetableData.fromJson(jsonDecode(getData('timetable0')!)) : _mhCore;
+    timetable1 = _preferences.containsKey('timetable1') ? TimetableData.fromJson(jsonDecode(getData('timetable1')!)) : _mhRobo;
+    timetable2 = _preferences.containsKey('timetable2') ? TimetableData.fromJson(jsonDecode(getData('timetable2')!)) : _emptyTimetable;
+    timetable3 = _preferences.containsKey('timetable3') ? TimetableData.fromJson(jsonDecode(getData('timetable3')!)) : _emptyTimetable;
+    timetable4 = _preferences.containsKey('timetable4') ? TimetableData.fromJson(jsonDecode(getData('timetable4')!)) : _emptyTimetable;
+    _curTimetable = _preferences.getInt('curTimetable') ?? 0;
+  }
+
+  void setTimetable(int id, TimetableData data) {
+    switch (id) {
+      case 0:
+        timetable0 = data;
+        setData('timetable0', jsonEncode(data));
+        break;
+      case 1:
+        timetable1 = data;
+        setData('timetable1', jsonEncode(data));
+        break;
+      case 2:
+        timetable2 = data;
+        setData('timetable2', jsonEncode(data));
+        break;
+      case 3:
+        timetable3 = data;
+        setData('timetable3', jsonEncode(data));
+        break;
+      case 4:
+        timetable4 = data;
+        setData('timetable4', jsonEncode(data));
+        break;
+    }
+  }
+
+  static final TimetableData _mhCore = TimetableData(
     name: 'MH - Core',
     batch: 1,
     data: {
@@ -67,7 +111,7 @@ class UserData {
     },
   );
 
-  TimetableData timetable2 = TimetableData(
+  static final TimetableData _mhRobo = TimetableData(
     name: 'MH - Robo',
     batch: 2,
     data: {
@@ -81,17 +125,7 @@ class UserData {
     },
   );
 
-  TimetableData timetable3 = TimetableData(
-    name: '',
-    batch: 1,
-    data: {}
-  );
-  TimetableData timetable4 = TimetableData(
-    name: '',
-    batch: 1,
-    data: {},
-  );
-  TimetableData timetable5 = TimetableData(
+  static final TimetableData _emptyTimetable = TimetableData(
     name: '',
     batch: 1,
     data: {},

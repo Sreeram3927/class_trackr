@@ -31,7 +31,6 @@ class _HomeState extends State<Home> {
       }
     } catch (e) {
       if(context.mounted) {
-        print(e);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text("Failed to connect to the server."),

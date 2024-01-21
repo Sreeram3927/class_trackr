@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:infinity_project/data/user_data.dart';
 import 'package:infinity_project/models/course.dart';
 import 'package:infinity_project/models/timetable_data.dart';
 import 'package:infinity_project/screens/settings/edit_timetable/edit_info.dart';
 
 class EditTimetablePage extends StatefulWidget {
+  final int id;
   final TimetableData timetable;
   const EditTimetablePage({
     super.key,
+    required this.id,
     required this.timetable
   });
 
@@ -15,6 +18,8 @@ class EditTimetablePage extends StatefulWidget {
 }
 
 class _EditTimetablePageState extends State<EditTimetablePage> {
+
+  final UserData _userData = UserData();
 
   late String? _timetableName;
   late int? _selectedBatch;
@@ -104,6 +109,13 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
               }
+              final newTimetable = TimetableData(
+                name: _timetableName!,
+                batch: _selectedBatch!,
+                data: _data,
+              );
+              _userData.setTimetable(widget.id, newTimetable);
+              Navigator.pop(context);
             },
             icon: const Icon(Icons.save),
             label: const Text('Save Changes'),

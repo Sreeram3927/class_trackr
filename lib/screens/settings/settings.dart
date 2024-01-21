@@ -206,6 +206,7 @@ class _SettingsState extends State<Settings> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => EditTimetablePage(
+                        id: index,
                         timetable: data[index],
                       )
                     )
