@@ -37,32 +37,33 @@ class TimetableData {
 
   List<Course> getTimetable(int dayOrder) {
     final data = getInfo()[dayOrder]!;
-    List<Course> timeTable = []; 
+    List<Course> timeTable = [];
+
     for (int i = 0; i < data.length; i++) {
       final course = data[i];
+
       if (course != null) {
-        course.timing = hours[i + 1]!;
-        timeTable.add(course);
+        timeTable.add(Course(name: course.name, timing: hours[i], code: course.code));
       }
-      
     }
-    return timeTable.cast<Course>();
+
+    return timeTable;
   }
 
 
 
-  Map<int, String> hours = {
-    1 : '8:00 am - 8:50 am',
-    2 : '8:50 am - 9:40 am',
-    3 : '9:45 am - 10:35 am',
-    4 : '10:40 am - 11:30 am',
-    5 : '11:35 am - 12:25 pm',
-    6 : '12:30 pm - 1:20 pm',
-    7 : '1:25 pm - 2:15 pm',
-    8 : '2:20 pm - 3:10 pm',
-    9 : '3:15 pm - 4:05 pm',
-    10 : '4:05 pm - 4:55 pm',
-  };
+  List<String> hours = [
+    '8:00 am - 8:50 am',
+    '8:50 am - 9:40 am',
+    '9:45 am - 10:35 am',
+    '10:40 am - 11:30 am',
+    '11:35 am - 12:25 pm',
+    '12:30 pm - 1:20 pm',
+    '1:25 pm - 2:15 pm',
+    '2:20 pm - 3:10 pm',
+    '3:15 pm - 4:05 pm',
+    '4:05 pm - 4:55 pm',
+  ];
 
   Map<int, List<Course?>> getInfo() {
    if (batch == 1) {
