@@ -52,18 +52,22 @@ class _SettingsState extends State<Settings> {
           title: 'Feedback Hub',
           onTap: () async {
             Uri link = Uri.parse('https://forms.gle/WkEmjMAHRHdEtose8');
-            if (!await launchUrl(
-              link,
-              mode: LaunchMode.externalApplication,
-            ) && mounted) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text(
-                    'Could not launch link',
-                    textAlign: TextAlign.center,
-                  ),
-                )
+            try {
+              await launchUrl(
+                link,
+                mode: LaunchMode.externalApplication,
               );
+            } catch (e) {
+              if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'Could not launch link ',
+                      textAlign: TextAlign.center,
+                    ),
+                  )
+                );
+              }
             }
           }
         ),
@@ -84,18 +88,22 @@ class _SettingsState extends State<Settings> {
           title: 'Source Code',
           onTap: () async {
             Uri link = Uri.parse('https://github.com/Sreeram3927/class_trackr');
-            if (!await launchUrl(
-              link,
-              mode: LaunchMode.externalApplication,
-            ) && mounted) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text(
-                    'Could not launch link',
-                    textAlign: TextAlign.center,
-                  ),
-                )
+            try {
+              await launchUrl(
+                link,
+                mode: LaunchMode.externalApplication,
               );
+            } catch (e) {
+              if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'Could not launch link ',
+                      textAlign: TextAlign.center,
+                    ),
+                  )
+                );
+              }
             }
           }
         ),

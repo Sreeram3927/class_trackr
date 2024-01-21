@@ -55,8 +55,8 @@ class DataManager {
     else {return 0;}
   }
 
-  DateTime minDate = DateTime(2024, 01, 01);
-  DateTime maxDate = DateTime(2024, 06, 30);
+  DateTime minDate = DateTime(2000);
+  DateTime maxDate = DateTime(2100);
 
   bool dateOutOfBounds(DateTime date, String tip) {
     if (tip == 'previous') {
