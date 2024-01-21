@@ -33,6 +33,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       MaterialPageRoute(builder: (context) => const Home()),
     );
     _userData.setShowHome(true);
+    _userData.updateVersion();
   }
 
   @override
@@ -138,8 +139,24 @@ class _OnboardingPageState extends State<OnboardingPage> {
           ),
 
           const SizedBox(height: 20.0,),
+
+          const Text(
+            'Note: If you choose the preset timetable, don\'t forget to add your Elective and edit your Lab slots. Thank you!',
+            textAlign: TextAlign.center,
+          ),
+
+          const SizedBox(height: 20.0,),
       
           ...children,
+
+          const SizedBox(height: 20.0,),
+
+          const Text(
+            'You can edit these later in settings',
+            style: TextStyle(
+              color:  Colors.grey,
+            ),
+          ),
 
           const SizedBox(height: 20.0,),
 

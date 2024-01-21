@@ -164,6 +164,39 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
   }
 
   Widget _batchEditor() {
+
+    void updateBatch(int? value) async {
+      final result = await showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Change Batch?'),
+          content: const Text('Changing batch will remove all the existing timetable slot datas. Are you sure you want to change the batch?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, false);
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, true);
+              },
+              child: const Text('Change'),
+            ),
+          ],
+        )
+      );
+      if (result == true) {
+        setState(() {
+          _selectedBatch = value;
+          _data.clear();
+          _avaSlots.addAll(_usdSlots);
+          _usdSlots.clear();
+        });
+      }
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
       child: Row(
@@ -177,22 +210,14 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
           Radio<int>(
             value: 1,
             groupValue: _selectedBatch,
-            onChanged: (int? value) {
-              setState(() {
-                _selectedBatch = value;
-              });
-            },
+            onChanged: updateBatch,
           ),
           const Text('Batch 1'),
           const SizedBox(width: 20.0),
           Radio<int>(
             value: 2,
             groupValue: _selectedBatch,
-            onChanged: (int? value) {
-              setState(() {
-                _selectedBatch = value;
-              });
-            },
+            onChanged: updateBatch,
           ),
           const Text('Batch 2'),
         ],
@@ -279,7 +304,11 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            subtitle: Text(course.code),
+            subtitle: Text(
+              course.code,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [

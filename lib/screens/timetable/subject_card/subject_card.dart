@@ -40,7 +40,7 @@ class SubjectCard extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
                 textAlign: TextAlign.center,
-                maxLines: 3,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -51,6 +51,9 @@ class SubjectCard extends StatelessWidget {
                 fontSize: 14.0,
                 fontWeight: FontWeight.w500,
               ),
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
 
             Text(
