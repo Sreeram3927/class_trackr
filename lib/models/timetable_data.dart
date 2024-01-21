@@ -36,10 +36,16 @@ class TimetableData {
   }
 
   List<Course> getTimetable(int dayOrder) {
-    final timeTable = getInfo()[dayOrder]!.where((course) => course != null).toList();
-    timeTable.asMap().forEach((index, course) {
-      course!.timing = hours[index + 1]!;
-    });
+    final data = getInfo()[dayOrder]!;
+    List<Course> timeTable = []; 
+    for (int i = 0; i < data.length; i++) {
+      final course = data[i];
+      if (course != null) {
+        course.timing = hours[i + 1]!;
+        timeTable.add(course);
+      }
+      
+    }
     return timeTable.cast<Course>();
   }
 
@@ -194,5 +200,21 @@ class TimetableData {
       ],
     };
    } 
+  }
+
+  factory TimetableData.fromJson(Map<String, dynamic> json) {
+    return TimetableData(
+      name: json['name'] as String,
+      batch: json['batch'] as int,
+      data: (json['data'] as Map<String, dynamic>).map((key, value) => MapEntry(key, Course.fromJson(value))),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name' : name,
+      'batch' : batch,
+      'data' : data,
+    };
   }
 }
