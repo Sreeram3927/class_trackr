@@ -101,7 +101,7 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
           );
           if (shdPop == true && context.mounted) {
             _resetState();
-            Navigator.pop(context);
+            Navigator.pop(context, false);
           }
         }
       },

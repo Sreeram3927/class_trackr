@@ -229,9 +229,9 @@ class _SettingsState extends State<Settings> {
                 },
               ),
               IconButton.filledTonal(
-                onPressed: () {
+                onPressed: () async {
                   Navigator.pop(context);
-                  Navigator.push(
+                  final result = await Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => EditTimetablePage(
@@ -240,6 +240,7 @@ class _SettingsState extends State<Settings> {
                       )
                     )
                   );
+                  if (result == true && mounted) setState(() {});
                 },
                 icon: const Icon(Icons.edit, size: 17.0,),
               )

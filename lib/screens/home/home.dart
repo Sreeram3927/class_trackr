@@ -30,10 +30,13 @@ class _HomeState extends State<Home> {
         );
       }
     } catch (e) {
-      if(context.mounted) {
+      if(mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text("Failed to connect to the server."),
+            content: Text(
+              'Failed to update Day order.',
+              textAlign: TextAlign.center,
+            ),
           )
         );
       }

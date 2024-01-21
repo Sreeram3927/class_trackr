@@ -3,6 +3,7 @@ import 'package:infinity_project/data/user_data.dart';
 import 'package:infinity_project/models/timetable_data.dart';
 import 'package:infinity_project/screens/home/home.dart';
 import 'package:infinity_project/screens/home/onboarding_screens/onboarding_pages.dart';
+import 'package:infinity_project/screens/settings/edit_timetable/edit_timetable.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -54,22 +55,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
             changeTimetable(),
 
-            // DataSelectionPage(
-            //   dataList: TimeTableData.courses,
-            //   dataKey: 'course',
-            //   title: 'Course',
-            //   buttonText: 'Next',
-            //   nextScreen: nextScreen,
-            // ),
-
-            // DataSelectionPage(
-            //   dataList: Subject.batches,
-            //   dataKey: 'batch',
-            //   title: 'Lab Batch',
-            //   buttonText: 'Get Started',
-            //   nextScreen: startApp,
-            // ),
-
           ],
         ),
       )
@@ -92,6 +77,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       final bool hasData = curData.name.isNotEmpty;
 
       return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Radio(
             value: index,
@@ -102,11 +88,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
               }
             },
           ),
+          const SizedBox(width: 10.0,),
           GestureDetector(
             child: Text(
               hasData ? curData.name : 'Unavailable',
               style: TextStyle(
-                color: hasData ? Colors.grey[200] : Colors.grey,
+                color: hasData ? null : Colors.grey,
               ),
             ),
             onTap: () {
@@ -115,6 +102,22 @@ class _OnboardingPageState extends State<OnboardingPage> {
               }
             },
           ),
+          const SizedBox(width: 10.0,),
+          IconButton.filledTonal(
+            onPressed: () async {
+              final result = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditTimetablePage(
+                    id: index,
+                    timetable: data[index],
+                  )
+                )
+              );
+              if (result) setState(() {});
+            },
+            icon: const Icon(Icons.edit, size: 17.0,),
+          )
         ],
       );
     });
@@ -126,7 +129,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
         children: [
       
           const Text(
-            'Change Timetable',
+            'Set Timetable',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 21.0,
