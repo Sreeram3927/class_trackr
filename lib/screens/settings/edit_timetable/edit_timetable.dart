@@ -81,7 +81,6 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
         appBar: AppBar(
           title: const Text('Edit Timetable'),
           centerTitle: true,
-          elevation: 5.0,
         ),
         body: Form(
           key: _formKey,
@@ -93,28 +92,30 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
                 _batchEditor(),
                 const Divider(),
                 Expanded(child: _slotsUsed()),
-                ElevatedButton.icon(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _formKey.currentState!.save();
-                    }
-                  },
-                  icon: const Icon(Icons.save),
-                  label: const Text('Save Changes'),
-                  style: ButtonStyle(
-                    maximumSize: MaterialStateProperty.all<Size>(const Size(double.infinity, 50.0)),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                    ),
-                  ),
-                )
               ],
             ),
           ),
         ),
         floatingActionButton: _addSlot(),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ElevatedButton.icon(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+              }
+            },
+            icon: const Icon(Icons.save),
+            label: const Text('Save Changes'),
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -124,6 +125,7 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
       initialValue: _timetableName,
       decoration: const InputDecoration(
         labelText: 'Timetable Name',
+        border: OutlineInputBorder(),
       ),
       validator: (String? value) {
         if (value!.isEmpty) {
@@ -175,35 +177,32 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
   }
 
   Widget _addSlot() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 10, 30),
-      child: FloatingActionButton(
-        onPressed: () async {
-      
-          final String? selectedSlot = await showDialog(
+    return FloatingActionButton(
+      onPressed: () async {
+    
+        final String? selectedSlot = await showDialog(
+          context: context,
+          builder: (context) => _slotsPicker(_avaSlots),
+        );
+        if (selectedSlot == null) return;
+    
+        if (context.mounted) {
+          final Course? result = await showDialog<Course?>(
             context: context,
-            builder: (context) => _slotsPicker(_avaSlots),
+            builder: (context) => EditInfo(
+              slot: selectedSlot,
+              course: Course(name: '', code: ''),
+            ),
           );
-          if (selectedSlot == null) return;
-      
-          if (context.mounted) {
-            final Course? result = await showDialog<Course?>(
-              context: context,
-              builder: (context) => EditInfo(
-                slot: selectedSlot,
-                course: Course(name: '', code: ''),
-              ),
-            );
-            if (result == null) return;
-            setState(() {
-              _avaSlots.remove(selectedSlot);
-              _usdSlots.add(selectedSlot);
-              _data[selectedSlot] = result;
-            });
-          }
-        },
-        child: const Icon(Icons.add),
-      ),
+          if (result == null) return;
+          setState(() {
+            _avaSlots.remove(selectedSlot);
+            _usdSlots.add(selectedSlot);
+            _data[selectedSlot] = result;
+          });
+        }
+      },
+      child: const Icon(Icons.add),
     );
   }
 
