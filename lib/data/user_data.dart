@@ -97,6 +97,21 @@ class UserData {
     }
   }
 
+  void resetAllTimetables() {
+    _curTimetable = 0;
+    timetable0 = _mhCore;
+    timetable1 = _mhRobo;
+    timetable2 = _emptyTimetable;
+    timetable3 = _emptyTimetable;
+    timetable4 = _emptyTimetable;
+    _preferences.setInt('curTimetable', 0);
+    setData('timetable0', jsonEncode(_mhCore));
+    setData('timetable1', jsonEncode(_mhRobo));
+    setData('timetable2', jsonEncode(_emptyTimetable));
+    setData('timetable3', jsonEncode(_emptyTimetable));
+    setData('timetable4', jsonEncode(_emptyTimetable));
+  }
+
   static final TimetableData _mhCore = TimetableData(
     name: 'MH - Core',
     batch: 1,

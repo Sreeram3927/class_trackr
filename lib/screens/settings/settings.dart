@@ -72,6 +72,31 @@ class _SettingsState extends State<Settings> {
           }
         ),
 
+        _settingsTile(
+          icon: Icons.clear_rounded,
+          title: 'Reset Timetable Data',
+          alert: true,
+          onTap: () async {
+            final result = await showDialog(
+              context: context,
+              builder: (context) => resetTimetableData(),
+            );
+            if (result == true && mounted) {
+              setState(() {
+                _userData.resetAllTimetables();
+              });
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    'Timetable data cleared',
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              );
+            }
+          }
+        ),
+
       ],
     );
   }
@@ -121,17 +146,21 @@ class _SettingsState extends State<Settings> {
     required IconData icon,
     required String title,
     String? subtitle,
+    bool alert = false,
     required Function() onTap
   }) {
+    final Color? alertColor = alert ? Colors.red : null; 
     return ListTile(
       leading: Icon(
         icon,
         size: 30.0,
+        color: alertColor,
       ),
       title: Text(
         title,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 17.0,
+          color: alertColor,
           fontWeight: FontWeight.w400,
         ),
       ),
@@ -267,6 +296,54 @@ class _SettingsState extends State<Settings> {
           );
         }),
       ),
+    );
+  }
+
+  Widget resetTimetableData() {
+    return AlertDialog(
+      title: const Text(
+        'Reset all Timetable Data',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 21.0,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      content: const Text(
+        'Are you sure you want to reset all timetable data? This action cannot be undone.',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 17.0,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context, false);
+          },
+          child: const Text(
+            'Cancel',
+            style: TextStyle(
+              fontSize: 17.0,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context, true);
+          },
+          child: const Text(
+            'Clear',
+            style: TextStyle(
+              fontSize: 17.0,
+              color: Colors.red,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
