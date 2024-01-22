@@ -114,8 +114,8 @@ class TermsOfServicePage extends StatelessWidget {
               'Contact and Support: If you encounter any issues or have questions about data collection or privacy, please reach out to our support team.\n\n'
               'By continuing you accept these Terms of service and providing your consent for analytics collection, you acknowledge that you have read and understood our Terms of Service, which outlines in detail how we display information.\n\n'
               'Thank you for choosing Class Trackr! We hope you enjoy the app and have a fantastic user experience.\n\n'
-              'Last updated: 21/01/2014\n\n'
-              '[Your Company/Developer Name]',
+              'Last updated: 21/01/2024\n\n'
+              'SREERAM A S\n',
               textAlign: TextAlign.justify,
               style: TextStyle(
                 fontSize: 16,

@@ -14,7 +14,8 @@ class UserData {
     _preferences.setInt('data_version', value);
   }
 
-  static const String appVersion = '1.0.1';
+  int get getAppLevel => 1;
+  static const String appVersion = '1.0.2';
   static late String _storedVersion;
   String get getVersion => _storedVersion;
   void updateVersion() {
@@ -25,14 +26,6 @@ class UserData {
   Future<void> get init async {
     _preferences = await SharedPreferences.getInstance();
     _dataVersion = _preferences.getInt('data_version') ?? 0;
-    if (!_preferences.containsKey('timetable0')) {
-      _preferences.setBool('showHome', false);
-    }
-    if (_preferences.containsKey('course')) {
-      _preferences.setBool('showHome', false);
-      _preferences.remove('course');
-      _preferences.remove('batch');
-    }
     _storedVersion = _preferences.getString('app_version') ?? appVersion;
     getTimetableDatas();
   }
@@ -74,31 +67,31 @@ class UserData {
   static late TimetableData timetable4;
 
   void getTimetableDatas() {
-    if (_preferences.containsKey('timeTable0')) {
+    if (_preferences.containsKey('timetable0')) {
       timetable0 = TimetableData.fromJson(jsonDecode(getData('timetable0')!));
     } else {
       timetable0 = _mhCore;
       setData('timetable0', jsonEncode(_mhCore));
     }
-    if (_preferences.containsKey('timeTable1')) {
+    if (_preferences.containsKey('timetable1')) {
       timetable1 = TimetableData.fromJson(jsonDecode(getData('timetable1')!));
     } else {
       timetable1 = _mhRobo;
       setData('timetable1', jsonEncode(_mhRobo));
     }
-    if (_preferences.containsKey('timeTable2')) {
+    if (_preferences.containsKey('timetable2')) {
       timetable2 = TimetableData.fromJson(jsonDecode(getData('timetable2')!));
     } else {
       timetable2 = _emptyTimetable;
       setData('timetable2', jsonEncode(_emptyTimetable));
     }
-    if (_preferences.containsKey('timeTable3')) {
+    if (_preferences.containsKey('timetable3')) {
       timetable3 = TimetableData.fromJson(jsonDecode(getData('timetable3')!));
     } else {
       timetable3 = _emptyTimetable;
       setData('timetable3', jsonEncode(_emptyTimetable));
     }
-    if (_preferences.containsKey('timeTable4')) {
+    if (_preferences.containsKey('timetable4')) {
       timetable4 = TimetableData.fromJson(jsonDecode(getData('timetable4')!));
     } else {
       timetable4 = _emptyTimetable;

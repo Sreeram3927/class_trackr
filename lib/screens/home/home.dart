@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:infinity_project/data/data_manager.dart';
 import 'package:infinity_project/data/user_data.dart';
 import 'package:infinity_project/screens/settings/settings.dart';
 import 'package:infinity_project/screens/timetable/timetable.dart';
 import 'package:infinity_project/services/db.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -26,6 +28,32 @@ class _HomeState extends State<Home> {
         _manager.updateData(
           dataVersion: backendData['data_version'],
           dayOrders: backendData['day_orders'],
+        );
+      }
+      if (backendData['app_level'] > _userData.getAppLevel && mounted) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => AlertDialog(
+            title: const Text('Update Available'),
+            content: const Text('A new update is available for the app. Please update to the latest version to continue using the app.'),
+            actions: [
+              TextButton(
+                onPressed: () async {
+                  final Uri link = Uri.parse('https://github.com/Sreeram3927/class_trackr/releases');
+                  try {
+                    await launchUrl(
+                      link,
+                      mode: LaunchMode.externalApplication,
+                    );
+                  } catch (e) {
+                    Fluttertoast.showToast(msg: 'Coudn\'t open link. Please try again later.');
+                  }
+                },
+                child: Text('Update', style: TextStyle(color: Theme.of(context).primaryColor),),
+              ),
+            ],
+          )
         );
       }
     } catch (e) {
@@ -72,6 +100,8 @@ class _HomeState extends State<Home> {
     super.initState();
     _initBackend();
     _selectedIndex = 0;
+    _userData.getTimetableDatas();
+    _userData.updateVersion();
   }
 
   @override
