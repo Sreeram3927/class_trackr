@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -30,7 +31,7 @@ class _HomeState extends State<Home> {
           dayOrders: backendData['day_orders'],
         );
       }
-      if (backendData['app_level'] > _userData.getAppLevel && mounted) {
+      if (backendData['app_level'] > _userData.getAppLevel  && kIsWeb && mounted) {
         showDialog(
           context: context,
           barrierDismissible: false,
