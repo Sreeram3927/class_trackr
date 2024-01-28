@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:infinity_project/services/analytics.dart';
 import 'package:infinity_project/screens/home/home.dart';
 import 'package:infinity_project/screens/home/onboarding_screens/onboarding_screen.dart';
+import 'package:infinity_project/screens/settings/get_timetable/get_timetable.dart';
 import 'firebase_options.dart';
 import 'package:infinity_project/data/user_data.dart';
 
@@ -20,7 +21,7 @@ class InfinityProject extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Class Trackr',
-      home: UserData().showHome ? const Home() : const OnboardingPage(),
+      // home: UserData().showHome ? const Home() : const OnboardingPage(),
       themeMode: ThemeMode.system,
       theme: ThemeData(
         useMaterial3: true,
@@ -32,6 +33,7 @@ class InfinityProject extends StatelessWidget {
         colorSchemeSeed: Colors.green,
         brightness: Brightness.dark,
       ),
+      home: const GetTimetable(),
     );
   }
 }
