@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:infinity_project/data/day_order.dart';
+import 'package:infinity_project/models/timetable_data.dart';
 
 class DatabaseService {
 
@@ -44,5 +45,31 @@ class DatabaseService {
       rethrow;
     }
   }
-  
+
+  static final CollectionReference _timetablesRef = FirebaseFirestore.instance.collection('timetables');
+
+  Future<TimetableData> getTimetableData(String code) async {
+    try {
+      final DocumentSnapshot cloudData = await _timetablesRef.doc(code).get();
+      final Map<String, dynamic> timetableData = cloudData.data() as Map<String, dynamic>;
+      
+      final TimetableData data = TimetableData.fromJson(timetableData);
+      return data;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> setTimetableData(String code, TimetableData data) async {
+    try {
+      final DocumentSnapshot existingData = await _timetablesRef.doc(code).get();
+      if (existingData.exists) {
+        print('Timetable data with code $code already exists.');
+      } else {
+        await _timetablesRef.doc(code).set(data.toJson());
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infinity_project/services/db.dart';
 
 class GetTimetable extends StatefulWidget {
   const GetTimetable({super.key});
@@ -9,14 +10,37 @@ class GetTimetable extends StatefulWidget {
 
 class _GetTimetableState extends State<GetTimetable> {
 
+  final DatabaseService _db = DatabaseService();
+
   final TextEditingController _codeController = TextEditingController();
   final FocusNode _codeFocus = FocusNode();
 
   String? _code;
+  bool _isLoading = false;
 
-  void _searchTimetable(String? code) {
+  Future<void> _searchTimetable(String? code) async {
     _codeFocus.unfocus();
-    print(code);
+    if (code == null || code.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please enter a valid code'),
+        ),
+      );
+      return;
+    }
+    setState(() {_isLoading = true;});
+    try {
+      await _db.getTimetableData(code);
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Cannot retrieve timetable'),
+          ),
+        );
+      }
+    }
+    setState(() {_isLoading = false;});
   }
 
   @override
@@ -57,10 +81,22 @@ class _GetTimetableState extends State<GetTimetable> {
             
             const SizedBox(height: 20.0),
 
-            ElevatedButton.icon(
+            ElevatedButton(
               onPressed: () => _searchTimetable(_code),
-              icon: const Icon(Icons.search),
-              label: const Text('Search'),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 3.0, vertical: 10.0),
+                child: _isLoading
+                  ? const CircularProgressIndicator()
+                  : const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.search),
+                      SizedBox(width: 10.0),
+                      Text('Search'),
+                    ],
+                  )
+                ,
+              ),
             ),
 
             const SizedBox(height: 10.0),
