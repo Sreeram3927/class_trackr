@@ -4,6 +4,7 @@ import 'package:infinity_project/data/user_data.dart';
 import 'package:infinity_project/models/course.dart';
 import 'package:infinity_project/models/timetable_data.dart';
 import 'package:infinity_project/screens/settings/edit_timetable/edit_info.dart';
+import 'package:infinity_project/screens/settings/get_timetable/get_timetable.dart';
 
 class EditTimetablePage extends StatefulWidget {
   final int id;
@@ -109,6 +110,29 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
         appBar: AppBar(
           title: const Text('Edit Timetable'),
           centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () async {
+                final TimetableData? result = await Navigator.push<TimetableData?>(context, MaterialPageRoute(builder: (context) => const GetTimetable()));
+                if (result != null) {
+                  setState(() {
+                    _timetableName = result.name;
+                    _selectedBatch = result.batch;
+                    _data = Map.of(result.data);
+                    _usdSlots = List.from(result.usedSlots);
+                    _avaSlots = List.from(result.availableSlots);
+                  });
+                }
+              },
+              icon: const Icon(Icons.download_rounded),
+            ),
+            IconButton(
+              onPressed: () async {
+                
+              },
+              icon: const Icon(Icons.upload_rounded),
+            ),
+          ]
         ),
         body: Form(
           key: _formKey,

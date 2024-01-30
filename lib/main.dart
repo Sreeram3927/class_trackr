@@ -21,7 +21,7 @@ class InfinityProject extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Class Trackr',
-      // home: UserData().showHome ? const Home() : const OnboardingPage(),
+      home: UserData().showHome ? const Home() : const OnboardingPage(),
       themeMode: ThemeMode.system,
       theme: ThemeData(
         useMaterial3: true,
@@ -33,7 +33,7 @@ class InfinityProject extends StatelessWidget {
         colorSchemeSeed: Colors.green,
         brightness: Brightness.dark,
       ),
-      home: const GetTimetable(),
+      // home: const GetTimetable(),
     );
   }
 }
