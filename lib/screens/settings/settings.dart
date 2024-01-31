@@ -5,6 +5,7 @@ import 'package:infinity_project/data/user_data.dart';
 import 'package:infinity_project/models/timetable_data.dart';
 import 'package:infinity_project/screens/home/onboarding_screens/onboarding_pages.dart';
 import 'package:infinity_project/screens/settings/edit_timetable/edit_timetable.dart';
+import 'package:infinity_project/screens/settings/get_timetable/get_timetable.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Settings extends StatefulWidget {
@@ -33,6 +34,17 @@ class _SettingsState extends State<Settings> {
             showDialog(
               context: context,
               builder: (context) => changeTimetable()
+            );
+          }
+        ),
+
+        _settingsTile(
+          icon: Icons.download_rounded,
+          title: 'Download Timetable',
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const GetTimetable()),
             );
           }
         ),

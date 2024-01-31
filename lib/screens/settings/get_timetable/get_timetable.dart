@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:infinity_project/data/user_data.dart';
+import 'package:infinity_project/models/timetable_data.dart';
 import 'package:infinity_project/services/db.dart';
 
 class GetTimetable extends StatefulWidget {
@@ -11,9 +13,12 @@ class GetTimetable extends StatefulWidget {
 class _GetTimetableState extends State<GetTimetable> {
 
   final DatabaseService _db = DatabaseService();
+  final UserData _userData = UserData();
 
   final TextEditingController _codeController = TextEditingController();
   final FocusNode _codeFocus = FocusNode();
+
+  TimetableData? _newTimetableData;
 
   String? _code;
   bool _isLoading = false;
@@ -30,16 +35,17 @@ class _GetTimetableState extends State<GetTimetable> {
     }
     setState(() {_isLoading = true;});
     try {
-      await _db.getTimetableData(code);
+      _newTimetableData = await _db.getTimetableData(code);
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Cannot retrieve timetable'),
+            content: Text('Check your code or try again later.'),
           ),
         );
       }
     }
+    _showTimetableStorage();
     setState(() {_isLoading = false;});
   }
 
@@ -82,7 +88,10 @@ class _GetTimetableState extends State<GetTimetable> {
             const SizedBox(height: 20.0),
 
             ElevatedButton(
-              onPressed: () => _searchTimetable(_code),
+              // onPressed: () => _searchTimetable(_code),
+              onPressed: () {
+                showDialog(context: context, builder: (_) => _showTimetableStorage());
+              },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 3.0, vertical: 10.0),
                 child: _isLoading
@@ -106,4 +115,43 @@ class _GetTimetableState extends State<GetTimetable> {
       ),
     );
   }
+
+  Widget _showTimetableStorage() {
+
+    final data = _userData.timetables;
+
+    return AlertDialog(
+      title: const Text(
+        'Store Timetable',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 21.0,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: List.generate(data.length, (index) {
+
+          final TimetableData curData = data[index];
+          final bool hasData = curData.name.isNotEmpty;
+
+          return TextButton(
+            child: Text(
+              "${index + 1}.  ${hasData ? curData.name : 'Available'}",
+              style: TextStyle(
+                color: hasData ? null : Colors.grey,
+              ),
+            ),
+            onPressed: () {
+              if (hasData) {
+                // setValue(index);
+              }
+            },
+          );
+        }),
+      ),
+    );
+  }
+
 }
