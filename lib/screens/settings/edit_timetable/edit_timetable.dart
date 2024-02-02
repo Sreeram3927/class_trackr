@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:infinity_project/data/user_data.dart';
 import 'package:infinity_project/models/course.dart';
 import 'package:infinity_project/models/timetable_data.dart';
+import 'package:infinity_project/screens/settings/cloud_timetable/set_timtable.dart';
 import 'package:infinity_project/screens/settings/edit_timetable/edit_info.dart';
 
 class EditTimetablePage extends StatefulWidget {
@@ -30,6 +31,27 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
   late List<String> _avaSlots;
 
   final _formKey = GlobalKey<FormState>();
+
+  void uploadTimetable() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      final bool? result = await Navigator.push<bool?>(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SetTimetable(
+            timetableData: TimetableData(
+              name: _timetableName!,
+              batch: _selectedBatch!,
+              data: _data,
+            ),
+          ),
+        ),
+      );
+      if (result == true) {
+
+      }
+    }
+  }
 
   void saveTimetable() {
     if (_formKey.currentState!.validate()) {
@@ -111,9 +133,7 @@ class _EditTimetablePageState extends State<EditTimetablePage> {
           centerTitle: true,
           actions: [
             IconButton(
-              onPressed: () async {
-                
-              },
+              onPressed: uploadTimetable,
               tooltip: 'Upload Timetable',
               icon: const Icon(Icons.upload_rounded),
             ),

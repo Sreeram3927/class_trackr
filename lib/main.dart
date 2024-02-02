@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:infinity_project/services/analytics.dart';
 import 'package:infinity_project/screens/home/home.dart';
 import 'package:infinity_project/screens/home/onboarding_screens/onboarding_screen.dart';
-import 'package:infinity_project/screens/settings/get_timetable/get_timetable.dart';
 import 'firebase_options.dart';
 import 'package:infinity_project/data/user_data.dart';
 
