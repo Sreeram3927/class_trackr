@@ -14,8 +14,8 @@ class UserData {
     _preferences.setInt('data_version', value);
   }
 
-  int get getAppLevel => 1;
-  static const String appVersion = '1.0.2';
+  int get getAppLevel => 2;
+  static const String appVersion = '1.1.2';
   static late String _storedVersion;
   String get getVersion => _storedVersion;
   void updateVersion() {

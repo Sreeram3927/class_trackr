@@ -5,24 +5,24 @@ class DayOrder {
 
   final UserData _userData = UserData();
 
-  List<String> dayOrder_1() => defaultDayOrder_1;
-  List<String> dayOrder_2() => defaultDayOrder_2;
-  List<String> dayOrder_3() => defaultDayOrder_3;
-  List<String> dayOrder_4() => defaultDayOrder_4;
-  List<String> dayOrder_5() => defaultDayOrder_5;
+  List<String> dayOrder_1() => _userData.getList('day_order_1') ?? defaultDayOrder_1;
+  List<String> dayOrder_2() => _userData.getList('day_order_2') ?? defaultDayOrder_2;
+  List<String> dayOrder_3() => _userData.getList('day_order_3') ?? defaultDayOrder_3;
+  List<String> dayOrder_4() => _userData.getList('day_order_4') ?? defaultDayOrder_4;
+  List<String> dayOrder_5() => _userData.getList('day_order_5') ?? defaultDayOrder_5;
 
   void setAllDayOrders({
-    required List<String> do1,
-    required List<String> do2,
-    required List<String> do3,
-    required List<String> do4,
-    required List<String> do5,
+    required List do1,
+    required List do2,
+    required List do3,
+    required List do4,
+    required List do5,
   }) {
-    _userData.setList('day_order_1', do1);
-    _userData.setList('day_order_2', do2);
-    _userData.setList('day_order_3', do3);
-    _userData.setList('day_order_4', do4);
-    _userData.setList('day_order_5', do5);
+    _userData.setList('day_order_1', do1.map((element) => element.toString()).toList());
+    _userData.setList('day_order_2', do2.map((element) => element.toString()).toList());
+    _userData.setList('day_order_3', do3.map((element) => element.toString()).toList());
+    _userData.setList('day_order_4', do4.map((element) => element.toString()).toList());
+    _userData.setList('day_order_5', do5.map((element) => element.toString()).toList());
   }
 
   final List<String> defaultDayOrder_1 = [
@@ -37,13 +37,13 @@ class DayOrder {
     '08/03/24',
     '15/03/24',
     '22/03/24',
-    '01/04/24',
-    '08/04/24',
-    '17/04/24',
-    '24/04/24',
-    '02/05/24',
-    '09/05/24',
-    '16/05/24',
+    '03/04/24',
+    '12/04/24',
+    '19/04/24',
+    '26/04/24',
+    '06/05/24',
+    '13/05/24',
+    '20/05/24',
   ];
 
   final List<String> defaultDayOrder_2 = [
@@ -57,14 +57,13 @@ class DayOrder {
     '04/03/24',
     '11/03/24',
     '18/03/24',
-    '25/03/24',
-    '02/04/24',
-    '10/04/24',
-    '18/04/24',
-    '25/04/24',
-    '03/05/24',
-    '10/05/24',
-    '17/05/24',
+    '26/03/24',
+    '04/04/24',
+    '15/04/24',
+    '22/04/24',
+    '29/04/24',
+    '07/05/24',
+    '14/05/24',
   ];
 
 
@@ -79,14 +78,13 @@ class DayOrder {
     '05/03/24',
     '12/03/24',
     '19/03/24',
-    '26/03/24',
-    '03/04/24',
-    '12/04/24',
-    '19/04/24',
-    '26/04/24',
-    '06/05/24',
-    '13/05/24',
-    '20/05/24',
+    '27/03/24',
+    '05/04/24',
+    '16/04/24',
+    '23/04/24',
+    '30/04/24',
+    '08/05/24',
+    '15/05/24',
   ];
 
   final List<String> defaultDayOrder_4 = [
@@ -100,13 +98,13 @@ class DayOrder {
     '06/03/24',
     '13/03/24',
     '20/03/24',
-    '27/03/24',
-    '04/04/24',
-    '15/04/24',
-    '22/04/24',
-    '29/04/24',
-    '07/05/24',
-    '14/05/24',
+    '28/03/24',
+    '08/04/24',
+    '17/04/24',
+    '24/04/24',
+    '02/05/24',
+    '09/05/24',
+    '16/05/24',
   ];
 
   final List<String> defaultDayOrder_5 = [
@@ -120,13 +118,14 @@ class DayOrder {
     '07/03/24',
     '14/03/24',
     '21/03/24',
-    '28/03/24',
-    '05/04/24',
-    '16/04/24',
-    '23/04/24',
-    '30/04/24',
-    '08/05/24',
-    '15/05/24',
+    '01/04/24',
+    '06/04/24',
+    '10/04/24',
+    '18/04/24',
+    '25/04/24',
+    '03/05/24',
+    '10/05/24',
+    '17/05/24',
   ];
   
 }

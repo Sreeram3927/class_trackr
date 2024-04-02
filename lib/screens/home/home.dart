@@ -31,7 +31,7 @@ class _HomeState extends State<Home> {
           dayOrders: backendData['day_orders'],
         );
       }
-      if (backendData['app_level'] > _userData.getAppLevel  && kIsWeb && mounted) {
+      if (backendData['app_level'] > _userData.getAppLevel && !kIsWeb && mounted) {
         showDialog(
           context: context,
           barrierDismissible: false,

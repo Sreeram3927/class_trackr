@@ -38,16 +38,16 @@ class _SettingsState extends State<Settings> {
           }
         ),
 
-        _settingsTile(
-          icon: Icons.download_rounded,
-          title: 'Download Timetable',
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const GetTimetable()),
-            );
-          }
-        ),
+        // _settingsTile(
+        //   icon: Icons.download_rounded,
+        //   title: 'Download Timetable',
+        //   onTap: () {
+        //     Navigator.push(
+        //       context,
+        //       MaterialPageRoute(builder: (context) => const GetTimetable()),
+        //     );
+        //   }
+        // ),
 
         _settingsTile(
           icon: Icons.privacy_tip_rounded,
