@@ -1,4 +1,4 @@
-# Class Trackr (Made with Flutter)
+# Class Trackr (Made with Flutter) (Archived)
 
 [![GitHub Stars](https://img.shields.io/github/stars/sreeram3927/class_trackr?style=for-the-badge)](https://github.com/sreeram3927/class_trackr/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/sreeram3927/class_trackr?style=for-the-badge)](https://github.com/sreeram3927/class_trackr/network/members)
